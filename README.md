@@ -1,12 +1,71 @@
-# paraicehockey
-Телеграм-бот для НКО “Федерация адаптивного хоккея”, который поможет пользователям познакомиться с ее деятельностью,
-получить информацию о мероприятиях и проектах, которые она организует, задать вопрос сотрудникам.
+[![Python](https://img.shields.io/badge/-Python-464646?style=flat&logo=Python&logoColor=56C0C0&color=008080)](https://www.python.org/) [![badge](https://img.shields.io/badge/-Python_telegram_bot-008080)](https://github.com/python-telegram-bot/python-telegram-bot/blob/680cca8262ab3e8dc00916ec523b9e015db5bc22/docs/source/telegram.ext.rst) 
 
-**“Федерация адаптивного хоккея”** - некоммерческая организация, которая создает условия для развития адаптивных видов хоккея в России,
-повышает их роль в социальной реабилитации детей с инвалидностью. Например, обучает тренеров, судей, волонтеров-пушеров (помощников на коньках),
-поддерживает новые и действующие команды, содействует разработке специального спортивного инвентаря, организует мероприятия – турниры, летний инклюзивный лагерь, интенсивы. 
+# Project Paraicehockey  
+
+
+
+## Project profile
+Телеграм-бот для НКО “Федерация адаптивного хоккея”, который поможет пользователям познакомиться с ее деятельностью, получить информацию о мероприятиях и проектах, которые она организует, задать вопрос сотрудникам.
+
+“Федерация адаптивного хоккея” - некоммерческая организация, которая создает условия для развития адаптивных видов хоккея в России, повышает их роль в социальной реабилитации детей с инвалидностью. Например, обучает тренеров, судей, волонтеров-пушеров (помощников на коньках), поддерживает новые и действующие команды, содействует разработке специального спортивного инвентаря, организует мероприятия – турниры, летний инклюзивный лагерь, интенсивы.
 
 Федерация — единственная в России организация, которая занимается развитием адаптивного хоккея для детей на системном уровне и объединяет детские команды со всех уголков страны.
 
-- **Сайт Федерации** - [https://paraicehockey.ru/federatsiya-adaptivnogo-hokkeya/](https://paraicehockey.ru/federatsiya-adaptivnogo-hokkeya/)
-- **Телеграм - канал** - [https://t.me/paraicehockey](https://t.me/paraicehockey)
+Сайт Федерации - https://paraicehockey.ru/federatsiya-adaptivnogo-hokkeya/
+Телеграм - канал - https://t.me/paraicehockey
+
+
+## Startup instructions
+
+Clone the repository to your computer:
+
+```
+git@github.com:Studio-Yandex-Practicum/paraicehockey.git
+```
+
+In the root folder, create a virtual environment
+
+```
+python -m venv venv
+```
+
+Launch virtual environment
+
+```
+. venv/bin/activate
+```
+
+Install the dependencies:
+
+```
+pip install -r requirements.txt
+```
+
+create file  ```paraicehockey/.env```
+
+example of .env file:
+
+```
+APP_TITLE
+
+```
+
+###
+1. Бот зарегистрирован
+2. Имя paraicehockeybot
+3. Техническое имя paraicehockeybot
+
+4. Use this token to access the HTTP API: 5822407132:AAHA6ySgbmAIQ9NHh-xIxKw9_iN_kPgsTgw Keep your token secure and store it safely, it can be used by anyone to control your bot.
+
+5. Сделал продакт сервер, запустил бот. ubuntu@130.255.170.24 Pleheranar0116
+6. Можно проверить в телеграм @paraicehockeybot (отправьте любое сообщение или /start)
+
+
+#### Author
+-
+
+- [Sukharev Kirill](https://github.com/Soliton80)
+-
+-
+-
+
