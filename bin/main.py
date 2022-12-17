@@ -12,7 +12,7 @@ updater = Updater(token=token)
 
 
 def wake_up(update, context):
-    '''handler whith button'''
+    """Handler with button."""
     chat = update.effective_chat
     name = update.message.chat.first_name
     button = ReplyKeyboardMarkup([['start']], resize_keyboard=True)
@@ -22,7 +22,7 @@ def wake_up(update, context):
 
 
 def say_hi(update, context):
-    '''handler that intercept all messages'''
+    """Handler that intercept all messages."""
     chat = update.effective_chat
     name = update.message.chat.first_name
     context.bot.send_message(chat_id=chat.id,
