@@ -1,21 +1,12 @@
 version: '3.8'
 services:
-  db:
-    image: postgres:13.9-alpine
-    volumes:
-      - /var/lib/postgresql/data/
-    env_file:
-      - ./.env
   bot:
     build: .
     restart: always
     volumes:
       - static_value:/app/static/
-    depends_on:
-      - db
     env_file:
       - ./.env
-
   nginx:
     image: nginx:1.22-alpine
     ports:
@@ -28,4 +19,3 @@ services:
 
 volumes:
   static_value:
-  postgres_data:
