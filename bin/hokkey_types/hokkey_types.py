@@ -7,16 +7,15 @@ from .constants import MAIN_TEXT, PAGES_TEXT_URLS
 def adaptive_hokkey_keyboard():
     """Клавиатура для главного меню Адаптивные виды хоккея."""
     keyboard = [
-        [InlineKeyboardButton("Следж-хоккей", callback_data='sledzh_hokkey')],
-        [InlineKeyboardButton("Специальный хоккей",
+        [InlineKeyboardButton('Следж-хоккей', callback_data='sledzh_hokkey')],
+        [InlineKeyboardButton('Специальный хоккей',
                               callback_data='special_hokkey')],
-        [InlineKeyboardButton("Хоккей для незрячих",
+        [InlineKeyboardButton('Хоккей для незрячих',
                               callback_data='hokkey_for_blind')],
-        [InlineKeyboardButton("Меню", callback_data='main_menu')],
-        [InlineKeyboardButton("На главную", callback_data='start_page')],
+        [InlineKeyboardButton('Меню', callback_data='main_menu')],
+        [InlineKeyboardButton('На главную', callback_data='start_page')],
     ]
-    reply_markup = InlineKeyboardMarkup(keyboard)
-    return reply_markup
+    return InlineKeyboardMarkup(keyboard)
 
 
 def start_hokkey_types(update: Update, context: CallbackContext) -> None:
@@ -36,9 +35,9 @@ def redirect_adaptive_hokkey_types(update: Update,
     query.answer()
     if query.data in PAGES_TEXT_URLS:
         keyboard = [
-            [InlineKeyboardButton("Адаптивные виды хоккея",
+            [InlineKeyboardButton('Адаптивные виды хоккея',
                                   callback_data='adaptive_hokkey_types')],
-            [InlineKeyboardButton("Команды",
+            [InlineKeyboardButton('Команды',
                                   url=PAGES_TEXT_URLS[query.data][0])],
         ]
         keybord = InlineKeyboardMarkup(keyboard)
@@ -49,11 +48,9 @@ def redirect_adaptive_hokkey_types(update: Update,
         query.edit_message_text(text=MAIN_TEXT, parse_mode='HTML')
         query.edit_message_reply_markup(
             reply_markup=adaptive_hokkey_keyboard())
-    elif query.data == 'start_page':
+    elif ((query.data == 'start_page') or (query.data == 'main_menu')):
         query.delete_message()
         # TODO: Сделать переход на стартовую страницу
-    elif query.data == 'main_menu':
-        query.delete_message()
         # TODO: Сделать переход на главное меню
     else:
-        query.edit_message_text(text=f"Selected option: {query.data}")
+        query.edit_message_text(text=f'Selected option: {query.data}')
