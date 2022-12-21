@@ -2,14 +2,13 @@ import logging
 import os
 import sys
 
+from champion_way import redirect_to_champion_way
 from dotenv import load_dotenv
+from hokkey_types.hokkey_types import (redirect_adaptive_hokkey_types,
+                                       start_hokkey_types)
 from telegram import KeyboardButton, ReplyKeyboardMarkup
 from telegram.ext import (CallbackQueryHandler, CommandHandler, Filters,
                           MessageHandler, Updater)
-
-from champion_way import redirect_to_champion_way
-from hokkey_types.hokkey_types import (redirect_adaptive_hokkey_types,
-                                       start_hokkey_types)
 
 load_dotenv()
 

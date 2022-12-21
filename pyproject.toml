@@ -15,6 +15,7 @@ python-dotenv = "^0.21.0"
 flake8 = "^6.0.0"
 isort = "^5.11.3"
 flake8-docstrings = "^1.6.0"
+flake8-isort = "^5.0.3"
 
 [build-system]
 requires = ["poetry-core"]
