@@ -11,3 +11,4 @@ tzdata==2022.7
 tzlocal==4.2
 flake8==3.9.2
 flake8-docstrings==1.6.0
+gunicorn==20.0.4

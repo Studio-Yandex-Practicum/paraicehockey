@@ -1,0 +1,21 @@
+version: '3.8'
+services:
+  bot:
+    build: .
+    restart: always
+    volumes:
+      - static_value:/app/static/
+    env_file:
+      - ./.env
+  nginx:
+    image: nginx:1.22-alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - static_value:/var/html/static/
+    depends_on:
+      - bot
+
+volumes:
+  static_value:
