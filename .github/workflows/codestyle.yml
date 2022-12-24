@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.7", "3.8", "3.9", "3.10"]
+        python-version: ["3.8", "3.9", "3.10"]
 
     steps:
     - uses: actions/checkout@v2
@@ -25,7 +25,7 @@ jobs:
     - name: Install dependencies
       run: | 
         python -m pip install --upgrade pip 
-        pip install flake8 pep8-naming flake8-broken-line flake8-return flake8-isort flake8-bugbear flake8-comprehensions flake8-eradicate flake8-pie flake8-print flake8-quotes flake8-simplify flake8-variables-names dlint
+        pip install flake8 pep8-naming flake8-return flake8-isort flake8-bugbear flake8-comprehensions flake8-pie flake8-print flake8-quotes flake8-simplify flake8-variables-names
         pip install -r requirements.txt 
 
     - name: Test with flake8
