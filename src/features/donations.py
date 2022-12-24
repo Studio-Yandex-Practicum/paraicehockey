@@ -25,8 +25,8 @@ def page_donations(update, context):
 
 def make_donations(update, context):
     keyboard = [
-        [InlineKeyboardButton("Поддержать", url=URL_DONATION),]]
+        [InlineKeyboardButton('Поддержать', url=URL_DONATION),]]
     reply_markup = InlineKeyboardMarkup(keyboard)
     update.message.reply_text(
-        "Нажмите на кнопку ниже 🔽",
+        'Нажмите на кнопку ниже 🔽',
         reply_markup=reply_markup)
