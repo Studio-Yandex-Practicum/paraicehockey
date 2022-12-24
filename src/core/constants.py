@@ -79,10 +79,6 @@ ADAPTIVE_HOKKEY_PAGES_TEXT_URLS = {
     'hockey_for_blind': [BLIND_TEAMS_URL, BLIND_TEXT]
 }
 
-IMAGE_FYRK = open('src/static/images/картинка №6.png', 'rb')
-IMAGE_FANY = open('src/static/images/картинка №7.png', 'rb')
-IMAGE_FEDOR = open('src/static/images/картинка №8.png', 'rb')
-
 TEXT_DONATION = ['Регулярные пожертвования позволяют Федерации оказывать'
                  ' помощь большому количеству детей,'
                  ' и дают возможность каждому ребенку с инвалидностью'

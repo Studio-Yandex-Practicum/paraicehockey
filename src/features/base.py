@@ -7,12 +7,10 @@ from telegram.ext import (CallbackQueryHandler, CommandHandler, Filters,
 
 from src.core.settings import settings
 from src.features.champion_way import redirect_to_champion_way
-from src.features.donations import (page_donations,
-                                    make_donations)
+from src.features.donations import make_donations, page_donations
 from src.features.hockey_types import (redirect_adaptive_hockey_types,
                                        start_hockey_types)
 from src.features.who_is_fyrk import who_is_fyrk
-
 
 logger = logging.getLogger('paraicehockey_bot')
 handler = logging.StreamHandler(stream=sys.stdout)

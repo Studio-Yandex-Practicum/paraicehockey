@@ -1,7 +1,5 @@
 from telegram import ReplyKeyboardMarkup
 
-from src.core.constants import IMAGE_FYRK, IMAGE_FANY, IMAGE_FEDOR
-
 
 def who_is_fyrk(update, context):
     chat = update.effective_chat
@@ -12,6 +10,15 @@ def who_is_fyrk(update, context):
         chat_id=chat.id,
         text='Привет! Давай знакомиться. Это я и моя семья.',
         reply_markup=reply_markup)
-    context.bot.send_photo(chat.id, IMAGE_FYRK)
-    context.bot.send_photo(chat.id, IMAGE_FANY)
-    context.bot.send_photo(chat.id, IMAGE_FEDOR)
+    context.bot.send_photo(
+        chat.id,
+        open('src/static/images/картинка №6.png', 'rb')
+    )
+    context.bot.send_photo(
+        chat.id,
+        open('src/static/images/картинка №7.png', 'rb')
+    )
+    context.bot.send_photo(
+        chat.id,
+        open('src/static/images/картинка №8.png', 'rb')
+    )
