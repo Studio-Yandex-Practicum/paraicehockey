@@ -180,5 +180,4 @@ _Примеры:_
 
 - [Sukharev Kirill](https://github.com/Soliton80)
 - [Kolosova Ekaterina](https://github.com/Ekaterina-Kolosova)
--
--
+- [Nikita Sorin](https://github.com/nikita141150)
