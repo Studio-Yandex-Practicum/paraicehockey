@@ -5,7 +5,8 @@ from telegram import (
     ReplyKeyboardMarkup
 )
 
-from src.core.constants import TEXT_DONATION, URL_DONATION
+from src.core.constants import TEXT_DONATION
+from src.core.settings import settings
 
 
 def page_donations(update, context):
@@ -25,7 +26,7 @@ def page_donations(update, context):
 
 def make_donations(update, context):
     keyboard = [
-        [InlineKeyboardButton('Поддержать', url=URL_DONATION),]]
+        [InlineKeyboardButton('Поддержать', url=settings.url_donation),]]
     reply_markup = InlineKeyboardMarkup(keyboard)
     update.message.reply_text(
         'Нажмите на кнопку ниже 🔽',
