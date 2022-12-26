@@ -11,6 +11,7 @@ class Settings(BaseSettings):
     """Класс с общими настройками бота."""
 
     bot_token: str
+    url_donation: str
     app_title: str = 'Телеграм-бот для НКО “Федерация адаптивного хоккея”'
 
     class Config:
