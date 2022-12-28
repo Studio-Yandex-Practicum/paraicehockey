@@ -8,7 +8,7 @@
 # также в строке 16 указать сервер почты для smtp(например smtp.yandex.ru)
 # def send_mail(user_email):
 #     message = MIMEMultipart()
-#     message_text = 'Спасибо за Ваш заказ! Мы уже начали работать над ним.'
+#     message_text = 'Был сделан заказ. '
 #     password = 'your_password'
 #     message['From'] = 'our_address'
 #     message['To'] = user_email
