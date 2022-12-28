@@ -3,7 +3,7 @@
 # import smtplib
 
 
-# Нужно поменять message['From'] на адрес реальной почты проекта, 
+# Нужно поменять message['From'] на адрес реальной почты проекта,
 # в password записать пароль от нее
 # также в строке 16 указать сервер почты для smtp(например smtp.yandex.ru)
 # def send_mail(user_email):
