@@ -78,3 +78,8 @@ ADAPTIVE_HOKKEY_PAGES_TEXT_URLS = {
     'special_hockey': [SPECIAL_TEAMS_URL, SPECIAL_TEXT],
     'hockey_for_blind': [BLIND_TEAMS_URL, BLIND_TEXT]
 }
+
+ALL_FOR_HOKKEY_MAIN_TEXT = """Привет, друг!
+Здесь ты можешь приобрести экипировку и атрибутику для игры!"""
+
+HOCKEY_EQUIPMENT_URL = 'https://hockey-family.com/equipment/'

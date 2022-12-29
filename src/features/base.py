@@ -2,10 +2,10 @@ import logging
 import sys
 
 from telegram import KeyboardButton, ReplyKeyboardMarkup
-from telegram.ext import (CallbackQueryHandler, CommandHandler, Filters,
-                          MessageHandler, Updater)
+from telegram.ext import CallbackQueryHandler, CommandHandler, Updater
 
 from src.core.settings import settings
+from src.features.all_for_hockey import show_product
 from src.features.champion_way import redirect_to_champion_way
 from src.features.hockey_types import (redirect_adaptive_hockey_types,
                                        start_hockey_types)
@@ -20,7 +20,8 @@ def wake_up(update, context):
     chat = update.effective_chat
     name = update.message.chat.first_name
     keyboard = [[KeyboardButton('/hockey_types')],
-                [KeyboardButton('/champion_way')]]
+                [KeyboardButton('/champion_way')],
+                [KeyboardButton('/all_for_hockey')]]
     reply_markup = ReplyKeyboardMarkup(keyboard, resize_keyboard=True)
     context.bot.send_message(chat_id=chat.id,
                              text=f'Спасибо, {name}, что включил меня',
@@ -44,6 +45,10 @@ def show_main_menu():
                                                   start_hockey_types))
     updater.dispatcher.add_handler(CallbackQueryHandler(
                                    redirect_adaptive_hockey_types))
-    updater.dispatcher.add_handler(MessageHandler(Filters.text, say_hi))
+    updater.dispatcher.add_handler(CommandHandler('all_for_hockey',
+                                                  show_product))
+    # updater.dispatcher.add_handler(MessageHandler(Filters.all, shop_answer))
+    # updater.dispatcher.add_handler(CallbackQueryHandler(shop_answer))
+    # updater.dispatcher.add_handler(MessageHandler(Filters.text, say_hi))
     updater.start_polling()
     updater.idle()
