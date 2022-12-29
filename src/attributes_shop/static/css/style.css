@@ -1,0 +1,128 @@
+/* @font-face {
+    font-family: "Montserrat";
+    src: local("Montserrat"),
+      url(../fonts/Montserrat/Montserrat-VariableFont_wght.ttf);
+  } */
+@font-face {
+    font-family: 'Segoe UI Regular';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Segoe UI Regular'), url(../fonts/Segoe_UI.woff) format('woff');
+}
+    
+
+@font-face {
+    font-family: 'Segoe UI Italic';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Segoe UI Italic'), url(../fonts/Segoe_UI_Italic.woff) format('woff');
+}
+    
+
+@font-face {
+    font-family: 'Segoe UI Bold';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Segoe UI Bold'), url(../fonts/Segoe_UI_Bold.woff) format('woff');
+}
+    
+
+@font-face {
+    font-family: 'Segoe UI Bold Italic';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Segoe UI Bold Italic'), url(../fonts/Segoe_UI_Bold_Italic.woff) format('woff');
+}
+
+@media screen and (min-width:100px) and (max-width:490px) {
+  #img_header {
+    max-width: 25%;
+    height: auto;
+    width: auto;
+  }
+
+  /* img {
+    border-radius: 1rem;
+    margin-bottom: 1rem;
+    max-width: 100%;
+    height: auto;
+    width: auto\9;
+  } */
+}
+
+@media screen and (min-width:491px) and (max-width:2560px) {
+  #img_header {
+    max-width: 15%;
+    height: auto;
+    width: auto;
+  }
+}
+
+body {
+    font-family: Segoe UI Regular, Arial, sans-serif;
+    background: var(--tg-theme-bg-color) !important;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: fit-content;
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .container {
+    display: flex;
+    justify-content: space-around;
+    width: 100vw;
+  }
+
+  h6 {
+    text-transform: uppercase;
+    font-family: 'Segoe UI Bold', sans-serif;
+    font-size: 1rem;
+  }
+
+  p {
+    font-family: 'Segoe UI Bold', sans-serif;
+    font-size: 1rem;
+  }
+
+  /* #img_header {
+    max-width: 25%;
+    height: auto;
+    width: auto;
+  } */
+
+  img {
+    border-radius: 1rem;
+    margin-bottom: 1rem;
+    max-width: 100%;
+    /* height: auto;
+    width: auto\9; */
+  }
+  
+  button {
+    background-color: #3f2a56;
+    color: #ffffff;
+    border-radius: 5px;
+    font-family: 'Segoe UI Regular',sans-serif;
+    border: none;
+  }
+
+  .browser-default {
+    outline: none !important;
+    background: var(--tg-theme-bg-color) !important;
+    border: none !important;
+    max-height: 50px !important;
+    color: var(--tg-theme-text-color) !important;
+    cursor: pointer;
+    box-shadow: none !important;
+  }

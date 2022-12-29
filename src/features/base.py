@@ -6,6 +6,7 @@ from telegram.ext import (CallbackQueryHandler, CommandHandler, Filters,
                           MessageHandler, Updater)
 
 from src.core.settings import settings
+from src.features.all_for_hockey import show_product
 from src.features.champion_way import redirect_to_champion_way
 from src.features.donations import make_donations, page_donations
 from src.features.hockey_types import (redirect_adaptive_hockey_types,
@@ -55,5 +56,7 @@ def show_main_menu():
     updater.dispatcher.add_handler(
         MessageHandler(Filters.text('Поддержать'), make_donations))
     updater.dispatcher.add_handler(MessageHandler(Filters.text, say_hi))
+    updater.dispatcher.add_handler(CommandHandler('all_for_hockey',
+                                                  show_product))
     updater.start_polling()
     updater.idle()

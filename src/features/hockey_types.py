@@ -56,5 +56,5 @@ def redirect_adaptive_hockey_types(update: Update,
         query.delete_message()
         # TODO: Сделать переход на стартовую страницу
         # TODO: Сделать переход на главное меню
-    else:
-        query.edit_message_text(text=f'Selected option: {query.data}')
+    # else:
+    #     query.edit_message_text(text=f'Selected option: {query.data}')
