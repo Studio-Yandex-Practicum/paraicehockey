@@ -12,7 +12,7 @@ from src.core.settings import settings
 def page_donations(update, context):
     chat = update.effective_chat
     reply_markup = ReplyKeyboardMarkup([
-        ['Поддержать', 'Меню', 'На главную']
+        ['Поддержать', 'Меню', 'На главную'],['Убрать кнопки']
     ], resize_keyboard=True)
     context.bot.send_message(
         chat_id=chat.id,

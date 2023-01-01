@@ -3,6 +3,7 @@ from telegram.ext import CallbackContext
 
 from src.core.constants import (ADAPTIVE_HOKKEY_MAIN_TEXT,
                                 ADAPTIVE_HOKKEY_PAGES_TEXT_URLS)
+from src.features.go_back_go_home import go_back_keyboard
 
 
 def adaptive_hockey_keyboard():
@@ -13,8 +14,8 @@ def adaptive_hockey_keyboard():
                               callback_data='special_hockey')],
         [InlineKeyboardButton('Хоккей для незрячих',
                               callback_data='hockey_for_blind')],
-        [InlineKeyboardButton('Меню', callback_data='main_menu')],
-        [InlineKeyboardButton('На главную', callback_data='start_page')],
+        [InlineKeyboardButton('Меню', callback_data='menu')],
+        [InlineKeyboardButton('На главную', callback_data='home')],
     ]
     return InlineKeyboardMarkup(keyboard)
 
@@ -52,9 +53,9 @@ def redirect_adaptive_hockey_types(update: Update,
                                 parse_mode='HTML')
         query.edit_message_reply_markup(
             reply_markup=adaptive_hockey_keyboard())
-    elif ((query.data == 'start_page') or (query.data == 'main_menu')):
+    elif query.data == 'start' or query.data == 'menu':
         query.delete_message()
-        # TODO: Сделать переход на стартовую страницу
-        # TODO: Сделать переход на главное меню
-    else:
-        query.edit_message_text(text=f'Selected option: {query.data}')
+        query.edit_message_reply_markup(
+            reply_markup=go_back_keyboard())
+    # else:
+    #     query.edit_message_text(text=f'Selected option: {query.data}')

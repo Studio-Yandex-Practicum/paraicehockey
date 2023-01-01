@@ -4,7 +4,7 @@ from telegram import ReplyKeyboardMarkup
 def who_is_fyrk(update, context):
     chat = update.effective_chat
     reply_markup = ReplyKeyboardMarkup([
-        ['Меню', 'На главную']
+        ['Меню', 'На главную'], ['Убрать кнопки']
     ], resize_keyboard=True)
     context.bot.send_message(
         chat_id=chat.id,
