@@ -98,3 +98,7 @@ TEXT_DONATION = ['Регулярные пожертвования позволя
                  '*5000* руб – один день участия ребенка в инклюзивном'
                  ' хоккейном лагере Hockey Familly Camp',
                  '*38000* руб – хоккейная экипировка для одного игрока']
+
+ATTRIBUTES_SHOP_URL = 'https://kolosova411.pythonanywhere.com/'
+
+STICKERS_URL = 'https://t.me/addstickers/FyrkStickers'
