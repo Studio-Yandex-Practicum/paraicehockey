@@ -1,0 +1,19 @@
+<!DOCTYPE html> 
+<html lang="ru"> 
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+    {# <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> #}
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>    
+    <title>Магазин атрибутики Федерации адаптивного хоккея</title>
+  </head>
+
+  <body>
+    <!-- Тут подключается шаблон header.html. Создадим его чуть позже -->
+    {% include "header.html" %} 
+    {% block content %}{% endblock content %}
+    <!-- Тут подключается шаблон footer.html. Его тоже скоро создадим -->
+    {# {% include "footer.html" %} #}
+  </body>
+</html>

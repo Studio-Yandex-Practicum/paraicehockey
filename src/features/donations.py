@@ -1,9 +1,5 @@
-from telegram import (
-    InlineKeyboardButton,
-    InlineKeyboardMarkup,
-    ParseMode,
-    ReplyKeyboardMarkup
-)
+from telegram import (InlineKeyboardButton, InlineKeyboardMarkup, ParseMode,
+                      ReplyKeyboardMarkup)
 
 from src.core.constants import TEXT_DONATION
 from src.core.settings import settings
