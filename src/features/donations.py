@@ -17,7 +17,10 @@ def page_donations(update, context):
 
 def make_donations(update, context):
     keyboard = [
-        [InlineKeyboardButton('Поддержать', url=settings.url_donation),]]
+        [InlineKeyboardButton('Поддержать', url=settings.url_donation)],
+        [InlineKeyboardButton('Меню', callback_data='main_menu')],
+        [InlineKeyboardButton(
+            'На главную', callback_data='start_page')]]
     reply_markup = InlineKeyboardMarkup(keyboard)
     context.bot.send_photo(
         update.effective_chat.id,

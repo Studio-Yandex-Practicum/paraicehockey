@@ -27,8 +27,6 @@ def quiz(update=None, context=None, chat_id=None, index=None):
             'На главную', callback_data='start_page')]]
     if update:
         chat_id = update.effective_chat.id
-    else:
-        chat_id = chat_id
     if index is None:
         question = QUESTIONS[0]
         answers = ANSWER_VARIANTS[0]
@@ -57,15 +55,16 @@ def quiz(update=None, context=None, chat_id=None, index=None):
     )
     payload = {
         message.poll.id: {
-            "question": question,
-            "message_id": message.message_id,
-            "chat_id": chat_id
+            'question': question,
+            'message_id': message.message_id,
+            'chat_id': chat_id
         }
     }
     context.bot_data.update(payload)
 
 
 def analize_results(final_points):
+    text = ''
     if final_points > 9:
         text = f'Количество правильных ответов: {final_points}, \
 твой статус "Хоккейный гуру"'
