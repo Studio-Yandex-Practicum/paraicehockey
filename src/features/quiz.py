@@ -6,6 +6,7 @@ from src.core.constants import (
 
 
 def start_quiz(update, context):
+    """" Функция нчач """
     chat_id = update.effective_chat.id
     keyboard = [
         [InlineKeyboardButton('Старт', callback_data='quiz_questions')],
@@ -64,20 +65,23 @@ def quiz(update=None, context=None, chat_id=None, index=None):
 
 
 def analize_results(final_points):
-    text = ''
+
     if final_points > 9:
         text = f'Количество правильных ответов: {final_points}, \
 твой статус "Хоккейный гуру"'
+        return text
     elif final_points <= 8 and final_points >= 7:
         text = f'Количество правильных ответов: {final_points}, \
 твой статус "Знаток хоккея"'
+        return text
     elif final_points <= 6 and final_points > 5:
         text = f'Количество правильных ответов: {final_points}, \
 твой статус "Хоккейный профи"'
+        return text
     elif final_points < 5:
         text = f'Количество правильных ответов: {final_points}, \
 ты молодец, но еще нужно подтянуть знания!'
-    return text
+        return text
 
 
 def poll_handler(update, context):

@@ -4,6 +4,7 @@ from src.core.settings import settings
 
 
 def page_donations(update, context):
+    """"  Функция для перехода  """
     keyboard = [
         [InlineKeyboardButton('Поддержать', callback_data='donate')],
         [InlineKeyboardButton('Меню', callback_data='main_menu')],

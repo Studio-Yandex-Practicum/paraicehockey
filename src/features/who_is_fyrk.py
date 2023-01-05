@@ -2,6 +2,7 @@ from telegram import InlineKeyboardMarkup, InlineKeyboardButton
 
 
 def who_is_fyrk(update, context):
+    """" Функция для рассказа о Фырке и его семьи. """
     chat = update.effective_chat
 
     keyboard = [[InlineKeyboardButton('Меню', callback_data='main_menu')],
