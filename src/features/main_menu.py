@@ -4,12 +4,13 @@ from telegram.ext import CallbackContext
 from src.core.constants import ADAPTIVE_HOKKEY_PAGES_TEXT_URLS
 from src.features.all_for_hockey import start_all_for_hockey
 from src.features.champion_way import redirect_to_champion_way
-from src.features.donations import page_donations
+from src.features.donations import page_donations, make_donations
 from src.features.hockey_types import (redirect_adaptive_hockey_types,
                                        start_hockey_types)
 from src.features.send_stickers import sending_stickers
 from src.features.start import wake_up
 from src.features.who_is_fyrk import who_is_fyrk
+from src.features.quiz import start_quiz, quiz
 
 
 def main_menu_keyboard():
@@ -46,6 +47,7 @@ def main_menu(update: Update, context: CallbackContext) -> None:
 MAIN_MENU_COMMANDS = {
     'champion_way': redirect_to_champion_way,
     'make_donation': page_donations,
+    'donate': make_donations,
     'back': wake_up,
     'who_is_fyrk': who_is_fyrk,
     'main_menu': main_menu,
@@ -54,6 +56,8 @@ MAIN_MENU_COMMANDS = {
     'start_page': wake_up,
     'adaptive_hokkey_types': start_hockey_types,
     'adaptive_types': start_hockey_types,
+    'quiz': start_quiz,
+    'quiz_questions': quiz
 }
 
 
