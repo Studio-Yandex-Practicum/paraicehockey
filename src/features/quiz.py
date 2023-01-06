@@ -79,6 +79,8 @@ def analize_results(final_points):
     if final_points < 5:
         return f'Количество правильных ответов: {final_points}, \
 ты молодец, но еще нужно подтянуть знания!'
+    else:
+        return None
 
 
 def poll_handler(update, context):
