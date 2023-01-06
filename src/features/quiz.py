@@ -70,13 +70,13 @@ def analize_results(final_points):
     if final_points > 9:
         return f'Количество правильных ответов: {final_points}, \
 твой статус "Хоккейный гуру"'
-    elif final_points <= 8 and final_points >= 7:
+    if final_points <= 8 and final_points >= 7:
         return f'Количество правильных ответов: {final_points}, \
 твой статус "Знаток хоккея"'
-    elif final_points <= 6 and final_points > 5:
+    if final_points <= 6 and final_points > 5:
         return f'Количество правильных ответов: {final_points}, \
 твой статус "Хоккейный профи"'
-    elif final_points < 5:
+    if final_points < 5:
         return f'Количество правильных ответов: {final_points}, \
 ты молодец, но еще нужно подтянуть знания!'
 
