@@ -80,7 +80,7 @@ def analize_results(final_points):
         return f'Количество правильных ответов: {final_points}, \
 ты молодец, но еще нужно подтянуть знания!'
     else:
-        return None
+        return 'Ошибка'
 
 
 def poll_handler(update, context):
