@@ -4,7 +4,7 @@ from src.core.settings import settings
 
 
 def page_donations(update, context):
-    """"  Функция для перехода  """
+    """Функция для перехода к меню и выдаче скрина с тратами организации."""
     keyboard = [
         [InlineKeyboardButton('Поддержать', callback_data='donate')],
         [InlineKeyboardButton('Меню', callback_data='main_menu')],
@@ -17,6 +17,7 @@ def page_donations(update, context):
 
 
 def make_donations(update, context):
+    """Функция для выдачи кнопки поддержать с переходом на сайт СБП."""
     keyboard = [
         [InlineKeyboardButton('Поддержать', url=settings.url_donation)],
         [InlineKeyboardButton('Меню', callback_data='main_menu')],

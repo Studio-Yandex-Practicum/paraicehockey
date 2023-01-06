@@ -6,7 +6,7 @@ from src.core.constants import (
 
 
 def start_quiz(update, context):
-    """" Функция нчач """
+    """Функция для выдачи кнопки для старта Квиза."""
     chat_id = update.effective_chat.id
     keyboard = [
         [InlineKeyboardButton('Старт', callback_data='quiz_questions')],
@@ -22,6 +22,7 @@ def start_quiz(update, context):
 
 
 def quiz(update=None, context=None, chat_id=None, index=None):
+    """Функция для отправки пользователю вопросов и вариантов ответа."""
     keyboard = [
         [InlineKeyboardButton('Меню', callback_data='main_menu')],
         [InlineKeyboardButton(
@@ -65,7 +66,7 @@ def quiz(update=None, context=None, chat_id=None, index=None):
 
 
 def analize_results(final_points):
-
+    """Функция для анализа результата ответов пользователя на вопросы."""
     if final_points > 9:
         text = f'Количество правильных ответов: {final_points}, \
 твой статус "Хоккейный гуру"'
@@ -85,6 +86,10 @@ def analize_results(final_points):
 
 
 def poll_handler(update, context):
+    """
+    Функция для выдачи след.
+    квиза после выбора ответа пользователя на вопрос.
+    """
     chat_id = context.bot_data[update.poll.id]['chat_id']
     index = QUESTIONS.index(update.poll.question)
     keyboard = [
@@ -115,3 +120,4 @@ def poll_handler(update, context):
             chat_id=chat_id,
             text=analize_results(final_points),
             reply_markup=InlineKeyboardMarkup(keyboard))
+        context.bot_data.clear()
