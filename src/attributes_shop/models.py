@@ -1,3 +1,6 @@
+# from email.mime.multipart import MIMEMultipart
+# from email.mime.text import MIMEText
+# import smtplib
 class ShoppingCart:
     """Класс для корзины."""
 
@@ -24,6 +27,18 @@ class ShoppingCart:
     def checkout(self, cash_paid):
         """Метод для проверки оплаты."""
         if cash_paid >= self.total:
+            #     msg = MIMEMultipart()
+            #     message_text = 'Был сделан заказ. '
+            #     password = 'your_password'
+            #     msg['From'] = 'our_address'
+            #     msg['To'] = user_email
+            #     msg['Subject'] = 'NO-Reply--Заказ paraicehockey'
+            #     msg.attach(MIMEText(message_text, 'plain'))
+            #     email = smtplib.SMTP('smtp.gmail.com: 587')
+            #     email.starttls()
+            #     email.login(msg['From'], password)
+            # email.sendmail(msg['From'], msg['To'], msg.as_string())
+            #     email.quit()
             return cash_paid - self.total
         return 'Cash paid not enough'
 
