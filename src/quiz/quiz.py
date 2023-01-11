@@ -77,8 +77,8 @@ def poll_handler(update, context):
     """
     chat_id = context.bot_data[update.poll.id]['chat_id']
     index = Quiz.find_index(
-        quizzes=quizzes,
-        question=update.poll.question)
+        quizzes,
+        update.poll.question)
     keyboard = [
         [InlineKeyboardButton('Меню', callback_data='main_menu')],
         [InlineKeyboardButton(

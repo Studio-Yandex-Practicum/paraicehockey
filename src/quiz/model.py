@@ -14,14 +14,14 @@ class Quiz:
         self.image_path = image_path
         Quiz.quizzes.append(self)
 
-    def make_quiz(quizzes):
+    def make_quiz(self):
         """Создание списка викторины."""
-        for quizz in quizzes:
+        for quizz in self:
             Quiz(*quizz)
         return Quiz.quizzes
 
-    def find_index(quizzes, question):
+    def find_index(self, question):
         """Определение индекса в списке."""
-        for index in range(len(quizzes)):
-            if quizzes[index].question == question:
+        for index in range(len(self)):
+            if self[index].question == question:
                 return index
