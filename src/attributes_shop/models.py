@@ -27,18 +27,18 @@ class ShoppingCart:
     def checkout(self, cash_paid):
         """Метод для проверки оплаты."""
         if cash_paid >= self.total:
-        #     message = MIMEMultipart()
-        #     message_text = 'Был сделан заказ. '
-        #     password = 'your_password'
-        #     message['From'] = 'our_address'
-        #     message['To'] = user_email
-        #     message['Subject'] = 'NO-Reply--Заказ paraicehockey'
-        #     message.attach(MIMEText(message_text, 'plain'))
-        #     email = smtplib.SMTP('smtp.gmail.com: 587')
-        #     email.starttls()
-        #     email.login(message['From'], password)
-        # email.sendmail(message['From'], message['To'], message.as_string())
-        #     email.quit()
+            #     msg = MIMEMultipart()
+            #     message_text = 'Был сделан заказ. '
+            #     password = 'your_password'
+            #     msg['From'] = 'our_address'
+            #     msg['To'] = user_email
+            #     msg['Subject'] = 'NO-Reply--Заказ paraicehockey'
+            #     msg.attach(MIMEText(message_text, 'plain'))
+            #     email = smtplib.SMTP('smtp.gmail.com: 587')
+            #     email.starttls()
+            #     email.login(msg['From'], password)
+            # email.sendmail(msg['From'], msg['To'], msg.as_string())
+            #     email.quit()
             return cash_paid - self.total
         return 'Cash paid not enough'
 
