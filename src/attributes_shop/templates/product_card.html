@@ -1,0 +1,15 @@
+{% extends "base.html" %} 
+{% block content %}
+<main>
+    <div class="container">
+        <div class="card">
+            <img src="{{ url_for('static', filename=item.image) }}" alt="{{ item.title }}">
+            <h6>{{ item.title }}</h6>
+            <p>{{ item.description }}</p>
+            <div class="buy-price"><span>{{ item.price }}</span><span> руб.</span></div>
+            <button id="btnADD">Добавить в корзину</button>
+            <a href="{{ url_for('index_view', _external=True) }}" ><button>Назад</button></a>
+        </div>
+    </div>
+</main>
+{% endblock %}

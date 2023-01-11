@@ -79,6 +79,11 @@ ADAPTIVE_HOKKEY_PAGES_TEXT_URLS = {
     'hockey_for_blind': [BLIND_TEAMS_URL, BLIND_TEXT]
 }
 
+ALL_FOR_HOKKEY_MAIN_TEXT = """Привет, друг!
+Здесь ты можешь приобрести экипировку и атрибутику для игры!"""
+
+HOCKEY_EQUIPMENT_URL = 'https://hockey-family.com/equipment/'
+
 TEXT_DONATION = ['Регулярные пожертвования позволяют Федерации оказывать'
                  ' помощь большому количеству детей,'
                  ' и дают возможность каждому ребенку с инвалидностью'
@@ -93,3 +98,7 @@ TEXT_DONATION = ['Регулярные пожертвования позволя
                  '*5000* руб – один день участия ребенка в инклюзивном'
                  ' хоккейном лагере Hockey Familly Camp',
                  '*38000* руб – хоккейная экипировка для одного игрока']
+
+ATTRIBUTES_SHOP_URL = 'https://kolosova411.pythonanywhere.com/'
+
+STICKERS_URL = 'https://t.me/addstickers/FyrkStickers'

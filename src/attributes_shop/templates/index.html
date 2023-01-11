@@ -1,0 +1,52 @@
+<!DOCTYPE html> 
+<html lang="ru"> 
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+    {# <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> #}
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>    
+    <title>Магазин атрибутики Федерации адаптивного хоккея</title>
+  </head>
+  {% include "header.html" %} 
+  <body>	   
+    <main>   
+      <div class="container">
+        {% for item in items %}
+        <div class="card">
+          <img src="{{ url_for('static', filename=item.image) }}" alt="{{ item.title}}">
+          <h6>{{ item.title }}</h6>
+          <div class="buy-price"><span>{{item.price}} </span><span>руб.</span></div>
+          {# <button id="btnED">Подробнее</button> #}
+          <a href="{{ url_for('product_view', id=item.id, _external=True) }}" ><button id="btnED">Подробнее</button></a>
+        </div>
+        {% endfor %}
+        </div>
+      </div>
+    </main>
+    <script>
+      let tg = window.Telegram.WebApp;
+      // tg.expand(); //расширяем на все окно
+      // tg.MainButton.setParams(params) // задает параметры в виде объекта
+      tg.MainButton.color = "#64c2d1"
+      tg.MainButton.isVisible = true
+      tg.MainButton.setText("Оформить заказ")
+      // let btnED = document.getElementById("btnED"); //получаем кнопку активировать/деактивировать
+      // btnED.addEventListener('click', function(){ //вешаем событие на нажатие html-кнопки
+        // tg.location.href = 'https://codepen.io/ekolosova/full/QWBjgXp';
+        // if (tg.MainButton.isActive){ //если кнопка показана 
+        //   tg.MainButton.setParams({"color": "#269fbd"}); //меняем цвет
+        //   tg.MainButton.disable() //скрываем кнопку 
+        // }
+        // else{ //иначе
+        //   tg.MainButton.setParams({"color": "#269fbd"}); //меняем цвет
+        //   tg.MainButton.enable() //показываем 
+        // }
+      // });
+      Telegram.WebApp.onEvent('mainButtonClicked', function(){
+        // 'https://codepen.io/ekolosova/full/QWBjgXp'
+        tg.sendData("Переход к оформлению заказа"); //при клике на основную кнопку отправляем данные в строковом виде
+      });
+    </script>
+  </body>
+</html>
