@@ -10,7 +10,7 @@ from src.features.hockey_types import (redirect_adaptive_hockey_types,
 from src.features.send_stickers import sending_stickers
 from src.features.start import wake_up
 from src.features.who_is_fyrk import who_is_fyrk
-from src.features.quiz import start_quiz, quiz
+from src.quiz.quiz import quiz_menu, quiz
 
 
 def main_menu_keyboard():
@@ -56,7 +56,7 @@ MAIN_MENU_COMMANDS = {
     'start_page': wake_up,
     'adaptive_hokkey_types': start_hockey_types,
     'adaptive_types': start_hockey_types,
-    'quiz': start_quiz,
+    'quiz': quiz_menu,
     'quiz_questions': quiz
 }
 

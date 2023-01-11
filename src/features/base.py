@@ -11,7 +11,7 @@ from telegram.ext import (
 from src.core.settings import settings
 from src.features.main_menu import redirect_main_menu
 from src.features.start import wake_up
-from src.features.quiz import poll_handler
+from src.quiz.quiz import poll_handler
 
 logger = logging.getLogger('paraicehockey_bot')
 handler = logging.StreamHandler(stream=sys.stdout)
