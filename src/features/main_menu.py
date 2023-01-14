@@ -4,17 +4,16 @@ from telegram.ext import CallbackContext
 from src.core.constants import ADAPTIVE_HOKKEY_PAGES_TEXT_URLS
 from src.features.all_for_hockey import start_all_for_hockey
 from src.features.champion_way import redirect_to_champion_way
-from src.features.donations import page_donations, make_donations
+from src.features.donations import make_donations, page_donations
+from src.features.federation_info import (about_fed_main_page,
+                                          fed_activities_page, fed_values_page)
 from src.features.hockey_types import (redirect_adaptive_hockey_types,
                                        start_hockey_types)
+from src.features.question import question_menu_page
 from src.features.send_stickers import sending_stickers
 from src.features.start import wake_up
 from src.features.who_is_fyrk import who_is_fyrk
-from src.quiz.quiz import quiz_menu, quiz
-from src.features.federation_info import (about_fed_main_page,
-                                          fed_activities_page,
-                                          fed_values_page)
-from src.features.question import question_menu_page
+from src.quiz.quiz import quiz, quiz_menu
 
 
 def main_menu_keyboard():
