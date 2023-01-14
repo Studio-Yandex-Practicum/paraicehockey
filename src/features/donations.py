@@ -1,33 +1,30 @@
-from telegram import (
-    InlineKeyboardButton,
-    InlineKeyboardMarkup,
-    ParseMode,
-    ReplyKeyboardMarkup
-)
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 
-from src.core.constants import TEXT_DONATION
 from src.core.settings import settings
 
 
 def page_donations(update, context):
-    chat = update.effective_chat
-    reply_markup = ReplyKeyboardMarkup([
-        ['Поддержать', 'Меню', 'На главную'],['Убрать кнопки']
-    ], resize_keyboard=True)
-    context.bot.send_message(
-        chat_id=chat.id,
-        text='Все дети могут заниматься спортом, их нужно только поддержать!',
-        reply_markup=reply_markup)
-    context.bot.send_message(
-        chat_id=chat.id,
-        text='\n'.join(TEXT_DONATION),
-        parse_mode=ParseMode.MARKDOWN)
+    """Функция для перехода к меню и выдаче скрина с тратами организации."""
+    keyboard = [
+        [InlineKeyboardButton('Поддержать', callback_data='donate')],
+        [InlineKeyboardButton('Меню', callback_data='main_menu')],
+        [InlineKeyboardButton(
+            'На главную', callback_data='start_page')]]
+    context.bot.send_photo(
+        update.effective_chat.id,
+        open('src/static/images/Пожертвование 1.png', 'rb'),
+        reply_markup=InlineKeyboardMarkup(keyboard))
 
 
 def make_donations(update, context):
+    """Функция для выдачи кнопки поддержать с переходом на сайт СБП."""
     keyboard = [
-        [InlineKeyboardButton('Поддержать', url=settings.url_donation),]]
+        [InlineKeyboardButton('Поддержать', url=settings.url_donation)],
+        [InlineKeyboardButton('Меню', callback_data='main_menu')],
+        [InlineKeyboardButton(
+            'На главную', callback_data='start_page')]]
     reply_markup = InlineKeyboardMarkup(keyboard)
-    update.message.reply_text(
-        'Нажмите на кнопку ниже 🔽',
+    context.bot.send_photo(
+        update.effective_chat.id,
+        open('src/static/images/Пожертвование 2.png', 'rb'),
         reply_markup=reply_markup)

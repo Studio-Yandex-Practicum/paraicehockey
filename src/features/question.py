@@ -1,17 +1,17 @@
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
+from telegram.ext import CallbackContext
+
 from src.core.constants import QUESTION_TEXT
 
 
-def question_menu_command(bot, update):
-	bot.message.reply_text(QUESTION_TEXT,
-							reply_markup=question_menu_keyboard())
-
-
-def question_menu_button(bot, update):
-	bot.callback_query.message.edit_text(QUESTION_TEXT,
-							reply_markup=question_menu_keyboard())
-
 def question_menu_keyboard():
-	keyboard = [[InlineKeyboardButton('Назад', callback_data='home')],
-				[InlineKeyboardButton('Получить ответ', callback_data='answer')]]
-	return InlineKeyboardMarkup(keyboard)
+    keyboard = [[InlineKeyboardButton('Назад', callback_data='back')],
+                [InlineKeyboardButton('Получить ответ',
+                                      url='https://t.me/@Kot_in')]]
+    return InlineKeyboardMarkup(keyboard)
+
+
+def question_menu_page(update: Update, context: CallbackContext):
+    context.bot.send_message(chat_id=update.effective_chat.id,
+                             text=QUESTION_TEXT,
+                             reply_markup=question_menu_keyboard())
