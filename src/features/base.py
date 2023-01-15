@@ -1,12 +1,8 @@
 import logging
 import sys
 
-from telegram.ext import (
-    CallbackQueryHandler,
-    CommandHandler,
-    Updater,
-    PollHandler
-)
+from telegram.ext import (CallbackQueryHandler, CommandHandler, PollHandler,
+                          Updater)
 
 from src.core.settings import settings
 from src.features.main_menu import redirect_main_menu

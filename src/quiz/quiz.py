@@ -1,6 +1,6 @@
-from telegram import Poll, InlineKeyboardButton, InlineKeyboardMarkup
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Poll
 
-from src.core.constants import quizzes, quiz_results
+from src.core.constants import quiz_results, quizzes
 
 from .model import Quiz
 
