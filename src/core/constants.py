@@ -73,10 +73,17 @@ BLIND_TEXT = """<b>Новое направление.</b>
 
 BLIND_TEAMS_URL = 'https://paraicehockey.ru/teams-type/hokkey-dlya-nezryachih/'
 
+SLEDZH_PHOTO1 = 'src/static/images/следж хоккей 1.png'
+SLEDZH_PHOTO2 = 'src/static/images/следж хоккей 2.png'
+SPECIAL_HOCK1 = 'src/static/images/специальный хоккей 1.png'
+SPECIAL_HOCK2 = 'src/static/images/специальный хоккей 2.png'
+BLIND_PHOTO1 = 'src/static/images/хоккей для незрячих 1.png'
+BLIND_PHOTO2 = 'src/static/images/хоккей для незрячих 2.png'
+
 ADAPTIVE_HOKKEY_PAGES_TEXT_URLS = {
-    'sledzh_hockey': [SLEDZH_TEAMS_URL, SLEDZH_TEXT],
-    'special_hockey': [SPECIAL_TEAMS_URL, SPECIAL_TEXT],
-    'hockey_for_blind': [BLIND_TEAMS_URL, BLIND_TEXT]
+    'sledzh_hockey': [SLEDZH_TEAMS_URL, SLEDZH_PHOTO1, SLEDZH_PHOTO2],
+    'special_hockey': [SPECIAL_TEAMS_URL, SPECIAL_HOCK1, SPECIAL_HOCK2],
+    'hockey_for_blind': [BLIND_TEAMS_URL, BLIND_PHOTO1, BLIND_PHOTO2]
 }
 
 ALL_FOR_HOKKEY_MAIN_TEXT = """Привет, друг!
@@ -218,19 +225,6 @@ ABOUT_FED_TEXT = """У нас в хоккей играет каждый!
 На данный момент Федерация — единственная в России организация,
 которая занимается развитием адаптивного хоккея для детей на системном уровне
 и объединяет детские команды со всех уголков страны!"""
-
-FED_VALUES_TEXT = """ХОККЕЙ Это здоровье, а не травмы. Это захватывающая игра
-и закалка характера, а не цель 	стать чемпионом. КОМАНДА Это вера в то,
-что ты – часть единого целого, и уверенность в том, что тебя не
-оставят. Это – когда играют все, а не один за всех.
-ДРУЖБА Это новые товарищи, а не соперники. Это радость общения и
-взаимовыручки, даже через сотни и тысячи километров. СЕМЬЯ Это безоговорочная
-поддержка ребенка. Даже если он из другой команды. ПОБЕДА Этo возможность
-развиваться и стать лучше, а не быть лучшим любой ценой. Это твоя внутренняя
-сила и уверенность в себе, а не только количество забитых шайб. БЕЗГРАНИЧНЫЕ
-ВОЗМОЖНОСТИ Это шанс узнать мир вокруг и принять его многообразие,
-а не противостоять	ему вопреки всему. Федерация адаптивного хоккея – это шанс
-стать тем, кто ты есть, воплотить в жизнь свои мечты и возможности!"""
 
 
 FED_ACTIVITIES_TEXT = """Основные направления деятельности Федерации:

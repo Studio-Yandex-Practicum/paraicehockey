@@ -45,11 +45,14 @@ def redirect_adaptive_hockey_types(update: Update,
                                       query.data][0])],
         ]
         keybord = InlineKeyboardMarkup(keyboard)
-        context.bot.send_message(chat_id=chat_id,
-                                 text=ADAPTIVE_HOKKEY_PAGES_TEXT_URLS[
-                                     query.data][1],
-                                 parse_mode='HTML',
-                                 reply_markup=keybord)
+        context.bot.send_photo(
+            chat_id,
+            open(ADAPTIVE_HOKKEY_PAGES_TEXT_URLS[query.data][1], 'rb'))
+        context.bot.send_photo(
+            chat_id,
+            open(ADAPTIVE_HOKKEY_PAGES_TEXT_URLS[query.data][2], 'rb'),
+            reply_markup=keybord)
+
     # elif query.data == 'sledzh_hockey':
     #     query.delete_message()
     #     keyboard = [
