@@ -87,7 +87,7 @@ HOCKEY_EQUIPMENT_URL = 'https://hockey-family.com/equipment/'
 
 ATTRIBUTES_SHOP_URL = 'https://kolosova411.pythonanywhere.com/'
 
-STICKERS_URL = 'https://t.me/addstickers/FyrkStickers'
+STICKERS_URL = 'https://t.me/addstickers/the_world_of_hockey'
 
 
 quizzes = [
