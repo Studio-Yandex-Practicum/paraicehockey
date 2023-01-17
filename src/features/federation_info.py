@@ -30,7 +30,7 @@ def about_fed_main_page(update: Update, context: CallbackContext):
 def fed_values_page(update: Update, context: CallbackContext):
     """Функция для отображения 'ценности Федерации'."""
     context.bot.send_photo(update.effective_chat.id,
-                           open('src/static/images/ценности.png', 'rb'),
+                           open('src/static/images/values.png', 'rb'),
                            reply_markup=go_back_keyboard())
 
 

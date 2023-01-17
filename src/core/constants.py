@@ -73,12 +73,12 @@ BLIND_TEXT = """<b>Новое направление.</b>
 
 BLIND_TEAMS_URL = 'https://paraicehockey.ru/teams-type/hokkey-dlya-nezryachih/'
 
-SLEDZH_PHOTO1 = 'src/static/images/следж хоккей 1.png'
-SLEDZH_PHOTO2 = 'src/static/images/следж хоккей 2.png'
-SPECIAL_HOCK1 = 'src/static/images/специальный хоккей 1.png'
-SPECIAL_HOCK2 = 'src/static/images/специальный хоккей 2.png'
-BLIND_PHOTO1 = 'src/static/images/хоккей для незрячих 1.png'
-BLIND_PHOTO2 = 'src/static/images/хоккей для незрячих 2.png'
+SLEDZH_PHOTO1 = 'src/static/images/sledj_1.png'
+SLEDZH_PHOTO2 = 'src/static/images/sledj_2.png'
+SPECIAL_HOCK1 = 'src/static/images/special_hockey_1.png'
+SPECIAL_HOCK2 = 'src/static/images/special_hockey_2.png'
+BLIND_PHOTO1 = 'src/static/images/blind_hockey_1.png'
+BLIND_PHOTO2 = 'src/static/images/blind_hockey_2.png'
 
 ADAPTIVE_HOKKEY_PAGES_TEXT_URLS = {
     'sledzh_hockey': [SLEDZH_TEAMS_URL, SLEDZH_PHOTO1, SLEDZH_PHOTO2],
@@ -107,7 +107,7 @@ quizzes = [
         ],
         '0',
         'Всеволод Бобров',
-        'src/static/images/Портрет квиз.jpg',
+        'src/static/images/portrait.jpg',
     ],
     [
         'Какая страна считается родоначальником хоккея с шайбой?',
@@ -190,7 +190,7 @@ quizzes = [
         ],
         '2',
         'Хоккея с мячом',
-        'src/static/images/Клюшка.jpg',
+        'src/static/images/stick.jpg',
     ],
     [
         'Сколько клюшек у следж-хоккейного вратаря?',
