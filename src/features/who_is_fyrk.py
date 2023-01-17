@@ -13,14 +13,14 @@ def who_is_fyrk(update, context):
         text='Привет! Давай знакомиться. Это я и моя семья.')
     context.bot.send_photo(
         chat.id,
-        open('src/static/images/картинка №6.png', 'rb')
+        open('src/static/images/picture_6.png', 'rb')
     )
     context.bot.send_photo(
         chat.id,
-        open('src/static/images/картинка №7.png', 'rb')
+        open('src/static/images/picture_7.png', 'rb')
     )
     context.bot.send_photo(
         chat.id,
-        open('src/static/images/картинка №8.png', 'rb'),
+        open('src/static/images/picture_8.png', 'rb'),
         reply_markup=InlineKeyboardMarkup(keyboard)
     )

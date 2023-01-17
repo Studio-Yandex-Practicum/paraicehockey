@@ -13,8 +13,8 @@ def page_donations(update, context):
     reply_markup = InlineKeyboardMarkup(keyboard)
     context.bot.send_photo(
         update.effective_chat.id,
-        open('src/static/images/Пожертвование 1.png', 'rb'))
+        open('src/static/images/Donate_1.png', 'rb'))
     context.bot.send_photo(
         update.effective_chat.id,
-        open('src/static/images/Пожертвование 2.png', 'rb'),
+        open('src/static/images/Donate_2.png', 'rb'),
         reply_markup=reply_markup)

@@ -10,7 +10,7 @@ def sending_stickers(update: Update, context: CallbackContext) -> None:
                 [InlineKeyboardButton('Назад', callback_data='back')]]
     reply_markup = InlineKeyboardMarkup(keyboard)
     context.bot.send_sticker(chat_id=update.effective_chat.id,
-                             sticker=open('src/static/images/картинка-№1.webp',
+                             sticker=open('src/static/images/picture_1.webp',
                                           'rb'),
                              reply_markup=reply_markup)
 
