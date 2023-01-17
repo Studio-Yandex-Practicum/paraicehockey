@@ -14,12 +14,14 @@ def wake_up(update: Update, context: CallbackContext) -> None:
     #                        'src/static/images/Sledge_hockey_Logo_Rus.mpeg',
     #                        'rb'),
     #                        supports_streaming=True)
-    context.bot.send_sticker(chat_id=chat.id,
-                             sticker=open('src/static/images/fyrk_smile.webp',
-                                          'rb'))
+    context.bot.send_photo(
+        chat_id=chat.id, photo=open('src/static/images/fyrk_smile.webp', 'rb'),
+        caption='Выбери раздел меню.',
+        reply_markup=keyboard
+    )
     # context.bot.send_photo(chat_id=chat.id,
     #                        photo=open(
-    # 'src/static/images/fyrk_smile.webp', 'rb'))
-    context.bot.send_message(chat_id=chat.id,
-                             text='Выбери раздел меню.',
-                             reply_markup=keyboard)
+    # # 'src/static/images/fyrk_smile.webp', 'rb'))
+    # context.bot.send_message(chat_id=chat.id,
+    #                          text='Выбери раздел меню.',
+    #                          reply_markup=keyboard)
