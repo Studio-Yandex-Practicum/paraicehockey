@@ -1,10 +1,11 @@
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
 from telegram.ext import CallbackContext
 
-from src.core.constants import ADAPTIVE_HOKKEY_PAGES_TEXT_URLS
+from src.core.constants import (
+    ADAPTIVE_HOKKEY_PAGES_TEXT_URLS,
+    CHAMPION_WAY_URL)
 from src.features.all_for_hockey import start_all_for_hockey
-from src.features.champion_way import redirect_to_champion_way
-from src.features.donations import make_donations, page_donations
+from src.features.donations import page_donations
 from src.features.federation_info import (about_fed_main_page,
                                           fed_activities_page, fed_values_page)
 from src.features.hockey_types import (redirect_adaptive_hockey_types,
@@ -22,7 +23,7 @@ def main_menu_keyboard():
 
         [InlineKeyboardButton('Задать вопрос', callback_data='ask_question'),
          InlineKeyboardButton('🏆 Путь чемпиона 🏅',
-                              callback_data='champion_way')],
+                              url=CHAMPION_WAY_URL)],
         [InlineKeyboardButton('ℹ Узнать о Федерации',
                               callback_data='about_federation')],
         [InlineKeyboardButton('Сделать пожертвования',
@@ -49,9 +50,7 @@ def main_menu(update: Update, context: CallbackContext) -> None:
 
 
 MAIN_MENU_COMMANDS = {
-    'champion_way': redirect_to_champion_way,
     'make_donation': page_donations,
-    'donate': make_donations,
     'back': wake_up,
     'who_is_fyrk': who_is_fyrk,
     'main_menu': main_menu,
