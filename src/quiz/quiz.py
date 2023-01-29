@@ -29,10 +29,6 @@ def quiz(update=None, context=None, chat_id=None, index=0):
     image_path = quizzes[index].image_path
     keyboard = [
         [InlineKeyboardButton('Меню', callback_data='main_menu')]]
-        # ,
-        # [InlineKeyboardButton(
-        #     'На главную', callback_data='start_page')]]
-
     if update:
         chat_id = update.effective_chat.id
     if image_path:
@@ -67,8 +63,9 @@ def analize_results(final_points):
     # if final_points >= 5 and final_points <= 6:
     #     return quiz_results['5-6'].format(final_points)
     # return quiz_results['0-4'].format(final_points)
-    if final_points in quiz_results.keys():
+    if final_points in quiz_results:
         return quiz_results[final_points]
+
 
 def poll_handler(update, context):
     """
@@ -103,6 +100,6 @@ def poll_handler(update, context):
             final_points += point
         context.bot.send_photo(
             chat_id=chat_id,
-            photo = open(analize_results(final_points), 'rb'),
+            photo=open(analize_results(final_points), 'rb'),
             reply_markup=InlineKeyboardMarkup(keyboard))
         context.bot_data.clear()
