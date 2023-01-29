@@ -14,7 +14,6 @@ def all_for_hockey_keyboard():
                               url=HOCKEY_EQUIPMENT_URL)],
         [InlineKeyboardButton('Атрибутика Федерации', web_app=web_app_shop)],
         [InlineKeyboardButton('Меню', callback_data='main_menu')],
-        [InlineKeyboardButton('На главную', callback_data='start_page')],
     ]
     return InlineKeyboardMarkup(keyboard)
 

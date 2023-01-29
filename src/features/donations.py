@@ -8,13 +8,12 @@ def page_donations(update, context):
     keyboard = [
         [InlineKeyboardButton('Поддержать', url=settings.url_donation)],
         [InlineKeyboardButton('Меню', callback_data='main_menu')],
-        [InlineKeyboardButton(
-            'На главную', callback_data='start_page')]]
+    ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     context.bot.send_photo(
         update.effective_chat.id,
         open('src/static/images/Donate_1.png', 'rb'))
     context.bot.send_photo(
         update.effective_chat.id,
-        open('src/static/images/Donate_2.png', 'rb'),
+        open('src/static/images/donations.png', 'rb'),
         reply_markup=reply_markup)

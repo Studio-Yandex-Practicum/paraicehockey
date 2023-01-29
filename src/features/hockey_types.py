@@ -13,8 +13,7 @@ def adaptive_hockey_keyboard():
                               callback_data='special_hockey')],
         [InlineKeyboardButton('Хоккей для незрячих',
                               callback_data='hockey_for_blind')],
-        [InlineKeyboardButton('Меню', callback_data='main_menu'),
-         InlineKeyboardButton('На главную', callback_data='start_page')],
+        [InlineKeyboardButton('Меню', callback_data='main_menu')],
     ]
     return InlineKeyboardMarkup(keyboard)
 
@@ -35,7 +34,6 @@ def redirect_adaptive_hockey_types(update: Update,
     """
     query = update.callback_query
     chat_id = update.effective_chat.id
-    # query.answer()
     if query.data in ADAPTIVE_HOKKEY_PAGES_TEXT_URLS:
         keyboard = [
             [InlineKeyboardButton('Адаптивные виды хоккея',
@@ -43,6 +41,7 @@ def redirect_adaptive_hockey_types(update: Update,
             [InlineKeyboardButton('Команды',
                                   url=ADAPTIVE_HOKKEY_PAGES_TEXT_URLS[
                                       query.data][0])],
+            [InlineKeyboardButton('Меню', callback_data='main_menu')]
         ]
         keybord = InlineKeyboardMarkup(keyboard)
         context.bot.send_photo(

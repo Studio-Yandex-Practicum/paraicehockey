@@ -5,9 +5,9 @@ def who_is_fyrk(update, context):
     """Функция для рассказа о Фырке и его семьи."""
     chat = update.effective_chat
 
-    keyboard = [[InlineKeyboardButton('Меню', callback_data='main_menu')],
-                [InlineKeyboardButton(
-                    'На главную', callback_data='start_page')]]
+    keyboard = [
+        [InlineKeyboardButton('Меню', callback_data='main_menu')]
+    ]
     context.bot.send_message(
         chat_id=chat.id,
         text='Привет! Давай знакомиться. Это я и моя семья.')

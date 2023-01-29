@@ -5,8 +5,7 @@ from telegram.ext import (CallbackQueryHandler, CommandHandler, PollHandler,
                           Updater)
 
 from src.core.settings import settings
-from src.features.main_menu import redirect_main_menu
-from src.features.start import wake_up
+from src.features.main_menu import main_menu, redirect_main_menu
 from src.quiz.quiz import poll_handler
 
 logger = logging.getLogger('paraicehockey_bot')
@@ -22,7 +21,7 @@ def show_main_menu():
             pass_chat_data=True,
             pass_user_data=True
         ))
-    updater.dispatcher.add_handler(CommandHandler('start', wake_up))
+    updater.dispatcher.add_handler(CommandHandler('start', main_menu))
     updater.dispatcher.add_handler(CallbackQueryHandler(
                                    redirect_main_menu))
     updater.start_polling()

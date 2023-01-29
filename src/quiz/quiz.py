@@ -12,9 +12,7 @@ def quiz_menu(update, context):
     chat_id = update.effective_chat.id
     keyboard = [
         [InlineKeyboardButton('Старт', callback_data='quiz_questions')],
-        [InlineKeyboardButton('Меню', callback_data='main_menu')],
-        [InlineKeyboardButton(
-            'На главную', callback_data='start_page')]]
+        [InlineKeyboardButton('Меню', callback_data='main_menu')]]
     context.bot_data.clear()
     context.bot.send_message(
         chat_id=chat_id,
@@ -30,9 +28,10 @@ def quiz(update=None, context=None, chat_id=None, index=0):
     correct_answer = quizzes[index].correct_answer
     image_path = quizzes[index].image_path
     keyboard = [
-        [InlineKeyboardButton('Меню', callback_data='main_menu')],
-        [InlineKeyboardButton(
-            'На главную', callback_data='start_page')]]
+        [InlineKeyboardButton('Меню', callback_data='main_menu')]]
+        # ,
+        # [InlineKeyboardButton(
+        #     'На главную', callback_data='start_page')]]
 
     if update:
         chat_id = update.effective_chat.id
@@ -61,14 +60,15 @@ def quiz(update=None, context=None, chat_id=None, index=0):
 
 def analize_results(final_points):
     """Функция для анализа результата ответов пользователя на вопросы."""
-    if final_points >= 9:
-        return quiz_results['9-10'].format(final_points)
-    if final_points >= 7 and final_points <= 8:
-        return quiz_results['7-8'].format(final_points)
-    if final_points >= 5 and final_points <= 6:
-        return quiz_results['5-6'].format(final_points)
-    return quiz_results['0-4'].format(final_points)
-
+    # if final_points >= 9:
+    #     return quiz_results['9-10'].format(final_points)
+    # if final_points >= 7 and final_points <= 8:
+    #     return quiz_results['7-8'].format(final_points)
+    # if final_points >= 5 and final_points <= 6:
+    #     return quiz_results['5-6'].format(final_points)
+    # return quiz_results['0-4'].format(final_points)
+    if final_points in quiz_results.keys():
+        return quiz_results[final_points]
 
 def poll_handler(update, context):
     """
@@ -80,9 +80,7 @@ def poll_handler(update, context):
         quizzes,
         update.poll.question)
     keyboard = [
-        [InlineKeyboardButton('Меню', callback_data='main_menu')],
-        [InlineKeyboardButton(
-            'На главную', callback_data='start_page')]]
+        [InlineKeyboardButton('Меню', callback_data='main_menu')]]
     if index <= (len(quizzes) - 1):
         for answer in update.poll.options:
             if answer.voter_count == 1:
@@ -103,8 +101,8 @@ def poll_handler(update, context):
         for poll_id in context.bot_data:
             point = context.bot_data[poll_id]
             final_points += point
-        context.bot.send_message(
+        context.bot.send_photo(
             chat_id=chat_id,
-            text=analize_results(final_points),
+            photo = open(analize_results(final_points), 'rb'),
             reply_markup=InlineKeyboardMarkup(keyboard))
         context.bot_data.clear()
