@@ -8,11 +8,10 @@ from src.core.constants import (ALL_FOR_HOKKEY_MAIN_TEXT, ATTRIBUTES_SHOP_URL,
 
 def all_for_hockey_keyboard():
     """Клавиатура для главного меню раздела 'Всё для хоккея'."""
-    web_app_shop = WebAppInfo(ATTRIBUTES_SHOP_URL)
+    # web_app_shop = WebAppInfo(ATTRIBUTES_SHOP_URL)
     keyboard = [
         [InlineKeyboardButton('Хоккейный инвентарь и экипировка',
                               url=HOCKEY_EQUIPMENT_URL)],
-        [InlineKeyboardButton('Атрибутика Федерации', web_app=web_app_shop)],
         [InlineKeyboardButton('Меню', callback_data='main_menu')],
     ]
     return InlineKeyboardMarkup(keyboard)
