@@ -35,22 +35,27 @@ def main_menu_keyboard():
                               callback_data='get_stickers')],
         [InlineKeyboardButton('🦝 Кто такой Фырк?',
                               callback_data='who_is_fyrk')],
-        [InlineKeyboardButton('Квиз', callback_data='quiz'),
-         InlineKeyboardButton('Назад', callback_data='back')],
+        [InlineKeyboardButton('Квиз', callback_data='quiz')],
     ]
     return InlineKeyboardMarkup(keyboard)
 
 
 def main_menu(update: Update, context: CallbackContext) -> None:
     """Функция для первого сообщения с меню."""
-    context.bot.send_message(chat_id=update.effective_chat.id,
-                             text='Я могу помочь в этих вопросах',
-                             reply_markup=main_menu_keyboard())
+    chat = update.effective_chat
+    # context.bot.send_message(chat_id=update.effective_chat.id,
+    #                          text='Я могу помочь в этих вопросах',
+    #                          reply_markup=main_menu_keyboard())
+    context.bot.send_photo(
+        chat_id=chat.id,
+        photo=open('src/static/images/fyrk_smile.webp', 'rb'),
+        caption='Выбери раздел меню.',
+        reply_markup=main_menu_keyboard()
+    )
 
 
 MAIN_MENU_COMMANDS = {
     'make_donation': page_donations,
-    'back': wake_up,
     'who_is_fyrk': who_is_fyrk,
     'main_menu': main_menu,
     'about_federation': about_fed_main_page,

@@ -205,12 +205,18 @@ quizzes = [
     ]
 ]
 
+
 quiz_results = {
-    '9-10': 'Количество правильных ответов: {}, твой статус "Хоккейный гуру"',
-    '7-8': 'Количество правильных ответов: {}, твой статус "Знаток хоккея"',
-    '5-6': 'Количество правильных ответов: {}, твой статус "Хоккейный профи"',
-    '0-4': 'Количество правильных ответов: {}, \
-ты молодец, но еще нужно подтянуть знания!'
+    1: 'src/static/images/quiz/1.png',
+    2: 'src/static/images/quiz/2.png',
+    3: 'src/static/images/quiz/3.png',
+    4: 'src/static/images/quiz/4.png',
+    5: 'src/static/images/quiz/5.png',
+    6: 'src/static/images/quiz/6.png',
+    7: 'src/static/images/quiz/7.png',
+    8: 'src/static/images/quiz/8.png',
+    9: 'src/static/images/quiz/9.png',
+    10: 'src/static/images/quiz/10.png',
 }
 
 
