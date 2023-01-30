@@ -1,3 +1,4 @@
+import os
 import logging
 
 from pydantic import BaseSettings
@@ -13,7 +14,7 @@ class Settings(BaseSettings):
     bot_token: str
     url_donation: str
     app_title: str = 'Телеграм-бот для НКО “Федерация адаптивного хоккея”'
-    secret_key: str
+    secret_key: str = os.getenv('SECRET_KEY')
 
     class Config:
         """Название файла с переменными окружения в конфиге."""
