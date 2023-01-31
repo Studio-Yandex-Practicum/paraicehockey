@@ -207,6 +207,7 @@ quizzes = [
 
 
 quiz_results = {
+    0: 'src/static/images/quiz/0.png',
     1: 'src/static/images/quiz/1.png',
     2: 'src/static/images/quiz/2.png',
     3: 'src/static/images/quiz/3.png',
