@@ -52,6 +52,8 @@ jobs:
         password: ${{ secrets.SELECTEL_CONTAINER_REGISTRY_PASSWORD }}
 
     - name: Build and tag docker image
+      with:
+        context: ./
       run: |
         docker build -t tg_bot_dev .
         docker tag tg_bot_dev cr.selcloud.ru/registry/tg_bot_dev:${{ github.workflow }}-${{ github.run_number }}
