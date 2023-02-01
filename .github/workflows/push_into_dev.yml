@@ -40,21 +40,20 @@ jobs:
 
   build_push_to_CR:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Building tg_bot image and pushing it to CR
-        uses: cubetiq/starter-docker-actions@main
-        with:
-          image: 'tg_bot_dev'
-          registry: cr.selcloud.ru
-          username: ${{ secrets.SELECTEL_CONTAINER_REGISTRY_USER }}
-          password: ${{ secrets.SELECTEL_CONTAINER_REGISTRY_PASSWORD }}
-          shell: sh
-          run: |
-            docker build -t tg_bot_dev .
-            docker tag tg_bot_dev cr.selcloud.ru/registry/tg_bot_dev:${{ github.workflow }}-${{ github.run_number }}
-            docker push cr.selcloud.ru/registry/tg_bot_dev:${{ github.workflow }}-${{ github.run_number }}
-            docker logout cr.selcloud.ru
+    - uses: cubetiq/starter-docker-actions@main
+    - name: Building tg_bot image and pushing it to CR
+      with:
+        image: 'tg_bot_dev'
+        registry: cr.selcloud.ru
+        username: ${{ secrets.SELECTEL_CONTAINER_REGISTRY_USER }}
+        password: ${{ secrets.SELECTEL_CONTAINER_REGISTRY_PASSWORD }}
+        shell: sh
+        run: |
+          docker build -t tg_bot_dev .
+          docker tag tg_bot_dev cr.selcloud.ru/registry/tg_bot_dev:${{ github.workflow }}-${{ github.run_number }}
+          docker push cr.selcloud.ru/registry/tg_bot_dev:${{ github.workflow }}-${{ github.run_number }}
+          docker logout cr.selcloud.ru
 
     - name: Remote ssh commands to deploy
       uses: appleboy/ssh-action@master
