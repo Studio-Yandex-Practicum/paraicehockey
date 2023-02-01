@@ -15,6 +15,3 @@ def sending_stickers(update: Update, context: CallbackContext) -> None:
                              sticker=open('src/static/images/picture_1.webp',
                                           'rb'),
                              reply_markup=reply_markup)
-
-# TODO: Можно сделать отдельные стикерпаки с Фырком и с логотипами
-#  и талисманами команд и под их скачивание разные кнопки
