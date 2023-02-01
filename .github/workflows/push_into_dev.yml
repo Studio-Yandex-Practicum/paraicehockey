@@ -48,7 +48,7 @@ jobs:
       uses: docker/login-action@v1
       with:
         username: ${{ secrets.SELECTEL_CONTAINER_REGISTRY_USER }}
-        password: ${{ secrets.DOCKERSELECTEL_CONTAINER_REGISTRY_PASSWORD_PASS }}
+        password: ${{ secrets.SELECTEL_CONTAINER_REGISTRY_PASSWORD_PASS }}
 
     - name: Build and tag docker image
       run: |
