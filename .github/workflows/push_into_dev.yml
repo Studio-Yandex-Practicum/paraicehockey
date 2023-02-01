@@ -41,8 +41,8 @@ jobs:
   build_push_to_CR:
     runs-on: ubuntu-latest
     steps:
-    - uses: cubetiq/starter-docker-actions@main
     - name: Building tg_bot image and pushing it to CR
+    - uses: cubetiq/starter-docker-actions@main
       with:
         image: 'tg_bot_dev'
         registry: cr.selcloud.ru
