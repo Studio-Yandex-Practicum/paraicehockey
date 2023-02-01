@@ -41,7 +41,7 @@ jobs:
   build_push_to_CR:
     name: Building tg_bot image and pushing it to CR
     runs-on: ubuntu-latest
-    needs: [tests]
+    needs: tests
     steps:
 
     - name: Login to docker in Selectel CR
@@ -60,10 +60,7 @@ jobs:
  
   deploy_pool_create_from_CR:
     runs-on: ubuntu-latest
-    needs: [
-      tests,
-      build_push_to_CR
-    ]
+    needs: build_push_to_CR
     steps:
 
     - name: Remote ssh commands to deploy
@@ -82,8 +79,7 @@ jobs:
           docker container create -it --name tg_bot_dev_container cr.selcloud.ru/registry/tg_bot_dev:${{ github.workflow }}-${{ github.run_number }}
           docker container start tg_bot_dev_container
 
-
-    - name: 'Create env file'
+    - name: Create env file and start project
       run: |
         docker exec -it tg_bot_dev_container bash
         echo touch .env
