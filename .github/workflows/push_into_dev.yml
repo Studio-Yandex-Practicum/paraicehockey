@@ -1,4 +1,4 @@
-name: push_into_dev
+name: develop
 
 on:
   pull_request:
@@ -33,7 +33,62 @@ jobs:
         poetry add pep8-naming
         poetry add flake8-docstrings
         pre-commit install
-    - name: Test with flake8 and django tests
+    - name: Test with flake8 and pre-commit
       run: |
         python -m flake8 .
         pre-commit run --all-files
+
+  build_push_to_CR:
+    name: Building tg_bot image and pushing it to CR
+    runs-on: ubuntu-latest
+    needs: [tests]
+    steps:
+
+    - name: Login to docker in Selectel CR
+      run: |
+        docker login -u ${{ secrets.SELECTEL_CONTAINER_REGISTRY_USER }} 
+        -p ${{ secrets.SELECTEL_CONTAINER_REGISTRY_PASSWORD }}
+
+    - name: Build and tag docker image
+      run: |
+        docker build -t tg_bot_dev .
+        docker tag tg_bot_dev cr.selcloud.ru/registry/tg_bot_dev:${{ github.workflow }}-${{ github.run_number }}
+
+    - name: push docker image
+        docker push cr.selcloud.ru/registry/tg_bot_dev:${{ github.workflow }}-${{ github.run_number }}
+        docker logout cr.selcloud.ru
+ 
+  deploy_pool_create_from_CR:
+    runs-on: ubuntu-latest
+    needs: [
+      tests,
+      build_push_to_CR
+    ]
+    steps:
+
+    - name: Remote ssh commands to deploy
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.SELECTEL_SERVER_HOST_IP }}
+        username: ${{ secrets.SELECTEL_SERVER_HOST_USER }}
+        key: ${{ secrets.SELECTEL_SERVER_SSH_PUB_KEY }}
+        passphrase: ${{ secrets.SELECTEL_SERVER_SSH_PUB_KEY_PASSWORD }}
+        script: |
+          docker login -u ${{ secrets.SELECTEL_CONTAINER_REGISTRY_USER }} 
+          -p ${{ secrets.SELECTEL_CONTAINER_REGISTRY_PASSWORD }}
+          docker pull cr.selcloud.ru/registry/tg_bot_dev:${{ github.workflow }}-${{ github.run_number }}
+          docker logout cr.selcloud.ru
+          docker container rm tg_bot_dev_container --force
+          docker container create -it --name tg_bot_dev_container cr.selcloud.ru/registry/tg_bot_dev:${{ github.workflow }}-${{ github.run_number }}
+          docker container start tg_bot_dev_container
+
+
+    - name: 'Create env file'
+      run: |
+        docker exec -it tg_bot_dev_container bash
+        echo touch .env
+        echo BOT_TOKEN="" >> .env
+        echo URL_DONATION=${{ secrets.API_KEY }} >> .env
+        echo SECRET_KEY=${{ secrets.API_KEY }} >> .env
+        echo python -m bin.run_bot
+        echo exit
