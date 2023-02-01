@@ -84,8 +84,8 @@ jobs:
       run: |
         docker exec -it tg_bot_dev_container bash
         echo touch .env
-        echo BOT_TOKEN="" >> .env
-        echo URL_DONATION=${{ secrets.API_KEY }} >> .env
-        echo SECRET_KEY=${{ secrets.API_KEY }} >> .env
+        echo BOT_TOKEN="${{ secrets.PH_TOKEN_BOT_TEST }}" >> .env
+        echo URL_DONATION=${{ secrets.URL_DONATION }} >> .env
+        echo SECRET_KEY=${{ secrets.SECRET_KEY_BOT }} >> .env
         echo python -m bin.run_bot
         echo exit
