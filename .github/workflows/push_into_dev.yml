@@ -45,9 +45,10 @@ jobs:
     steps:
 
     - name: Login to docker in Selectel CR
-      run: |
-        docker login -u ${{ secrets.SELECTEL_CONTAINER_REGISTRY_USER }} 
-        -p ${{ secrets.SELECTEL_CONTAINER_REGISTRY_PASSWORD }}
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.SELECTEL_CONTAINER_REGISTRY_USER }}
+        password: ${{ secrets.DOCKERSELECTEL_CONTAINER_REGISTRY_PASSWORD_PASS }}
 
     - name: Build and tag docker image
       run: |
