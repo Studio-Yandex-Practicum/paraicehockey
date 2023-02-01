@@ -55,8 +55,8 @@ jobs:
       with:
         context: ./
         script: |
-        docker build -t tg_bot_dev .
-        docker tag tg_bot_dev cr.selcloud.ru/registry/tg_bot_dev:${{ github.workflow }}-${{ github.run_number }}
+          docker build -t tg_bot_dev .
+          docker tag tg_bot_dev cr.selcloud.ru/registry/tg_bot_dev:${{ github.workflow }}-${{ github.run_number }}
 
     - name: push docker image
       run: |
