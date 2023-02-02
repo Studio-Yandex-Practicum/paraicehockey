@@ -43,6 +43,7 @@ jobs:
 #         pre-commit run --all-files
 
   build-and-push-image:
+    steps:
     - name: Build and tag docker image
       with:
         context: ./
