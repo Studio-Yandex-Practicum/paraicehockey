@@ -77,7 +77,7 @@ jobs:
         #     docker build -t tg_bot_dev .
         #     docker tag tg_bot_dev cr.selcloud.ru/registry/tg_bot_dev:develop-45
         #     docker push cr.selcloud.ru/registry/tg_bot_dev:develop-45
-          shell: bash
+          #shell: bash
           load: false
           no-cache: false
           pull: false
