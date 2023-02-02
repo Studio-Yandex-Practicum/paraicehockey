@@ -82,6 +82,7 @@ jobs:
           no-cache: false
           pull: false
           push: true
+          tag: ${{ github.workflow }}-${{ github.run_number }}
 
 
 
