@@ -44,6 +44,8 @@ jobs:
 
   build-and-push-image:
     runs-on: ubuntu-latest
+    steps:
+    - name: docker login build push shell action
     - env:
         INPUTS_IMAGE: tg_bot_dev # image name to build, default: current workflow repository name
         INPUTS_PASSWORD: ${{ secrets.SELECTEL_CONTAINER_REGISTRY_PASSWORD }} # password to docker login to registry, default ${{ github.token }}
