@@ -66,9 +66,17 @@ jobs:
           context: .
           file: Dockerfile
           script: |
-            docker build -t tg_bot_dev .
-            docker tag tg_bot_dev cr.selcloud.ru/registry/tg_bot_dev:${{ github.workflow }}-${{ github.run_number }}
-            docker push cr.selcloud.ru/registry/tg_bot_dev:${{ github.workflow }}-${{ github.run_number }}
+            echo docker build -t tg_bot_dev .
+            echo docker tag tg_bot_dev cr.selcloud.ru/registry/tg_bot_dev:${{ github.workflow }}-${{ github.run_number }}
+            echo docker push cr.selcloud.ru/registry/tg_bot_dev:${{ github.workflow }}-${{ github.run_number }}
+      # - name: Build, tag, and push image to Selectel Cloud Container Registry
+      #   env:
+      #     CR_REGISTRY: crp00000000000000000
+      #     CR_REPOSITORY: my-cr-repo
+      #     IMAGE_TAG: ${{ github.sha }}
+      #   run: |
+      #     docker build -t cr.yandex/$CR_REGISTRY/$CR_REPOSITORY:$IMAGE_TAG .
+      #     docker push cr.yandex/$CR_REGISTRY/$CR_REPOSITORY:$IMAGE_TAG
 
       # -
       #   name: Build and push
