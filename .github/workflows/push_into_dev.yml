@@ -62,13 +62,13 @@ jobs:
 
       - name: Build image
         if: success()
-        run: docker build -t tg_bot_dev:${GITHUB_REPOSITORY}:${IMAGE_TAG} .
+        run: docker build -t tg_bot_dev:${{ github.workflow }}-${{ github.run_number }} .
 
       - name: Push to docker registry
         if: success()
         uses: actions-hub/docker@master
         with:
-          args: push cr.selcloud.ru/registry/tg_bot_dev:${GITHUB_REPOSITORY}:${IMAGE_TAG}
+          args: push cr.selcloud.ru/registry/tg_bot_dev:${{ github.workflow }}-${{ github.run_number }}
 
 
 
