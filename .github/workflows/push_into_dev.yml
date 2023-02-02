@@ -52,3 +52,5 @@ jobs:
           INPUTS_TAG: ${{ github.workflow }}-${{ github.run_number }} # tag, default: current workflow branch (usually it is repository default branch (usually it is master))
           INPUTS_USERNAME: ${{ secrets.SELECTEL_CONTAINER_REGISTRY_USER }} # username to docker login to registry, default: ${{ github.repository_owner }}
         uses: rekgrpth/docker-login-build-push-shell-action@v1
+        with:
+          context: ./
