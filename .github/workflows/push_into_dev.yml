@@ -10,7 +10,7 @@ env:
   REGISTRY: cr.selcloud.ru
   IMAGE_NAME: tg_bot_dev
 
-# jobs:
+jobs:
 #   tests:
 #     runs-on: ubuntu-latest
 #     steps:
