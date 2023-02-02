@@ -43,14 +43,9 @@ jobs:
 #         pre-commit run --all-files
 
   build-and-push-image:
-    runs-on: ubuntu-latest
-    steps:
-      - env:
-          INPUTS_IMAGE: tg_bot_dev # image name to build, default: current workflow repository name
-          INPUTS_PASSWORD: ${{ secrets.SELECTEL_CONTAINER_REGISTRY_PASSWORD }} # password to docker login to registry, default ${{ github.token }}
-          INPUTS_REGISTRY: cr.selcloud.ru # docker registry, default: ghcr.io
-          INPUTS_TAG: ${{ github.workflow }}-${{ github.run_number }} # tag, default: current workflow branch (usually it is repository default branch (usually it is master))
-          INPUTS_USERNAME: ${{ secrets.SELECTEL_CONTAINER_REGISTRY_USER }} # username to docker login to registry, default: ${{ github.repository_owner }}
-        uses: rekgrpth/docker-login-build-push-shell-action@v1
-        with:
-          context: .
+    - name: Build and tag docker image
+      with:
+        context: ./
+        run: |
+          docker build -t tg_bot_dev .
+          docker tag tg_bot_dev cr.selcloud.ru/registry/tg_bot_dev:${{ github.workflow }}-${{ github.run_number }}
