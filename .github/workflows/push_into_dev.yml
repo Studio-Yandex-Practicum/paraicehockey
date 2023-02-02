@@ -60,16 +60,23 @@ jobs:
           username: ${{ secrets.SELECTEL_CONTAINER_REGISTRY_USER }}
           password: ${{ secrets.SELECTEL_CONTAINER_REGISTRY_PASSWORD }}
 
-      - name: Build image
-        if: success()
-        run: docker build -t tg_bot_dev:${{ github.workflow }}-${{ github.run_number }} .
+      # - name: Build image
+      #   if: success()
+      #   run: docker build -t tg_bot_dev:${{ github.workflow }}-${{ github.run_number }} .
 
-      - name: Push to docker registry
-        if: success()
-        uses: actions-hub/docker@master
-        with:
-          args: push cr.selcloud.ru/registry/tg_bot_dev:${{ github.workflow }}-${{ github.run_number }}
+      # - name: Push to docker registry
+      #   if: success()
+      #   uses: actions-hub/docker@master
+      #   with:
+      #     args: push cr.selcloud.ru/registry/tg_bot_dev:${{ github.workflow }}-${{ github.run_number }}
 
+      - name: Use Docker
+        uses: actions-hub/docker/cli@master
+        env:
+          SKIP_LOGIN: true
+      - run: |
+          docker build -t tg_bot_dev:${{ github.workflow }}-${{ github.run_number }} .
+          docker push cr.selcloud.ru/registry/tg_bot_dev:${{ github.workflow }}-${{ github.run_number }}
 
 
 
