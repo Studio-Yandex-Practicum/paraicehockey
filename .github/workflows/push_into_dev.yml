@@ -61,22 +61,22 @@ jobs:
           password: ${{ secrets.SELECTEL_CONTAINER_REGISTRY_PASSWORD }}
       -
         name: Build and push
-        # uses: docker/build-push-action@v2
-        # with:
-        #   context: .
-        #   file: Dockerfile
-        #   run: |
-        #     docker build -t tg_bot_dev .
-        #     docker tag tg_bot_dev cr.selcloud.ru/registry/tg_bot_dev:${{ github.workflow }}-${{ github.run_number }}
-        #     docker push cr.selcloud.ru/registry/tg_bot_dev:${{ github.workflow }}-${{ github.run_number }}
-        #   shell: bash
+        uses: docker/build-push-action@v2
         with:
           context: .
           file: Dockerfile
           run: |
             docker build -t tg_bot_dev .
-            docker tag tg_bot_dev cr.selcloud.ru/registry/tg_bot_dev:develop-45
-            docker push cr.selcloud.ru/registry/tg_bot_dev:develop-45
+            docker tag tg_bot_dev cr.selcloud.ru/registry/tg_bot_dev:${{ github.workflow }}-${{ github.run_number }}
+            docker push cr.selcloud.ru/registry/tg_bot_dev:${{ github.workflow }}-${{ github.run_number }}
+          shell: bash
+        # with:
+        #   context: .
+        #   file: Dockerfile
+        #   run: |
+        #     docker build -t tg_bot_dev .
+        #     docker tag tg_bot_dev cr.selcloud.ru/registry/tg_bot_dev:develop-45
+        #     docker push cr.selcloud.ru/registry/tg_bot_dev:develop-45
           shell: bash
           load: false
           no-cache: false
