@@ -6,9 +6,9 @@ on:
   push:
     branches: [cicd]
 
-# env:
-#   REGISTRY: cr.selcloud.ru
-#   IMAGE_NAME: tg_bot_dev
+env:
+  REGISTRY: cr.selcloud.ru
+  IMAGE_NAME: tg_bot_dev
 
 jobs:
 #   tests:
@@ -42,11 +42,53 @@ jobs:
 #         python -m flake8 .
 #         pre-commit run --all-files
 
-  build-and-push-image:
+  build-and-push-image-to-github-packages:
+    name: Building tg_bot image and pushing it to CR
+    runs-on: ubuntu-latest
+    # needs: tests
     steps:
-    - name: Build and tag docker image
-      with:
-        context: ./
-      run: |
-        docker build -t tg_bot_dev .
-        docker tag tg_bot_dev cr.selcloud.ru/registry/tg_bot_dev:${{ github.workflow }}-${{ github.run_number }}
+      -
+        name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: cicd
+      -
+        name: Docker login
+        uses: docker/login-action@v2
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ secrets.SELECTEL_CONTAINER_REGISTRY_USER }}
+          password: ${{ secrets.SELECTEL_CONTAINER_REGISTRY_PASSWORD }}
+      -
+        name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: Dockerfile
+          labels: runnumber=${GITHUB_RUN_ID}
+          push: true
+          tags: |
+            ${{ github.workflow }}-${{ github.run_number }}
+
+
+
+
+  # build-and-push-image:
+  #   name: Building tg_bot image and pushing it to CR
+  #   runs-on: ubuntu-latest
+  #   # needs: tests
+  #   steps:
+
+  #   - name: Login to docker in Selectel CR
+  #     uses: docker/login-action@v2
+  #     with:
+  #       registry: cr.selcloud.ru
+  #       username: ${{ secrets.SELECTEL_CONTAINER_REGISTRY_USER }}
+  #       password: ${{ secrets.SELECTEL_CONTAINER_REGISTRY_PASSWORD }}
+
+  #   - name: Build and tag docker image
+  #     with:
+  #       context: ./
+  #       script: |
+  #         docker build -t tg_bot_dev .
+  #         docker tag tg_bot_dev cr.selcloud.ru/registry/tg_bot_dev:${{ github.workflow }}-${{ github.run_number }}
