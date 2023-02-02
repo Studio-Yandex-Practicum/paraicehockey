@@ -76,6 +76,7 @@ jobs:
           SKIP_LOGIN: true
       - run: |
           docker build -t tg_bot_dev:${{ github.workflow }}-${{ github.run_number }} .
+          docker tag tg_bot_dev:${{ github.workflow }}-${{ github.run_number }} cr.selcloud.ru/registry/tg_bot_dev:${{ github.workflow }}-${{ github.run_number }}
           docker push cr.selcloud.ru/registry/tg_bot_dev:${{ github.workflow }}-${{ github.run_number }}
 
 
