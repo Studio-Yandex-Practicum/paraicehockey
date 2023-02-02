@@ -69,6 +69,7 @@ jobs:
             docker build -t tg_bot_dev .
             docker tag tg_bot_dev cr.selcloud.ru/registry/tg_bot_dev:${{ github.workflow }}-${{ github.run_number }}
             docker push cr.selcloud.ru/registry/tg_bot_dev:${{ github.workflow }}-${{ github.run_number }}
+          shell: bash
       # -
       #   name: Build and push
       #   run: |
