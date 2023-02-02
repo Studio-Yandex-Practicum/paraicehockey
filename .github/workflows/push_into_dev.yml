@@ -60,13 +60,6 @@ jobs:
           username: ${{ secrets.SELECTEL_CONTAINER_REGISTRY_USER }}
           password: ${{ secrets.SELECTEL_CONTAINER_REGISTRY_PASSWORD }}
 
-      - name: Login to docker hub
-        if: success()
-        uses: actions-hub/docker/login@master
-        env:
-          DOCKER_USERNAME: ${{ secrets.SELECTEL_CONTAINER_REGISTRY_USER }}
-          DOCKER_PASSWORD: ${{ secrets.SELECTEL_CONTAINER_REGISTRY_PASSWORD }}
-
       - name: Build image
         if: success()
         run: docker build -t tg_bot_dev:${GITHUB_REPOSITORY}:${IMAGE_TAG} .
