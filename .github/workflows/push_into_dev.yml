@@ -53,4 +53,4 @@ jobs:
           INPUTS_USERNAME: ${{ secrets.SELECTEL_CONTAINER_REGISTRY_USER }} # username to docker login to registry, default: ${{ github.repository_owner }}
         uses: rekgrpth/docker-login-build-push-shell-action@v1
         with:
-          context: ./
+          context: .
