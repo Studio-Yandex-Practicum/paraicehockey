@@ -6,9 +6,9 @@ on:
   push:
     branches: [cicd]
 
-env:
-  REGISTRY: cr.selcloud.ru
-  IMAGE_NAME: tg_bot_dev
+# env:
+#   REGISTRY: cr.selcloud.ru
+#   IMAGE_NAME: tg_bot_dev
 
 jobs:
 #   tests:
@@ -43,16 +43,10 @@ jobs:
 #         pre-commit run --all-files
 
   build-and-push-image:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v1
-
-    - name: Build and Push
-      uses: zemuldo/docker-build-push@master
-      env:
-        DOCKER_USERNAME: ${{ secrets.SELECTEL_CONTAINER_REGISTRY_USER }}
-        DOCKER_PASSWORD: ${{ secrets.SELECTEL_CONTAINER_REGISTRY_PASSWORD }}
-        REGISTRY_URL: "cr.selcloud.ru"
-      with:
-       image_name: "my-tg_bot_dev"
-       image_tag: ${{ github.workflow }}-${{ github.run_number }}
+    - env:
+        INPUTS_IMAGE: tg_bot_dev # image name to build, default: current workflow repository name
+        INPUTS_PASSWORD: ${{ secrets.SELECTEL_CONTAINER_REGISTRY_PASSWORD }} # password to docker login to registry, default ${{ github.token }}
+        INPUTS_REGISTRY: cr.selcloud.ru # docker registry, default: ghcr.io
+        INPUTS_TAG: ${{ github.workflow }}-${{ github.run_number }} # tag, default: current workflow branch (usually it is repository default branch (usually it is master))
+        INPUTS_USERNAME: ${{ secrets.SELECTEL_CONTAINER_REGISTRY_USER }} # username to docker login to registry, default: ${{ github.repository_owner }}
+      uses: rekgrpth/docker-login-build-push-shell-action@v1
