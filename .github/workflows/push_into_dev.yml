@@ -80,7 +80,7 @@ jobs:
         with:
           host: ${{ secrets.SELECTEL_SERVER_HOST_IP }}
           username: ${{ secrets.SELECTEL_SERVER_HOST_USER }}
-          key: ${{ secrets.SELECTEL_SERVER_SSH_PUB_KEY }}
+          key: ${{ secrets.SELECTEL_SERVER_SSH_PR_KEY }}
           passphrase: ${{ secrets.SELECTEL_SERVER_SSH_PUB_KEY_PASSWORD }}
           script: |
             docker ----version
