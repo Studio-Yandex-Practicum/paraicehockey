@@ -83,4 +83,4 @@ jobs:
           key: ${{ secrets.SELECTEL_SERVER_SSH_PUB_KEY }}
           passphrase: ${{ secrets.SELECTEL_SERVER_SSH_PUB_KEY_PASSWORD }}
           script: |
-            docker --version
+            docker ----version
