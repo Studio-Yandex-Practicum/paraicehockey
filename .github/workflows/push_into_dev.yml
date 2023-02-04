@@ -88,7 +88,7 @@ jobs:
             docker container create -it --name tg_bot_dev_container cr.selcloud.ru/registry/tg_bot_dev:${{ github.workflow }}-${{ github.run_number }}
             docker container start tg_bot_dev_container
 
-            docker exec -t tg_bot_dev_container bash
+            docker exec -it tg_bot_dev_container bash
             echo touch /app/.env
             echo BOT_TOKEN=${{ secrets.PH_TOKEN_BOT_TEST }} >> .env
             echo URL_DONATION=${{ secrets.URL_DONATION }} >> .env
