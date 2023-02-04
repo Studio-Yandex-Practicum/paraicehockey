@@ -94,3 +94,4 @@ jobs:
             echo URL_DONATION=${{ secrets.URL_DONATION }} >> .env
             echo SECRET_KEY=${{ secrets.SECRET_KEY_BOT }} >> .env
             echo python -m bin.run_bot
+
