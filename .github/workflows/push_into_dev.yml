@@ -2,9 +2,9 @@ name: develop
 
 on:
   pull_request:
-    branches: [cicd]
+    branches: [dev]
   push:
-    branches: [cicd]
+    branches: [dev]
 
 jobs:
   tests:
