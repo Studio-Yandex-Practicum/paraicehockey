@@ -42,21 +42,21 @@ jobs:
 #         python -m flake8 .
 #         pre-commit run --all-files
 
-  # create-envfile:
-  #   runs-on: ubuntu-latest
-  #   # needs: tests
-  #   steps:
-  #   - name: Make envfile
-  #     uses: SpicyPizza/create-envfile@v1.3
-  #     with:
-  #       envkey_DEBUG: false
-  #       envkey_BOT_TOKEN: ${{ secrets.PH_TOKEN_BOT_TEST }}
-  #       envkey_URL_DONATION: ${{ secrets.URL_DONATION }}
-  #       envkey_SECRET_KEY: ${{ secrets.SECRET_KEY_BOT }}
-  #       some_other_variable: foobar
-  #       directory: ./
-  #       file_name: .env
-  #       fail_on_empty: false
+  create-envfile:
+    runs-on: ubuntu-latest
+    # needs: tests
+    steps:
+    - name: Make envfile
+      uses: SpicyPizza/create-envfile@v1.3
+      with:
+        envkey_DEBUG: false
+        envkey_BOT_TOKEN: ${{ secrets.PH_TOKEN_BOT_TEST }}
+        envkey_URL_DONATION: ${{ secrets.URL_DONATION }}
+        envkey_SECRET_KEY: ${{ secrets.SECRET_KEY_BOT }}
+        some_other_variable: foobar
+        directory: ./paraicehockey/
+        file_name: .env
+        fail_on_empty: false
 
   Build-and-push-image-to-CR:
     name: Building tg_bot image and pushing it to CR
@@ -75,18 +75,18 @@ jobs:
           registry: cr.selcloud.ru
           username: ${{ secrets.SELECTEL_CONTAINER_REGISTRY_USER }}
           password: ${{ secrets.SELECTEL_CONTAINER_REGISTRY_PASSWORD }}
-      -
-        name: Create env file
-        env:
-          BOT_TOKEN: ${{ secrets.PH_TOKEN_BOT_TEST }}
-          URL_DONATION: ${{ secrets.URL_DONATION }}
-          SECRET_KEY: ${{ secrets.SECRET_KEY_BOT }}
-        run: |
-          touch .env
-          echo BOT_TOKEN=${{ secrets.PH_TOKEN_BOT_TEST }} >> .env
-          echo URL_DONATION=${{ secrets.URL_DONATION }} >> .env
-          echo SECRET_KEY=${{ secrets.SECRET_KEY_BOT }} >> .env
-          cat .env
+      # -
+      #   name: Create env file
+      #   env:
+      #     BOT_TOKEN: ${{ secrets.PH_TOKEN_BOT_TEST }}
+      #     URL_DONATION: ${{ secrets.URL_DONATION }}
+      #     SECRET_KEY: ${{ secrets.SECRET_KEY_BOT }}
+      #   run: |
+      #     touch .env
+      #     echo BOT_TOKEN=${{ secrets.PH_TOKEN_BOT_TEST }} >> .env
+      #     echo URL_DONATION=${{ secrets.URL_DONATION }} >> .env
+      #     echo SECRET_KEY=${{ secrets.SECRET_KEY_BOT }} >> .env
+      #     cat .env
 
       - name: Use Docker
         uses: actions-hub/docker/cli@master
