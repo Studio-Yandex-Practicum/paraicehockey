@@ -55,13 +55,12 @@ jobs:
       - uses: iamsauravsharma/create-dotenv@v1.2.2
         with:
           env-prefix: 'ENV_KEY_' # Optional (default: '')
-          file-name: 'development.env' # Optional (default : '.env')
+          file-name: '.env' # Optional (default : '.env')
           directory: '.' # Optional (default: '.')
         env: # env available for only this steps
-          IS_SERVER: true
-          ENV_KEY_USERNAME: admin
-          ENV_KEY_API_KEY: USER_API_KEY
-          ENV_KEY_SECRET_KEY: secret123
+          BOT_TOKEN: ${{ secrets.PH_TOKEN_BOT_TEST }}
+          SECRET_KEY: ${{ secrets.URL_DONATION }}
+          SECRET_KEY: ${{ secrets.SECRET_KEY_BOT }}
 
   Build-and-push-image-to-CR:
     name: Building tg_bot image and pushing it to CR
@@ -120,4 +119,3 @@ jobs:
             docker container rm tg_bot_dev_container --force
             docker container create -it --name tg_bot_dev_container cr.selcloud.ru/registry/tg_bot_dev:${{ github.workflow }}-${{ github.run_number }}
             docker container start tg_bot_dev_container
-            docker exec -i tg_bot_dev_container bash | touch .env | TOKEN=${{ secrets.PH_TOKEN }} >> .env | KEY=${{ secrets.SECRET_KEY }} >> .env | python3 -m bin.run
