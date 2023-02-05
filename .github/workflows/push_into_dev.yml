@@ -42,31 +42,15 @@ jobs:
 #         python -m flake8 .
 #         pre-commit run --all-files
 
+
   Build-and-push-image-to-CR:
-
-    name: Create env file
-    runs-on: ubuntu-latest
-    env: # env available for all steps of jobs
-      ENV_KEY_DEBUG: true
-      ENV_KEY_USERNAME: root
-    
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          ref: cicd
-      - uses: iamsauravsharma/create-dotenv@v1.2.2
-        with:
-          env-prefix: 'ENV_KEY_' # Optional (default: '')
-          file-name: '.env' # Optional (default : '.env')
-          directory: '.' # Optional (default: '.')
-        env: # env available for only this steps
-          BOT_TOKEN: ${{ secrets.PH_TOKEN_BOT_TEST }}
-          URL_DONATION: ${{ secrets.URL_DONATION }}
-          SECRET_KEY: ${{ secrets.SECRET_KEY_BOT }}
-
     name: Building tg_bot image and pushing it to CR
     runs-on: ubuntu-latest
     # needs: create-env-file
+    env: # env available for all steps of jobs
+      ENV_KEY_DEBUG: true
+      ENV_KEY_USERNAME: root
+
     steps:
       -
         name: Checkout
@@ -80,18 +64,18 @@ jobs:
           registry: cr.selcloud.ru
           username: ${{ secrets.SELECTEL_CONTAINER_REGISTRY_USER }}
           password: ${{ secrets.SELECTEL_CONTAINER_REGISTRY_PASSWORD }}
-      # -
-      #   name: Create env file
-      #   env:
-      #     BOT_TOKEN: ${{ secrets.PH_TOKEN_BOT_TEST }}
-      #     URL_DONATION: ${{ secrets.URL_DONATION }}
-      #     SECRET_KEY: ${{ secrets.SECRET_KEY_BOT }}
-      #   run: |
-      #     touch .env
-      #     echo BOT_TOKEN=${{ secrets.PH_TOKEN_BOT_TEST }} >> .env
-      #     echo URL_DONATION=${{ secrets.URL_DONATION }} >> .env
-      #     echo SECRET_KEY=${{ secrets.SECRET_KEY_BOT }} >> .env
-      #     cat .env
+
+      -
+        name: Create env file
+        uses: iamsauravsharma/create-dotenv@v1.2.2
+        with:
+          env-prefix: 'ENV_KEY_' # Optional (default: '')
+          file-name: '.env' # Optional (default : '.env')
+          directory: '.' # Optional (default: '.')
+        env: # env available for only this steps
+          BOT_TOKEN: ${{ secrets.PH_TOKEN_BOT_TEST }}
+          URL_DONATION: ${{ secrets.URL_DONATION }}
+          SECRET_KEY: ${{ secrets.SECRET_KEY_BOT }}
 
       - name: Use Docker
         uses: actions-hub/docker/cli@master
