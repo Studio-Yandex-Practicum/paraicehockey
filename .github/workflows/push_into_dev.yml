@@ -75,17 +75,20 @@ jobs:
           registry: cr.selcloud.ru
           username: ${{ secrets.SELECTEL_CONTAINER_REGISTRY_USER }}
           password: ${{ secrets.SELECTEL_CONTAINER_REGISTRY_PASSWORD }}
+      -
+        name: Create env file
+        run: |
+          touch .env
+          echo BOT_TOKEN=${{ secrets.PH_TOKEN_BOT_TEST }} > .env
+          echo URL_DONATION=${{ secrets.URL_DONATION }} > .env
+          echo SECRET_KEY=${{ secrets.SECRET_KEY_BOT }} > .env
+          cat .env
 
       - name: Use Docker
         uses: actions-hub/docker/cli@master
         env:
           SKIP_LOGIN: true
       - run: |
-          touch .env
-          echo BOT_TOKEN=${{ secrets.PH_TOKEN_BOT_TEST }} > .env
-          echo URL_DONATION=${{ secrets.URL_DONATION }} > .env
-          echo SECRET_KEY=${{ secrets.SECRET_KEY_BOT }} > .env
-          cat .env
           docker build -t tg_bot_dev:${{ github.workflow }}-${{ github.run_number }} .
           docker tag tg_bot_dev:${{ github.workflow }}-${{ github.run_number }} cr.selcloud.ru/registry/tg_bot_dev:${{ github.workflow }}-${{ github.run_number }}
           docker push cr.selcloud.ru/registry/tg_bot_dev:${{ github.workflow }}-${{ github.run_number }}
