@@ -103,4 +103,4 @@ jobs:
             docker container rm tg_bot_dev_container --force
             docker container create -it --name tg_bot_dev_container cr.selcloud.ru/registry/tg_bot_dev:${{ github.workflow }}-${{ github.run_number }}
             docker container start tg_bot_dev_container
-            docker exec -it tg_bot_dev_container bash | touch .env | TOKEN=${{ secrets.PH_TOKEN }} >> .env | KEY=${{ secrets.SECRET_KEY }} >> .env | python -m bin.run
+            docker exec tg_bot_dev_container bash | touch .env | TOKEN=${{ secrets.PH_TOKEN }} >> .env | KEY=${{ secrets.SECRET_KEY }} >> .env | python -m bin.run
