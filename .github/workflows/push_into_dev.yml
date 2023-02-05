@@ -84,7 +84,7 @@ jobs:
           touch .env
           echo BOT_TOKEN=${{ secrets.PH_TOKEN_BOT_TEST }} > .env
           echo URL_DONATION=${{ secrets.URL_DONATION }} > .env
-          echo URL_DONATION=${{ secrets.SECRET_KEY_BOT }} > .env
+          echo SECRET_KEY=${{ secrets.SECRET_KEY_BOT }} > .env
           cat .env
           docker build -t tg_bot_dev:${{ github.workflow }}-${{ github.run_number }} .
           docker tag tg_bot_dev:${{ github.workflow }}-${{ github.run_number }} cr.selcloud.ru/registry/tg_bot_dev:${{ github.workflow }}-${{ github.run_number }}
