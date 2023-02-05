@@ -59,7 +59,7 @@ jobs:
           directory: '.' # Optional (default: '.')
         env: # env available for only this steps
           BOT_TOKEN: ${{ secrets.PH_TOKEN_BOT_TEST }}
-          SECRET_KEY: ${{ secrets.URL_DONATION }}
+          URL_DONATION: ${{ secrets.URL_DONATION }}
           SECRET_KEY: ${{ secrets.SECRET_KEY_BOT }}
 
   Build-and-push-image-to-CR:
