@@ -51,18 +51,3 @@ def redirect_adaptive_hockey_types(update: Update,
             chat_id,
             open(ADAPTIVE_HOKKEY_PAGES_TEXT_URLS[query.data][2], 'rb'),
             reply_markup=keybord)
-
-    # elif query.data == 'sledzh_hockey':
-    #     query.delete_message()
-    #     keyboard = [
-    #         [InlineKeyboardButton('Адаптивные виды хоккея',
-    #                               callback_data='adaptive_hockey_types')],
-    #         [InlineKeyboardButton('Команды',
-    #                               url=SLEDZH_TEAMS_URL)],
-    #     ]
-    #     keybord = InlineKeyboardMarkup(keyboard)
-    #     query.message.reply_photo(photo=open('src/static/images/1.png',
-    #                                          'rb'))
-    #     query.message.reply_photo(photo=open('src/static/images/2.png',
-    #                                          'rb'),
-    #                               reply_markup=keybord)

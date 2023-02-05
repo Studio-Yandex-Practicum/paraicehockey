@@ -56,13 +56,6 @@ def quiz(update=None, context=None, chat_id=None, index=0):
 
 def analize_results(final_points):
     """Функция для анализа результата ответов пользователя на вопросы."""
-    # if final_points >= 9:
-    #     return quiz_results['9-10'].format(final_points)
-    # if final_points >= 7 and final_points <= 8:
-    #     return quiz_results['7-8'].format(final_points)
-    # if final_points >= 5 and final_points <= 6:
-    #     return quiz_results['5-6'].format(final_points)
-    # return quiz_results['0-4'].format(final_points)
     if final_points in quiz_results:
         return quiz_results[final_points]
 

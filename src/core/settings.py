@@ -30,4 +30,3 @@ class Config:
 
     SECRET_KEY = settings.secret_key
     PREFERRED_URL_SCHEME = 'https'
-    # FLASK_RUN_CERT=adhoc
