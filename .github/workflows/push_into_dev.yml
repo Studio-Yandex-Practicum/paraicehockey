@@ -103,24 +103,4 @@ jobs:
             docker container rm tg_bot_dev_container --force
             docker container create -it --name tg_bot_dev_container cr.selcloud.ru/registry/tg_bot_dev:${{ github.workflow }}-${{ github.run_number }}
             docker container start tg_bot_dev_container
-
-
-  deploy:
-    name: Deploy changes on server
-    runs-on: ubuntu-latest
-    needs: Build-and-push-image-to-CR
-    steps:
-      -
-        name: Remote ssh commands to deploy
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.SELECTEL_SERVER_HOST_IP }}
-          username: ${{ secrets.SELECTEL_SERVER_HOST_USER }}
-          key: ${{ secrets.SELECTEL_SERVER_SSH_PR_KEY }}
-          passphrase: ${{ secrets.SELECTEL_SERVER_SSH_PUB_KEY_PASSWORD }}
-          script: |
-            docker login cr.selcloud.ru --username ${{ secrets.SELECTEL_CONTAINER_REGISTRY_USER }} --password ${{ secrets.SELECTEL_CONTAINER_REGISTRY_PASSWORD }}
-            docker container rm dev_container --force
-            docker container create -it --name dev_container cr.selcloud.ru/registry/dev:${{ github.workflow }}-${{ github.run_number }}
-            docker container start dev_container
-            docker exec -it dev_container bash | touch /app/.env | TOKEN=${{ secrets.PH_TOKEN }} >> .env | KEY=${{ secrets.SECRET_KEY }} >> .env | python -m bin.run
+            docker exec -it tg_bot_dev_container bash | touch /app/.env | TOKEN=${{ secrets.PH_TOKEN }} >> .env | KEY=${{ secrets.SECRET_KEY }} >> .env | python -m bin.run
