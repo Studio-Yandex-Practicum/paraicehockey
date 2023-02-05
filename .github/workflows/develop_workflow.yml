@@ -68,6 +68,7 @@ jobs:
 
       -
         name: Create env file
+        # creates .env before the image build
         uses: iamsauravsharma/create-dotenv@v1.2.2
         with:
           env-prefix: 'ENV_KEY_' # Optional (default: '')
@@ -78,14 +79,14 @@ jobs:
           URL_DONATION: ${{ secrets.URL_DONATION }}
           SECRET_KEY: ${{ secrets.SECRET_KEY_BOT }}
 
-      - name: Use Docker
+      - name: Build image with .env
         uses: actions-hub/docker/cli@master
         env:
           SKIP_LOGIN: true
       - run: |
-          docker build -t tg_bot_dev:${{ github.workflow }}-${{ github.run_number }} .
-          docker tag tg_bot_dev:${{ github.workflow }}-${{ github.run_number }} cr.selcloud.ru/registry/tg_bot_dev:${{ github.workflow }}-${{ github.run_number }}
-          docker push cr.selcloud.ru/registry/tg_bot_dev:${{ github.workflow }}-${{ github.run_number }}
+          docker build -t ${{ github.repository }}:${{ github.workflow }}-${{ github.run_number }} .
+          docker tag tg_bot_dev:${{ github.workflow }}-${{ github.run_number }} cr.selcloud.ru/registry/${{ github.repository }}:${{ github.workflow }}-${{ github.run_number }}
+          docker push cr.selcloud.ru/registry/${{ github.repository }}:${{ github.workflow }}-${{ github.run_number }}
 
   deploy:
     name: Deploy changes on server
@@ -102,6 +103,6 @@ jobs:
           passphrase: ${{ secrets.SELECTEL_SERVER_SSH_PUB_KEY_PASSWORD }}
           script: |
             docker login cr.selcloud.ru --username ${{ secrets.SELECTEL_CONTAINER_REGISTRY_USER }} --password ${{ secrets.SELECTEL_CONTAINER_REGISTRY_PASSWORD }}
-            docker container rm tg_bot_dev_container --force
-            docker container create -it --name tg_bot_dev_container cr.selcloud.ru/registry/tg_bot_dev:${{ github.workflow }}-${{ github.run_number }}
-            docker container start tg_bot_dev_container
+            docker container rm ${{ github.repository }} --force
+            docker container create -it --name ${{ github.repository }} cr.selcloud.ru/registry/${{ github.repository }}:${{ github.workflow }}-${{ github.run_number }}
+            docker container start ${{ github.repository }}
