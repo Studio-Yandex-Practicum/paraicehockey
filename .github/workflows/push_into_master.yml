@@ -2,9 +2,9 @@ name: develop
 
 on:
   pull_request:
-    branches: [cicd]
+    branches: [master]
   push:
-    branches: [cicd]
+    branches: [master]
 
 jobs:
   tests:
@@ -43,7 +43,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: tests
     env: # env available for all steps of jobs
-      ENV_KEY_BOT_TOKEN: ${{ secrets.PH_TOKEN_BOT_TEST }}
+      ENV_KEY_BOT_TOKEN: ${{ secrets.PH_TOKEN_BOT_PROD }}
       ENV_KEY_URL_DONATION: ${{ secrets.URL_DONATION }}
       ENV_KEY_SECRET_KEY: ${{ secrets.SECRET_KEY_BOT }}
 
@@ -70,7 +70,7 @@ jobs:
           file-name: '.env' # Optional (default : '.env')
           directory: '.' # Optional (default: '.')
         env: # env available for only this steps
-          BOT_TOKEN: ${{ secrets.PH_TOKEN_BOT_TEST }}
+          BOT_TOKEN: ${{ secrets.PH_TOKEN_BOT_PROD }}
           URL_DONATION: ${{ secrets.URL_DONATION }}
           SECRET_KEY: ${{ secrets.SECRET_KEY_BOT }}
 
@@ -79,9 +79,9 @@ jobs:
         env:
           SKIP_LOGIN: true
       - run: |
-          docker build -t tg_bot_dev:${{ github.workflow }}-${{ github.run_number }} .
-          docker tag tg_bot_dev:${{ github.workflow }}-${{ github.run_number }} cr.selcloud.ru/registry/tg_bot_dev:${{ github.workflow }}-${{ github.run_number }}
-          docker push cr.selcloud.ru/registry/tg_bot_dev:${{ github.workflow }}-${{ github.run_number }}
+          docker build -t tg_bot_prod:${{ github.workflow }}-${{ github.run_number }} .
+          docker tag tg_bot_prod:${{ github.workflow }}-${{ github.run_number }} cr.selcloud.ru/registry/tg_bot_prod:${{ github.workflow }}-${{ github.run_number }}
+          docker push cr.selcloud.ru/registry/tg_bot_prod:${{ github.workflow }}-${{ github.run_number }}
 
   deploy:
     name: Deploy changes on server
@@ -98,6 +98,6 @@ jobs:
           passphrase: ${{ secrets.SELECTEL_SERVER_SSH_PUB_KEY_PASSWORD }}
           script: |
             docker login cr.selcloud.ru --username ${{ secrets.SELECTEL_CONTAINER_REGISTRY_USER }} --password ${{ secrets.SELECTEL_CONTAINER_REGISTRY_PASSWORD }}
-            docker container rm tg_bot_dev_container --force
-            docker container create -it --name tg_bot_dev_container cr.selcloud.ru/registry/tg_bot_dev:${{ github.workflow }}-${{ github.run_number }}
-            docker container start tg_bot_dev_container
+            docker container rm tg_bot_prod_container --force
+            docker container create -it --name tg_bot_prod_container cr.selcloud.ru/registry/tg_bot_prod:${{ github.workflow }}-${{ github.run_number }}
+            docker container start tg_bot_prod_container
