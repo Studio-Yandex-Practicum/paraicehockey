@@ -15,4 +15,4 @@ RUN poetry config virtualenvs.create false \
 
 COPY . /app
 
-#CMD ["python3", "./bin/run_bot.py"]
+CMD ["python3", "./bin/run_bot.py"]
