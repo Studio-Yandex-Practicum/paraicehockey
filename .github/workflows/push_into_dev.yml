@@ -42,7 +42,8 @@ jobs:
 #         python -m flake8 .
 #         pre-commit run --all-files
 
-  create-env-file:
+  Build-and-push-image-to-CR:
+
     name: Create env file
     runs-on: ubuntu-latest
     env: # env available for all steps of jobs
@@ -51,7 +52,8 @@ jobs:
     
     steps:
       - uses: actions/checkout@v2
-      
+        with:
+          ref: cicd
       - uses: iamsauravsharma/create-dotenv@v1.2.2
         with:
           env-prefix: 'ENV_KEY_' # Optional (default: '')
@@ -62,10 +64,9 @@ jobs:
           URL_DONATION: ${{ secrets.URL_DONATION }}
           SECRET_KEY: ${{ secrets.SECRET_KEY_BOT }}
 
-  Build-and-push-image-to-CR:
     name: Building tg_bot image and pushing it to CR
     runs-on: ubuntu-latest
-    needs: create-env-file
+    # needs: create-env-file
     steps:
       -
         name: Checkout
