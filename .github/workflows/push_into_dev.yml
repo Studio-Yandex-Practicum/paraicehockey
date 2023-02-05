@@ -55,7 +55,7 @@ jobs:
         envkey_SECRET_KEY: ${{ secrets.SECRET_KEY_BOT }}
         some_other_variable: foobar
         directory: paraicehockey
-        file_name: .env
+        # file_name: .env
         fail_on_empty: false
 
   Build-and-push-image-to-CR:
