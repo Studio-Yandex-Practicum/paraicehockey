@@ -47,7 +47,7 @@ jobs:
     # needs: tests
     steps:
     - name: Make envfile
-      uses: SpicyPizza/create-envfile@v1.3
+      uses: SpicyPizza/create-envfile@v1.2
       with:
         envkey_DEBUG: false
         envkey_BOT_TOKEN: ${{ secrets.PH_TOKEN_BOT_TEST }}
