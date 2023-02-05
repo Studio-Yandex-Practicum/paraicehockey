@@ -77,8 +77,12 @@ jobs:
           password: ${{ secrets.SELECTEL_CONTAINER_REGISTRY_PASSWORD }}
       -
         name: Create env file
+        env:
+          BOT_TOKEN: ${{ secrets.PH_TOKEN_BOT_TEST }}
+          URL_DONATION: ${{ secrets.URL_DONATION }}
+          SECRET_KEY: ${{ secrets.SECRET_KEY_BOT }}
         run: |
-          echo touch .env
+          touch .env
           echo BOT_TOKEN=${{ secrets.PH_TOKEN_BOT_TEST }} >> .env
           echo URL_DONATION=${{ secrets.URL_DONATION }} >> .env
           echo SECRET_KEY=${{ secrets.SECRET_KEY_BOT }} >> .env
