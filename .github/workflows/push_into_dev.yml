@@ -1,0 +1,103 @@
+name: develop
+
+on:
+  pull_request:
+    branches: [dev]
+  push:
+    branches: [dev]
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.10'
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip3 install poetry
+        curl -sSL 'https://install.python-poetry.org' | python3 -
+        poetry config virtualenvs.create false
+        poetry install $(test "$YOUR_ENV" == production && echo "--no-dev") --no-interaction --no-ansi
+        poetry add flake8-bugbear
+        poetry add flake8-return
+        poetry add flake8-comprehensions
+        poetry add flake8-pie
+        poetry add flake8-print
+        poetry add flake8-quotes
+        poetry add flake8-simplify
+        poetry add flake8-variables-names
+        poetry add pep8-naming
+        poetry add flake8-docstrings
+        pre-commit install
+    - name: Test with flake8 and pre-commit
+      run: |
+        python -m flake8 .
+        pre-commit run --all-files
+
+  Build-and-push-image-to-CR:
+    name: Building tg_bot image and pushing it to CR
+    runs-on: ubuntu-latest
+    needs: tests
+    env: # env available for all steps of jobs
+      ENV_KEY_BOT_TOKEN: ${{ secrets.PH_TOKEN_BOT_TEST }}
+      ENV_KEY_URL_DONATION: ${{ secrets.URL_DONATION }}
+      ENV_KEY_SECRET_KEY: ${{ secrets.SECRET_KEY_BOT }}
+
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: cicd
+      -
+        name: Docker login
+        uses: docker/login-action@v2
+        with:
+          registry: cr.selcloud.ru
+          username: ${{ secrets.SELECTEL_CONTAINER_REGISTRY_USER }}
+          password: ${{ secrets.SELECTEL_CONTAINER_REGISTRY_PASSWORD }}
+
+      -
+        name: Create env file
+        # creates .env before the image build
+        uses: iamsauravsharma/create-dotenv@v1.2.2
+        with:
+          env-prefix: 'ENV_KEY_' # Optional (default: '')
+          file-name: '.env' # Optional (default : '.env')
+          directory: '.' # Optional (default: '.')
+        env: # env available for only this steps
+          BOT_TOKEN: ${{ secrets.PH_TOKEN_BOT_TEST }}
+          URL_DONATION: ${{ secrets.URL_DONATION }}
+          SECRET_KEY: ${{ secrets.SECRET_KEY_BOT }}
+
+      - name: Build image with .env
+        uses: actions-hub/docker/cli@master
+        env:
+          SKIP_LOGIN: true
+      - run: |
+          docker build -t tg_bot_dev:${{ github.workflow }}-${{ github.run_number }} .
+          docker tag tg_bot_dev:${{ github.workflow }}-${{ github.run_number }} cr.selcloud.ru/registry/tg_bot_dev:${{ github.workflow }}-${{ github.run_number }}
+          docker push cr.selcloud.ru/registry/tg_bot_dev:${{ github.workflow }}-${{ github.run_number }}
+
+  deploy:
+    name: Deploy changes on server
+    runs-on: ubuntu-latest
+    needs: Build-and-push-image-to-CR
+    steps:
+      -
+        name: Remote ssh commands to deploy
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SELECTEL_SERVER_HOST_IP }}
+          username: ${{ secrets.SELECTEL_SERVER_HOST_USER }}
+          key: ${{ secrets.SELECTEL_SERVER_SSH_PR_KEY }}
+          passphrase: ${{ secrets.SELECTEL_SERVER_SSH_PUB_KEY_PASSWORD }}
+          script: |
+            docker login cr.selcloud.ru --username ${{ secrets.SELECTEL_CONTAINER_REGISTRY_USER }} --password ${{ secrets.SELECTEL_CONTAINER_REGISTRY_PASSWORD }}
+            docker container rm tg_bot_dev_container --force
+            docker container create -it --name tg_bot_dev_container cr.selcloud.ru/registry/tg_bot_dev:${{ github.workflow }}-${{ github.run_number }}
+            docker container start tg_bot_dev_container

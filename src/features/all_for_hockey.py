@@ -1,8 +1,7 @@
-from telegram import (InlineKeyboardButton, InlineKeyboardMarkup, Update)
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
 from telegram.ext import CallbackContext
 
-from src.core.constants import (ALL_FOR_HOKKEY_MAIN_TEXT,
-                                HOCKEY_EQUIPMENT_URL)
+from src.core.constants import ALL_FOR_HOKKEY_MAIN_TEXT, HOCKEY_EQUIPMENT_URL
 
 
 def all_for_hockey_keyboard():
