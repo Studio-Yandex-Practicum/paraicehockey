@@ -52,7 +52,7 @@ jobs:
         name: Checkout
         uses: actions/checkout@v2
         with:
-          ref: cicd
+          ref: dev
       -
         name: Docker login
         uses: docker/login-action@v2

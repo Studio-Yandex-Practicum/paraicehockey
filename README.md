@@ -15,7 +15,7 @@
 
 4. [Запуск бота](#run-bot)
 
-# 1. О чём проект? <a id="about"></a>
+### 1. О чём проект? <a id="about"></a>
 
 Телеграм-бот для НКО “Федерация адаптивного хоккея”, который поможет пользователям познакомиться с ее деятельностью, получить информацию о мероприятиях и проектах, которые она организует, задать вопрос сотрудникам.
 
@@ -28,14 +28,14 @@
 
 **Телеграм - канал** - [https://t.me/paraicehockey](https://t.me/paraicehockey)
 
-# 2. Структура проекта <a id="structure"></a>
+### 2. Структура проекта <a id="structure"></a>
 
 Нужно дописать
 
 
-# 3. Подготовка к запуску <a id="start"></a>
+### 3. Подготовка к запуску <a id="start"></a>
 
-## 3.1. Клонирование проекта из репозитория<a id="clone"></a>
+### 3.1. Клонирование проекта из репозитория<a id="clone"></a>
 
 Clone the repository to your computer:
 
@@ -43,7 +43,7 @@ Clone the repository to your computer:
 git@github.com:Studio-Yandex-Practicum/paraicehockey.git
 ```
 
-## 3.2. Poetry (инструмент для работы с виртуальным окружением и сборки пакетов)<a id="poetry"></a>:
+### 3.2. Poetry (инструмент для работы с виртуальным окружением и сборки пакетов)<a id="poetry"></a>:
 
 Poetry - это инструмент для управления зависимостями и виртуальными окружениями, также может использоваться для сборки пакетов.
 
@@ -138,12 +138,12 @@ _Примеры:_
 </details>
 
 
-## 3.3. Настройка переменных окружения <a id="env"></a>
+### 3.3. Настройка переменных окружения <a id="env"></a>
 
 Перед запуском проекта необходимо создать копию файла
 ```.env_example```, назвав его ```.env``` и установить значение токена бота и придумать секретный ключ
 
-# 4. Запуск бота <a id="run-bot"></a>
+### 4. Запуск бота <a id="run-bot"></a>
 
 В процессе разработки отладка производится на личном боте, для этого нужно в файле .env в переменной BOT_TOKEN указать токен вашего бота.
 
@@ -164,20 +164,13 @@ _Примеры:_
 ```pre-commit run --all-files```
 
 
-###
-1. Бот зарегистрирован
-2. Имя paraicehockeybot
-3. Техническое имя paraicehockeybot
+## Team
 
-4. Use this token to access the HTTP API: 5822407132:AAHA6ySgbmAIQ9NHh-xIxKw9_iN_kPgsTgw Keep your token secure and store it safely, it can be used by anyone to control your bot.
-
-5. Сделал продакт сервер, запустил бот. ubuntu@130.255.170.24 Pleheranar0116
-6. Можно проверить в телеграм @paraicehockeybot (отправьте любое сообщение или /start)
-
-
-#### Author
--
-
-- [Sukharev Kirill](https://github.com/Soliton80)
-- [Kolosova Ekaterina](https://github.com/Ekaterina-Kolosova)
-- [Nikita Sorin](https://github.com/nikita141150)
+- [Vitalij Karev]() CTO
+- [Ekaterina Lavrova]() Project manager
+- [Andrei Ukladchikov](https://github.com/AndreiUkladchikov) TeamLeed
+- [Sukharev Kirill](https://github.com/Soliton80) Developer
+- [Kolosova Ekaterina](https://github.com/Ekaterina-Kolosova) Developer
+- [Nikita Sorin](https://github.com/nikita141150) Developer
+- [Sergey Viskov](https://github.com/SergeyViskov) Developer
+- [MaxUMEO](https://github.com/MaxUMEO) Developer
