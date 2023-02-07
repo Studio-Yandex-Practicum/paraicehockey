@@ -6,7 +6,7 @@ from src.core.constants import QUESTION_TEXT
 
 def question_menu_keyboard():
     keyboard = [[InlineKeyboardButton('Получить ответ',
-                                      url='https://t.me/Kot_in')],
+                                      url='https://t.me/Parahockey')],
                 [InlineKeyboardButton('Меню', callback_data='main_menu')]]
     return InlineKeyboardMarkup(keyboard)
 
