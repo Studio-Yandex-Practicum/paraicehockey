@@ -173,4 +173,4 @@ _Примеры:_
 - [Kolosova Ekaterina](https://github.com/Ekaterina-Kolosova) Developer
 - [Nikita Sorin](https://github.com/nikita141150) Developer
 - [Sergey Viskov](https://github.com/SergeyViskov) Developer
-- [Jet_Max](https://github.com/MaxUMEO) Developer
+- [MaxUMEO](https://github.com/MaxUMEO) Developer
