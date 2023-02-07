@@ -166,7 +166,7 @@ _Примеры:_
 
 ## Team
 
-- [Vitalij Karev]() CEO
+- [Vitalij Karev]() CTO
 - [Ekaterina Lavrova]() Project manager
 - [Andrei Ukladchikov](https://github.com/AndreiUkladchikov) TeamLeed
 - [Sukharev Kirill](https://github.com/Soliton80) Developer
