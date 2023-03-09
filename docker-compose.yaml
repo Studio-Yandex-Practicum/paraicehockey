@@ -2,13 +2,17 @@ version: '3.8'
 services:
   bot:
     build: .
+    container_name: bot
     restart: always
+    ports:
+      - "8080:8080"
     volumes:
       - static_value:/app/static_for_bot/
     env_file:
       - ./.env
   nginx:
     image: nginx:1.22-alpine
+    container_name: nginx
     ports:
       - "80:80"
     volumes:
@@ -16,6 +20,31 @@ services:
       - static_value:/var/html/static/
     depends_on:
       - bot
+
+  # the Prometheus server
+  prometheus:
+    container_name: prometheus
+    image: prom/prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus/config.yml:/etc/prometheus/prometheus.yml
+    depends_on:
+      - bot
+
+  # Grafana for visualization
+  grafana:
+    container_name: grafana
+    image: grafana/grafana
+    volumes:
+      - ./grafana/config.ini:/etc/grafana/grafana.ini
+      - ./grafana/datasource.yaml:/etc/grafana/provisioning/datasources/default.yaml
+      - ./grafana/dashboard.yaml:/etc/grafana/provisioning/dashboards/default.yaml
+      - ./grafana/dashboards:/var/lib/grafana/dashboards
+    ports:
+      - "3000:3000"
+    depends_on:
+      - nginx
 
 volumes:
   static_value:
