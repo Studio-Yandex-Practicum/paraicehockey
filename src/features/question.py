@@ -4,7 +4,6 @@ from telegram.ext import CallbackContext
 from src.core.constants import QUESTION_TEXT
 from src.core.prometheus import counter_viewed_question
 
-
 # TODO: Логирование нажатия кнопки-ссылки 'Получить ответ'
 #  (кол-во пользователей которые нажимаю кнопку, задают вопрос)
 
