@@ -3,6 +3,7 @@ from telegram.ext import CallbackContext
 
 from src.core.constants import QUESTION_TEXT
 from src.core.prometheus import counter_viewed_question
+from src.core.prometheus_constants import QUESTION
 
 # TODO: Логирование нажатия кнопки-ссылки 'Получить ответ'
 #  (кол-во пользователей которые нажимаю кнопку, задают вопрос)
@@ -16,7 +17,7 @@ def question_menu_keyboard():
 
 
 def question_menu_page(update: Update, context: CallbackContext):
-    counter_viewed_question.labels(group='Question').inc()
+    counter_viewed_question.labels(group=QUESTION).inc()
     context.bot.send_message(chat_id=update.effective_chat.id,
                              text=QUESTION_TEXT,
                              reply_markup=question_menu_keyboard())

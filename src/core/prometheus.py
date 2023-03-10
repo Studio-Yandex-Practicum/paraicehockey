@@ -8,7 +8,6 @@ counter_start_app = Counter('user_start_bot',
                             ['group'])
 registry.register(counter_start_app.labels(group='Owner'))
 
-
 """Задать вопрос."""
 counter_viewed_question = Counter('user_viewed_question',
                                   'Просмотр пункта меню: Задать вопрос',
@@ -20,7 +19,6 @@ counter_push_question = Counter('user_push_question',
                                 '(задают вопрос)',
                                 ['group'])
 registry.register(counter_push_question.labels(group='Question'))
-
 
 """Узнать о Федерации."""
 counter_viewed_federation = Counter('user_viewed_federation',
@@ -69,8 +67,3 @@ counter_viewed_special_hockey = Counter('user_viewed_special_hockey',
                                         ['group'])
 registry.register(
     counter_viewed_special_hockey.labels(group='AdaptiveHockey'))
-ADAPTIVE_HOKKEY_PROMETHEUS = {
-    'sledzh_hockey': counter_viewed_sledzh_hockey,
-    'special_hockey': counter_viewed_special_hockey,
-    'hockey_for_blind': counter_viewed_hockey_for_blind
-}
