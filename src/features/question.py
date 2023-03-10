@@ -16,7 +16,7 @@ def question_menu_keyboard():
 
 
 def question_menu_page(update: Update, context: CallbackContext):
-    counter_viewed_question.inc()
+    counter_viewed_question.labels(group='Question').inc()
     context.bot.send_message(chat_id=update.effective_chat.id,
                              text=QUESTION_TEXT,
                              reply_markup=question_menu_keyboard())

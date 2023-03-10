@@ -22,7 +22,7 @@ def adaptive_hockey_keyboard():
 
 def start_hockey_types(update: Update, context: CallbackContext) -> None:
     """Функция для первого сообщения с меню 'Адаптивные виды хоккея'."""
-    counter_viewed_adaptive_hockey.inc()
+    counter_viewed_adaptive_hockey.labels(group='AdaptiveHockey').inc()
     context.bot.send_message(chat_id=update.effective_chat.id,
                              text=ADAPTIVE_HOKKEY_MAIN_TEXT,
                              parse_mode='HTML',
@@ -42,7 +42,8 @@ def redirect_adaptive_hockey_types(update: Update,
     query = update.callback_query
     chat_id = update.effective_chat.id
     if query.data in ADAPTIVE_HOKKEY_PAGES_TEXT_URLS:
-        ADAPTIVE_HOKKEY_PROMETHEUS[query.data].inc()
+        ADAPTIVE_HOKKEY_PROMETHEUS[query.data].labels(
+            group='AdaptiveHockey').inc()
         keyboard = [
             [InlineKeyboardButton('Адаптивные виды хоккея',
                                   callback_data='adaptive_types')],

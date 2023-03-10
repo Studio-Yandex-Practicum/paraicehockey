@@ -28,19 +28,6 @@
   "liveNow": false,
   "panels": [
     {
-      "collapsed": false,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 0
-      },
-      "id": 16,
-      "panels": [],
-      "title": "Узнать о Федерации",
-      "type": "row"
-    },
-    {
       "datasource": {
         "type": "prometheus",
         "uid": "PBFA97CFB590B2093"
@@ -55,40 +42,12 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "dark-red",
+                "color": "green",
                 "value": null
               },
               {
-                "color": "semi-dark-red",
-                "value": 2
-              },
-              {
                 "color": "red",
-                "value": 6
-              },
-              {
-                "color": "light-red",
-                "value": 8
-              },
-              {
-                "color": "super-light-green",
-                "value": 10
-              },
-              {
-                "color": "light-green",
-                "value": 20
-              },
-              {
-                "color": "green",
-                "value": 30
-              },
-              {
-                "color": "semi-dark-green",
-                "value": 40
-              },
-              {
-                "color": "dark-green",
-                "value": 50
+                "value": 80
               }
             ]
           }
@@ -96,13 +55,16 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
-        "w": 12,
+        "h": 5,
+        "w": 7,
         "x": 0,
-        "y": 1
+        "y": 0
       },
-      "id": 20,
+      "id": 4,
       "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
@@ -111,8 +73,8 @@
           "fields": "",
           "values": false
         },
-        "showThresholdLabels": false,
-        "showThresholdMarkers": true
+        "text": {},
+        "textMode": "auto"
       },
       "pluginVersion": "9.4.3",
       "targets": [
@@ -122,14 +84,27 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "user_viewed_federation_total",
+          "expr": "user_start_bot_total{group=\"Owner\"}",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
         }
       ],
-      "title": "Просмотр пункта меню: Узнать о Федерации",
-      "type": "gauge"
+      "title": "Пользователь нажал \"start\" и запустил бота",
+      "type": "stat"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 5
+      },
+      "id": 16,
+      "panels": [],
+      "title": "Узнать о Федерации",
+      "type": "row"
     },
     {
       "datasource": {
@@ -192,10 +167,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
+        "h": 13,
         "w": 12,
-        "x": 12,
-        "y": 1
+        "x": 0,
+        "y": 6
       },
       "id": 18,
       "options": {
@@ -218,7 +193,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "user_viewed_federation_values_total",
+          "expr": "user_viewed_federation_values_total{group=\"Federation\"}",
           "hide": false,
           "legendFormat": "Ценности федерации",
           "range": true,
@@ -230,7 +205,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "user_viewed_federation_activities_total",
+          "expr": "user_viewed_federation_activities_total{group=\"Federation\"}",
           "hide": false,
           "legendFormat": "Направления деятельности",
           "range": true,
@@ -239,6 +214,97 @@
       ],
       "title": "Просмотр подпункта меню",
       "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-red",
+                "value": null
+              },
+              {
+                "color": "semi-dark-red",
+                "value": 2
+              },
+              {
+                "color": "red",
+                "value": 6
+              },
+              {
+                "color": "light-red",
+                "value": 8
+              },
+              {
+                "color": "super-light-green",
+                "value": 10
+              },
+              {
+                "color": "light-green",
+                "value": 20
+              },
+              {
+                "color": "green",
+                "value": 30
+              },
+              {
+                "color": "semi-dark-green",
+                "value": 40
+              },
+              {
+                "color": "dark-green",
+                "value": 50
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 6
+      },
+      "id": 20,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "9.4.3",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "builder",
+          "expr": "user_viewed_federation_total{group=\"Federation\"}",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Просмотр пункта меню: Узнать о Федерации",
+      "type": "gauge"
     },
     {
       "datasource": {
@@ -271,7 +337,7 @@
         "h": 5,
         "w": 6,
         "x": 12,
-        "y": 9
+        "y": 14
       },
       "id": 22,
       "options": {
@@ -296,7 +362,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "user_viewed_federation_values_total",
+          "expr": "user_viewed_federation_values_total{group=\"Federation\"}",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
@@ -336,7 +402,7 @@
         "h": 5,
         "w": 6,
         "x": 18,
-        "y": 9
+        "y": 14
       },
       "id": 23,
       "options": {
@@ -361,7 +427,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "user_viewed_federation_activities_total",
+          "expr": "user_viewed_federation_activities_total{group=\"Federation\"}",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
@@ -376,7 +442,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 14
+        "y": 19
       },
       "id": 14,
       "panels": [],
@@ -401,14 +467,17 @@
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
+            "fillOpacity": 43,
+            "gradientMode": "opacity",
             "hideFrom": {
               "legend": false,
               "tooltip": false,
               "viz": false
             },
-            "lineInterpolation": "linear",
+            "lineInterpolation": "smooth",
+            "lineStyle": {
+              "fill": "solid"
+            },
             "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
@@ -445,7 +514,7 @@
         "h": 8,
         "w": 10,
         "x": 0,
-        "y": 15
+        "y": 20
       },
       "id": 8,
       "options": {
@@ -468,7 +537,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "user_viewed_sledzh_hockey_total",
+          "expr": "user_viewed_sledzh_hockey_total{group=\"AdaptiveHockey\"}",
           "legendFormat": "Следж-хоккей",
           "range": true,
           "refId": "A"
@@ -479,7 +548,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "user_viewed_hockey_for_blind_total",
+          "expr": "user_viewed_hockey_for_blind_total{group=\"Adaptive Hockey\"}",
           "hide": false,
           "legendFormat": "Хоккей для незрячих",
           "range": true,
@@ -491,7 +560,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "user_viewed_special_hockey_total",
+          "expr": "user_viewed_special_hockey_total{group=\"AdaptiveHockey\"}",
           "hide": false,
           "legendFormat": "Специальный хоккей",
           "range": true,
@@ -529,10 +598,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 4,
-        "w": 4,
+        "h": 8,
+        "w": 14,
         "x": 10,
-        "y": 15
+        "y": 20
       },
       "id": 10,
       "options": {
@@ -557,7 +626,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "user_viewed_adaptive_hockey_total",
+          "expr": "user_viewed_adaptive_hockey_total{group=\"AdaptiveHockey\"}",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
@@ -572,145 +641,12 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 23
+        "y": 28
       },
       "id": 12,
       "panels": [],
-      "title": "Row title",
+      "title": "Задать вопрос",
       "type": "row"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
-      },
-      "description": "Кол-во пользователей просматривающих страницу \"Сделать пожертвования\"",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 5,
-        "w": 7,
-        "x": 0,
-        "y": 24
-      },
-      "id": 2,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "text": {},
-        "textMode": "auto"
-      },
-      "pluginVersion": "9.4.3",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
-          },
-          "editorMode": "builder",
-          "expr": "user_viewed_donate_total",
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Сделать пожертвования: Просмотр",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 5,
-        "w": 7,
-        "x": 7,
-        "y": 24
-      },
-      "id": 4,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "text": {},
-        "textMode": "auto"
-      },
-      "pluginVersion": "9.4.3",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
-          },
-          "editorMode": "builder",
-          "expr": "user_start_bot_total",
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Пользователь нажал \"start\" и запустил бота",
-      "type": "stat"
     },
     {
       "aliasColors": {},
@@ -725,7 +661,7 @@
       "fillGradient": 0,
       "gridPos": {
         "h": 8,
-        "w": 14,
+        "w": 24,
         "x": 0,
         "y": 29
       },
@@ -827,6 +763,6 @@
   "timezone": "",
   "title": "Аналитика",
   "uid": "4xXqlwxVk",
-  "version": 1,
+  "version": 5,
   "weekStart": ""
 }

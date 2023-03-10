@@ -15,7 +15,7 @@ logger.addHandler(handler)
 
 
 def show_main_menu():
-    counter_start_app.inc()
+    counter_start_app.labels(group='Owner').inc()
     updater = Updater(token=settings.bot_token)
     updater.dispatcher.add_handler(
         PollHandler(
