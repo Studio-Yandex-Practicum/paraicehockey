@@ -1,6 +1,6 @@
 repos:
   - repo: 'https://github.com/pre-commit/pre-commit-hooks'
-    rev: v2.4.0
+    rev: v4.4.0
     hooks:
       # проверяет наличие переноса строки в конце всех текстовых файлов
       - id: end-of-file-fixer
@@ -28,6 +28,6 @@ repos:
           - pep8-naming
           - flake8-docstrings
   - repo: https://github.com/pycqa/isort
-    rev: 5.5.2
+    rev: 5.12.0
     hooks:
       - id: isort

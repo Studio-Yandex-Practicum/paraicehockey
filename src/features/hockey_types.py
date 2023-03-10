@@ -3,6 +3,9 @@ from telegram.ext import CallbackContext
 
 from src.core.constants import (ADAPTIVE_HOKKEY_MAIN_TEXT,
                                 ADAPTIVE_HOKKEY_PAGES_TEXT_URLS)
+from src.core.prometheus import counter_viewed_adaptive_hockey
+from src.core.prometheus_constants import (ADAPTIVE_HOKKEY,
+                                           ADAPTIVE_HOKKEY_PROMETHEUS)
 
 
 def adaptive_hockey_keyboard():
@@ -20,11 +23,16 @@ def adaptive_hockey_keyboard():
 
 def start_hockey_types(update: Update, context: CallbackContext) -> None:
     """Функция для первого сообщения с меню 'Адаптивные виды хоккея'."""
+    counter_viewed_adaptive_hockey.labels(group=ADAPTIVE_HOKKEY).inc()
     context.bot.send_message(chat_id=update.effective_chat.id,
                              text=ADAPTIVE_HOKKEY_MAIN_TEXT,
                              parse_mode='HTML',
                              reply_markup=adaptive_hockey_keyboard())
 
+
+# TODO: Логирование нажатия кнопки-ссылки 'Команды'
+#  (кол-во пользователей переходящих на сайт через кнопку, во всех 3
+#  подразделах)
 
 def redirect_adaptive_hockey_types(update: Update,
                                    context: CallbackContext) -> None:
@@ -35,6 +43,8 @@ def redirect_adaptive_hockey_types(update: Update,
     query = update.callback_query
     chat_id = update.effective_chat.id
     if query.data in ADAPTIVE_HOKKEY_PAGES_TEXT_URLS:
+        ADAPTIVE_HOKKEY_PROMETHEUS[query.data].labels(
+            group=ADAPTIVE_HOKKEY).inc()
         keyboard = [
             [InlineKeyboardButton('Адаптивные виды хоккея',
                                   callback_data='adaptive_types')],

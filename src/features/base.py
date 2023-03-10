@@ -4,6 +4,8 @@ import sys
 from telegram.ext import (CallbackQueryHandler, CommandHandler, PollHandler,
                           Updater)
 
+from src.core.prometheus import counter_start_app
+from src.core.prometheus_constants import OWNER
 from src.core.settings import settings
 from src.features.main_menu import main_menu, redirect_main_menu
 from src.quiz.quiz import poll_handler
@@ -14,6 +16,7 @@ logger.addHandler(handler)
 
 
 def show_main_menu():
+    counter_start_app.labels(group=OWNER).inc()
     updater = Updater(token=settings.bot_token)
     updater.dispatcher.add_handler(
         PollHandler(
