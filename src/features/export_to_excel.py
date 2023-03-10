@@ -43,10 +43,11 @@ def create_excel_file(start, end, filename, metrics):
     )
     ws.column_dimensions['A'].width = 50
 
-    for idx, group in enumerate(metrics, start=2):
-        ws.cell(row=idx, column=1, value=METRIC_GROUPS[group])
-        ws.cell(row=idx, column=1).font = openpyxl.styles.Font(bold=True)
-        idx += 1
+    row = 2 # noqa
+    for group in metrics:
+        ws.cell(row=row, column=1, value=METRIC_GROUPS[group])
+        ws.cell(row=row, column=1).font = openpyxl.styles.Font(bold=True)
+        row += 1
         for metric in metrics[group]:
             if metric in METRIC_NAMES:
                 name = METRIC_NAMES.get(metric, metric)
@@ -63,10 +64,11 @@ def create_excel_file(start, end, filename, metrics):
             data = response.json()['data']['result']
             for result in data:
                 value = result['value'][1]
-                ws.cell(row=idx, column=1, value=name)
-                ws.cell(row=idx, column=1)
-                ws.cell(row=idx, column=2, value=value)
-                idx += 1
+                ws.cell(row=row, column=1, value=name)
+                ws.cell(row=row, column=1)
+                ws.cell(row=row, column=2, value=value)
+                row += 1
+            row += 1
     wb.save(filename)
 
 
