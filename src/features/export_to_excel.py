@@ -68,7 +68,6 @@ def create_excel_file(start, end, filename, metrics):
                 ws.cell(row=row, column=1)
                 ws.cell(row=row, column=2, value=value)
                 row += 1
-            row += 1
     wb.save(filename)
 
 
