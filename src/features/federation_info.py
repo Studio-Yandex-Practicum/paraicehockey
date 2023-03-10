@@ -1,10 +1,9 @@
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
 from telegram.ext import CallbackContext
 
-from src.core.prometheus import (counter_viewed_federation,
+from src.core.prometheus import (FEDERATION, counter_viewed_federation,
                                  counter_viewed_federation_activities,
                                  counter_viewed_federation_values)
-from src.core.prometheus_constants import FEDERATION
 
 
 def about_federation_keyboard():

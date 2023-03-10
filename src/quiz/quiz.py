@@ -1,6 +1,8 @@
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Poll
 
 from src.core.constants import quiz_results, quizzes
+from src.core.prometheus import (FUNC, QUIZ, counter_push_quiz_start,
+                                 counter_viewed_quiz, counter_viewed_quiz_res)
 
 from .model import Quiz
 
@@ -9,6 +11,7 @@ quizzes = Quiz.make_quiz(quizzes)
 
 def quiz_menu(update, context):
     """Функция для выдачи кнопки для старта Квиза."""
+    counter_viewed_quiz.labels(group=QUIZ).inc()
     chat_id = update.effective_chat.id
     keyboard = [
         [InlineKeyboardButton('Старт', callback_data='quiz_questions')],
@@ -23,6 +26,8 @@ def quiz_menu(update, context):
 
 def quiz(update=None, context=None, chat_id=None, index=0):
     """Функция для отправки пользователю вопросов и вариантов ответа."""
+    if index == 0:
+        counter_push_quiz_start.labels(group=QUIZ).inc()
     question = quizzes[index].question
     answers = quizzes[index].answers
     correct_answer = quizzes[index].correct_answer
@@ -87,10 +92,12 @@ def poll_handler(update, context):
             chat_id=chat_id,
             index=index + 1)
     if index == (len(quizzes) - 1):
+        counter_viewed_quiz_res.labels(group=QUIZ).inc()
         final_points = 0
         for poll_id in context.bot_data:
             point = context.bot_data[poll_id]
             final_points += point
+        FUNC['quiz_res_' + str(final_points)].labels(group=QUIZ).inc()
         context.bot.send_photo(
             chat_id=chat_id,
             photo=open(analize_results(final_points), 'rb'),

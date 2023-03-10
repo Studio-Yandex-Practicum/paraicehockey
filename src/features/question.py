@@ -2,8 +2,7 @@ from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
 from telegram.ext import CallbackContext
 
 from src.core.constants import QUESTION_TEXT
-from src.core.prometheus import counter_viewed_question
-from src.core.prometheus_constants import QUESTION
+from src.core.prometheus import QUESTION, counter_viewed_question
 
 # TODO: Логирование нажатия кнопки-ссылки 'Получить ответ'
 #  (кол-во пользователей которые нажимаю кнопку, задают вопрос)
