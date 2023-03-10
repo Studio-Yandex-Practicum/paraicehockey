@@ -111,13 +111,13 @@ counter_viewed_quiz_res = Counter('user_viewed_quiz_result',
 registry.register(counter_viewed_quiz_res.labels(group=QUIZ))
 
 FUNC = {}
-for number in range(1, 11):
+for number in range(11):
     FUNC['quiz_res_' + str(number)] = Counter(
         'user_viewed_quiz_result_' + str(number),
         'Результат игры квиз ' + str(number),
         ['group'])
     registry.register(
-        FUNC['quiz_res_' + str(number)].labels(group='test'))
+        FUNC['quiz_res_' + str(number)].labels(group=QUIZ))
 
 """Кто такой Фырк."""
 counter_viewed_who_is_fyrk = Counter('user_viewed_who_is_fyrk',
