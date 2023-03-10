@@ -111,6 +111,18 @@ files = [
 ]
 
 [[package]]
+name = "et-xmlfile"
+version = "1.1.0"
+description = "An implementation of lxml.xmlfile for the standard library"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+files = [
+    {file = "et_xmlfile-1.1.0-py3-none-any.whl", hash = "sha256:a2ba85d1d6a74ef63837eed693bcb89c3f752169b0e3e7ae5b16ca5e1b3deada"},
+    {file = "et_xmlfile-1.1.0.tar.gz", hash = "sha256:8eb9e2bc2f8c97e37a2dc85a09ecdcdec9d8a396530a6d5a33b30b9a92da0c5c"},
+]
+
+[[package]]
 name = "filelock"
 version = "3.8.2"
 description = "A platform independent file lock."
@@ -371,6 +383,21 @@ files = [
 
 [package.dependencies]
 setuptools = "*"
+
+[[package]]
+name = "openpyxl"
+version = "3.1.1"
+description = "A Python library to read/write Excel 2010 xlsx/xlsm files"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+files = [
+    {file = "openpyxl-3.1.1-py2.py3-none-any.whl", hash = "sha256:a0266e033e65f33ee697254b66116a5793c15fc92daf64711080000df4cfe0a8"},
+    {file = "openpyxl-3.1.1.tar.gz", hash = "sha256:f06d44e2c973781068bce5ecf860a09bcdb1c7f5ce1facd5e9aa82c92c93ae72"},
+]
+
+[package.dependencies]
+et-xmlfile = "*"
 
 [[package]]
 name = "pep8-naming"
@@ -808,4 +835,4 @@ testing = ["coverage (>=6.2)", "coverage-enable-subprocess (>=1)", "flaky (>=3.7
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "b0f658c44b47c13f8c3625043a98ca60a0a053ec3e16c0d3bfeb82ae8185a276"
+content-hash = "eb735697fb3a6d59cce0c0adfb6c387b82d2f218ab8668745d19b5f733144088"
