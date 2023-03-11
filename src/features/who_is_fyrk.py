@@ -1,6 +1,7 @@
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 
-from src.core.prometheus import WHO_IS_FYRK, counter_viewed_who_is_fyrk
+from src.core.prometheus import counter_viewed_who_is_fyrk
+from src.core.prometheus_constants import WHO_IS_FYRK
 
 
 def who_is_fyrk(update, context):

@@ -1,0 +1,7 @@
+QUESTION = 'Question'
+OWNER = 'Owner'
+FEDERATION = 'Federation'
+ADAPTIVE_HOKKEY = 'AdaptiveHockey'
+DONATE = 'Donate'
+QUIZ = 'Quiz'
+WHO_IS_FYRK = 'WhoIsFyrk'

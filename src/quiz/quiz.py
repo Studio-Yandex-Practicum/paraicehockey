@@ -1,8 +1,9 @@
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Poll
 
 from src.core.constants import quiz_results, quizzes
-from src.core.prometheus import (FUNC, QUIZ, counter_push_quiz_start,
+from src.core.prometheus import (FUNC, counter_push_quiz_start,
                                  counter_viewed_quiz, counter_viewed_quiz_res)
+from src.core.prometheus_constants import QUIZ
 
 from .model import Quiz
 

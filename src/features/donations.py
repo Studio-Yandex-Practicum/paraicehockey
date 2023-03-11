@@ -1,6 +1,7 @@
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 
-from src.core.prometheus import DONATE, counter_viewed_donate
+from src.core.prometheus import counter_viewed_donate
+from src.core.prometheus_constants import DONATE
 from src.core.settings import settings
 
 

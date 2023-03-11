@@ -1,12 +1,7 @@
 from prometheus_client import CollectorRegistry, Counter
 
-QUESTION = 'Question'
-OWNER = 'Owner'
-FEDERATION = 'Federation'
-ADAPTIVE_HOKKEY = 'AdaptiveHockey'
-DONATE = 'Donate'
-QUIZ = 'Quiz'
-WHO_IS_FYRK = 'WhoIsFyrk'
+from src.core.prometheus_constants import (ADAPTIVE_HOKKEY, DONATE, FEDERATION,
+                                           OWNER, QUESTION, QUIZ, WHO_IS_FYRK)
 
 registry = CollectorRegistry()
 
