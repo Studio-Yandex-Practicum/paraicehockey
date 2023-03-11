@@ -16,7 +16,6 @@ logger.addHandler(handler)
 
 
 def show_main_menu():
-    counter_start_app.labels(group=OWNER).inc()
     updater = Updater(token=settings.bot_token)
     updater.dispatcher.add_handler(
         PollHandler(
@@ -25,7 +24,9 @@ def show_main_menu():
             pass_user_data=True
         ))
     updater.dispatcher.add_handler(CommandHandler('start', main_menu))
+    updater.dispatcher.add_handler(
+        CommandHandler('start', counter_start_app.labels(group=OWNER).inc()))
     updater.dispatcher.add_handler(CallbackQueryHandler(
-                                   redirect_main_menu))
+        redirect_main_menu))
     updater.start_polling()
     updater.idle()
