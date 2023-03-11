@@ -98,7 +98,7 @@ def export_for_day(update, context):
 
 
 def export_for_week(update, context):
-    """Экспортируем статистику за неделю."""
+    """Экспортируем статистику за 2 недели."""
     chat_id = update.message.chat_id
     start = int(
         (datetime.datetime.now() - datetime.timedelta(weeks=2)).timestamp()
