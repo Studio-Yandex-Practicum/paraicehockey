@@ -1,8 +1,12 @@
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 
+from src.core.prometheus import counter_viewed_who_is_fyrk
+from src.core.prometheus_constants import WHO_IS_FYRK
+
 
 def who_is_fyrk(update, context):
     """Функция для рассказа о Фырке и его семьи."""
+    counter_viewed_who_is_fyrk.labels(group=WHO_IS_FYRK).inc()
     chat = update.effective_chat
 
     keyboard = [

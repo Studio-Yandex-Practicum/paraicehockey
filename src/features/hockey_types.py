@@ -3,9 +3,9 @@ from telegram.ext import CallbackContext
 
 from src.core.constants import (ADAPTIVE_HOKKEY_MAIN_TEXT,
                                 ADAPTIVE_HOKKEY_PAGES_TEXT_URLS)
-from src.core.prometheus import counter_viewed_adaptive_hockey
-from src.core.prometheus_constants import (ADAPTIVE_HOKKEY,
-                                           ADAPTIVE_HOKKEY_PROMETHEUS)
+from src.core.prometheus import (ADAPTIVE_HOKKEY_PROMETHEUS,
+                                 counter_viewed_adaptive_hockey)
+from src.core.prometheus_constants import ADAPTIVE_HOKKEY
 
 
 def adaptive_hockey_keyboard():
