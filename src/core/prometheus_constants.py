@@ -30,4 +30,3 @@ METRIC_NAMES = {
 }
 
 PROMETHEUS_URL = 'http://prometheus:9090'
-
