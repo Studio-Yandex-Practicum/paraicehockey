@@ -1,10 +1,13 @@
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 
+from src.core.prometheus import counter_viewed_donate
+from src.core.prometheus_constants import DONATE
 from src.core.settings import settings
 
 
 def page_donations(update, context):
     """Функция для перехода к меню и выдаче скрина с тратами организации."""
+    counter_viewed_donate.labels(group=DONATE).inc()
     keyboard = [
         [InlineKeyboardButton('Поддержать', url=settings.url_donation)],
         [InlineKeyboardButton('Меню', callback_data='main_menu')],
