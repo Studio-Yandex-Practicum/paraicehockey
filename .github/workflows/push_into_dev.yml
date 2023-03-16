@@ -106,5 +106,5 @@ jobs:
             docker stop prometheus_TG
             docker rm prometheus_TG
             docker run -d --name prometheus_TG -v ~/tg-bot-config/prometheus/config.yml:/etc/prometheus/prometheus.yml -p 9090:9090 prom/prometheus
-            docker container start tg_bot_dev_container
-#            docker container run -p 8000:8000 tg_bot_dev_container
+#            docker container start tg_bot_dev_container
+            docker container run -p 8000:8000 tg_bot_dev_container
