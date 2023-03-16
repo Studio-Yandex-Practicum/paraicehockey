@@ -4,8 +4,6 @@ services:
     build: .
     container_name: bot
     restart: always
-    ports:
-      - "8080:8080"
     volumes:
       - static_value:/app/static_for_bot/
     env_file:
