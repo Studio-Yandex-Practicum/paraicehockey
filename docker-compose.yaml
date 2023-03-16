@@ -10,6 +10,7 @@ services:
       - static_value:/app/static_for_bot/
     env_file:
       - ./.env
+
   nginx:
     image: nginx:1.22-alpine
     container_name: nginx
@@ -29,6 +30,8 @@ services:
       - "9090:9090"
     volumes:
       - ./prometheus/config.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+      - prometheus_storage:/data
     depends_on:
       - bot
 
@@ -41,6 +44,9 @@ services:
       - ./grafana/datasource.yaml:/etc/grafana/provisioning/datasources/default.yaml
       - ./grafana/dashboard.yaml:/etc/grafana/provisioning/dashboards/default.yaml
       - ./grafana/dashboards:/var/lib/grafana/dashboards
+      - grafana_data:/var/lib/grafana
+      - grafana_logs:/var/log/grafana
+      - prometheus_data:/var/lib/prometheus
     ports:
       - "3000:3000"
     depends_on:
@@ -48,3 +54,7 @@ services:
 
 volumes:
   static_value:
+  prometheus_data:
+  grafana_data:
+  grafana_logs:
+  prometheus_storage:
