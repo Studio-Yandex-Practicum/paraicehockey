@@ -29,7 +29,7 @@ services:
     ports:
       - "9090:9090"
     volumes:
-      - ./prometheus/config.yml:/etc/prometheus/prometheus.yml
+      - ./tg-bot-confing/prometheus/config.yml:/etc/prometheus/prometheus.yml
       - prometheus_data:/prometheus
       - prometheus_storage:/data
     depends_on:
@@ -40,10 +40,10 @@ services:
     container_name: grafana
     image: grafana/grafana
     volumes:
-      - ./grafana/config.ini:/etc/grafana/grafana.ini
-      - ./grafana/datasource.yaml:/etc/grafana/provisioning/datasources/default.yaml
-      - ./grafana/dashboard.yaml:/etc/grafana/provisioning/dashboards/default.yaml
-      - ./grafana/dashboards:/var/lib/grafana/dashboards
+      - ./tg-bot-confing/grafana/grafana.ini:/etc/grafana/grafana.ini
+      - ./tg-bot-confing/grafana/provisioning/datasources/default.yaml:/etc/grafana/provisioning/datasources/default.yaml
+      - ./tg-bot-confing/grafana/provisioning/dashboards/default.yaml:/etc/grafana/provisioning/dashboards/default.yaml
+      - ./tg-bot-confing/grafana/dashboards:/var/lib/grafana/dashboards
       - grafana_data:/var/lib/grafana
       - grafana_logs:/var/log/grafana
       - prometheus_data:/var/lib/prometheus

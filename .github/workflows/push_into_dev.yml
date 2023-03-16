@@ -91,6 +91,10 @@ jobs:
       -
         name: Remote ssh commands to deploy
         uses: appleboy/ssh-action@master
+        env:
+          GF_PATHS_CONFIG: tg-bot-confing/grafana/grafana.ini
+          GF_PATHS_PROVISIONING: tg-bot-confing/grafana/provisioning
+          GF_PATHS_DATA: tg-bot-confing/grafana
         with:
           host: ${{ secrets.SELECTEL_SERVER_HOST_IP }}
           username: ${{ secrets.SELECTEL_SERVER_HOST_USER }}
@@ -100,4 +104,8 @@ jobs:
             docker login cr.selcloud.ru --username ${{ secrets.SELECTEL_CONTAINER_REGISTRY_USER }} --password ${{ secrets.SELECTEL_CONTAINER_REGISTRY_PASSWORD }}
             docker container rm tg_bot_dev_container --force
             docker container create -it --name tg_bot_dev_container cr.selcloud.ru/registry/tg_bot_dev:${{ github.workflow }}-${{ github.run_number }}
-            docker container start tg_bot_dev_container
+            docker volume create tg-bot-storage
+            docker run -d --name=grafana_TG -p 3000:3000 grafana/grafana
+#            docker run -d --name=grafana_TG -e "GF_PATHS_DATA=tg-bot-confing/grafana" -e "GF_PATHS_PROVISIONING=tg-bot-confing/grafana/provisioning" -e "GF_PATHS_CONFIG=tg-bot-confing/grafana/grafana.ini" -p 3000:3000 grafana/grafana
+            docker run -d --name=prometheus_TG --config.file "tg-bot-confing/prometheus/config.yml" -p 9090:9090 prom/prometheus
+            docker container start tg_bot_dev_container -p 8080:8080
