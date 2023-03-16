@@ -102,7 +102,6 @@ jobs:
             docker container create -it --name tg_bot_dev_container cr.selcloud.ru/registry/tg_bot_dev:${{ github.workflow }}-${{ github.run_number }}
             docker stop grafana_TG
             docker rm grafana_TG
-            docker run -d --name grafana_TG -e GF_PATHS_DATA=~/tg-bot-config/grafana -e GF_PATHS_PROVISIONING=~/tg-bot-config/grafana/provisioning -e GF_PATHS_CONFIG=~/tg-bot-config/grafana/grafana.ini -p 3030:3030 grafana/grafana
             docker run -d --name grafana_TG -v ~/tg-bot-config/grafana/grafana.ini:/etc/grafana/grafana.ini -v ~/tg-bot-config/grafana/provisioning/datasources/default.yaml:/etc/grafana/provisioning/datasources/default.yaml -v ~/tg-bot-config/grafana/provisioning/dashboards/default.yaml:/etc/grafana/provisioning/dashboards/default.yaml -v ~/tg-bot-config/grafana/dashboards:/var/lib/grafana/dashboards -p 3030:3030 grafana/grafana
             docker stop prometheus_TG
             docker rm prometheus_TG
