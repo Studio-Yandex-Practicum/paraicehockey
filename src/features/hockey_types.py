@@ -30,10 +30,6 @@ def start_hockey_types(update: Update, context: CallbackContext) -> None:
                              reply_markup=adaptive_hockey_keyboard())
 
 
-# TODO: Логирование нажатия кнопки-ссылки 'Команды'
-#  (кол-во пользователей переходящих на сайт через кнопку, во всех 3
-#  подразделах)
-
 def redirect_adaptive_hockey_types(update: Update,
                                    context: CallbackContext) -> None:
     """Функция для обработки сигнала от кнопок главного меню раздела.

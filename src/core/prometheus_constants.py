@@ -5,6 +5,8 @@ ADAPTIVE_HOKKEY = 'AdaptiveHockey'
 DONATE = 'Donate'
 QUIZ = 'Quiz'
 WHO_IS_FYRK = 'WhoIsFyrk'
+STICKER = 'Sticker'
+ALL_FOR_HOCKEY = 'all for hockey'
 
 METRIC_GROUPS = {
     QUESTION: 'Вопросы',
@@ -13,6 +15,8 @@ METRIC_GROUPS = {
     OWNER: 'Запуск Бота',
     DONATE: 'Сделать пожертвования',
     WHO_IS_FYRK: 'Кто такой Фырк',
+    STICKER: 'Стикер пак',
+    ALL_FOR_HOCKEY: 'Всё для хоккея'
 }
 
 METRIC_NAMES = {
@@ -37,6 +41,8 @@ METRIC_NAMES = {
     'user_viewed_quiz_total': 'Просмотр пункта меню: Квиз',
     'user_push_quiz_start_total': 'Нажатие пункта меню: Старт',
     'user_viewed_quiz_result_total': 'Просмотр результатов квиза',
+    'user_viewed_sticker': 'Просмотр пункта меню: Получить стикерпак',
+    'user_viewed_all_for_hockey': 'Просмотр пункта меню: Всё для хоккея',
 }
 
 PROMETHEUS_URL = 'http://0.0.0.0:9090'
