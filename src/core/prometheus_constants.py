@@ -39,4 +39,4 @@ METRIC_NAMES = {
     'user_viewed_quiz_result_total': 'Просмотр результатов квиза',
 }
 
-PROMETHEUS_URL = 'http://0.0.0.0:9090'
+PROMETHEUS_URL = 'http://172.17.0.5:9090'
