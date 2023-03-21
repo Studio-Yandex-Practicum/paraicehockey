@@ -115,13 +115,13 @@ registry.register(counter_viewed_who_is_fyrk.labels(group=WHO_IS_FYRK))
 """Стикерпак."""
 counter_viewed_sticker = Counter(
     'user_viewed_sticker',
-    METRIC_NAMES['user_viewed_sticker'],
+    METRIC_NAMES['user_viewed_sticker_total'],
     ['group'])
 registry.register(counter_viewed_sticker.labels(group=STICKER))
 
 """Всё для хоккея."""
 counter_viewed_all_for_hockey = Counter(
     'user_viewed_all_for_hockey',
-    METRIC_NAMES['user_viewed_all_for_hockey'],
+    METRIC_NAMES['user_viewed_all_for_hockey_total'],
     ['group'])
 registry.register(counter_viewed_all_for_hockey.labels(group=ALL_FOR_HOCKEY))
