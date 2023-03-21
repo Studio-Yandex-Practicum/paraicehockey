@@ -19,11 +19,6 @@ counter_viewed_question = Counter('user_viewed_question',
                                   ['group'])
 registry.register(counter_viewed_question.labels(group=QUESTION))
 
-counter_push_question = Counter('user_push_question',
-                                METRIC_NAMES['user_push_question_total'],
-                                ['group'])
-registry.register(counter_push_question.labels(group=QUESTION))
-
 """Узнать о Федерации."""
 counter_viewed_federation = Counter(
     'user_viewed_federation',
@@ -83,11 +78,6 @@ counter_viewed_donate = Counter('user_viewed_donate',
                                 METRIC_NAMES['user_viewed_donate_total'],
                                 ['group'])
 registry.register(counter_viewed_donate.labels(group=DONATE))
-
-counter_push_donate = Counter('user_push_donate',
-                              METRIC_NAMES['user_push_donate_total'],
-                              ['group'])
-registry.register(counter_push_donate.labels(group=DONATE))
 
 """Квиз."""
 counter_viewed_quiz = Counter('user_viewed_quiz',
