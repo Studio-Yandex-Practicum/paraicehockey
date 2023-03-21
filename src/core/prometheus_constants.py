@@ -20,7 +20,6 @@ METRIC_GROUPS = {
 }
 
 METRIC_NAMES = {
-    'user_push_question_total': 'Нажатие пункта меню: Получить ответ',
     'user_viewed_question_total': 'Просмотр пункта меню: Задать вопрос',
     'user_viewed_federation_activities_total': (
         'Просмотр подпункта меню: Направления деятельности'),
@@ -36,13 +35,12 @@ METRIC_NAMES = {
         'Просмотр пункта меню: Хоккей для незрячих'),
     'user_start_bot_total': 'Пользователь нажал "start" и запустил бота',
     'user_viewed_donate_total': 'Просмотр пункта меню: Сделать пожертвования',
-    'user_push_donate_total': 'Нажатие пункта меню: Поддержать',
     'user_viewed_who_is_fyrk_total': 'Просмотр пункта меню: Кто такой Фырк',
     'user_viewed_quiz_total': 'Просмотр пункта меню: Квиз',
     'user_push_quiz_start_total': 'Нажатие пункта меню: Старт',
     'user_viewed_quiz_result_total': 'Просмотр результатов квиза',
-    'user_viewed_sticker': 'Просмотр пункта меню: Получить стикерпак',
-    'user_viewed_all_for_hockey': 'Просмотр пункта меню: Всё для хоккея',
+    'user_viewed_sticker_total': 'Просмотр пункта меню: Получить стикерпак',
+    'user_viewed_all_for_hockey_total': 'Просмотр пункта меню: Всё для хоккея',
 }
 
 PROMETHEUS_URL = 'http://0.0.0.0:9090'
