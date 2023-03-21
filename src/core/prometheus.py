@@ -1,7 +1,8 @@
 from prometheus_client import CollectorRegistry, Counter
 
-from src.core.prometheus_constants import (ADAPTIVE_HOKKEY, DONATE, FEDERATION,
-                                           METRIC_NAMES, OWNER, QUESTION, QUIZ,
+from src.core.prometheus_constants import (ADAPTIVE_HOKKEY, ALL_FOR_HOCKEY,
+                                           DONATE, FEDERATION, METRIC_NAMES,
+                                           OWNER, QUESTION, QUIZ, STICKER,
                                            WHO_IS_FYRK)
 
 registry = CollectorRegistry()
@@ -17,11 +18,6 @@ counter_viewed_question = Counter('user_viewed_question',
                                   METRIC_NAMES['user_viewed_question_total'],
                                   ['group'])
 registry.register(counter_viewed_question.labels(group=QUESTION))
-
-counter_push_question = Counter('user_push_question',
-                                METRIC_NAMES['user_push_question_total'],
-                                ['group'])
-registry.register(counter_push_question.labels(group=QUESTION))
 
 """Узнать о Федерации."""
 counter_viewed_federation = Counter(
@@ -83,11 +79,6 @@ counter_viewed_donate = Counter('user_viewed_donate',
                                 ['group'])
 registry.register(counter_viewed_donate.labels(group=DONATE))
 
-counter_push_donate = Counter('user_push_donate',
-                              METRIC_NAMES['user_push_donate_total'],
-                              ['group'])
-registry.register(counter_push_donate.labels(group=DONATE))
-
 """Квиз."""
 counter_viewed_quiz = Counter('user_viewed_quiz',
                               METRIC_NAMES['user_viewed_quiz_total'],
@@ -120,3 +111,17 @@ counter_viewed_who_is_fyrk = Counter(
     METRIC_NAMES['user_viewed_who_is_fyrk_total'],
     ['group'])
 registry.register(counter_viewed_who_is_fyrk.labels(group=WHO_IS_FYRK))
+
+"""Стикерпак."""
+counter_viewed_sticker = Counter(
+    'user_viewed_sticker',
+    METRIC_NAMES['user_viewed_sticker'],
+    ['group'])
+registry.register(counter_viewed_sticker.labels(group=STICKER))
+
+"""Всё для хоккея."""
+counter_viewed_all_for_hockey = Counter(
+    'user_viewed_all_for_hockey',
+    METRIC_NAMES['user_viewed_all_for_hockey'],
+    ['group'])
+registry.register(counter_viewed_all_for_hockey.labels(group=ALL_FOR_HOCKEY))
