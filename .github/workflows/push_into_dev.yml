@@ -46,7 +46,7 @@ jobs:
       ENV_KEY_BOT_TOKEN: ${{ secrets.PH_TOKEN_BOT_TEST }}
       ENV_KEY_URL_DONATION: ${{ secrets.URL_DONATION }}
       ENV_KEY_SECRET_KEY: ${{ secrets.SECRET_KEY_BOT }}
-      TELEGRAM_ADMIN_IDS: ${{ secrets.TELEGRAM_ADMIN_IDS }}
+      ENV_KEY_TELEGRAM_ADMIN_IDS: ${{ secrets.TELEGRAM_ADMIN_IDS }}
 
     steps:
       -
@@ -74,7 +74,7 @@ jobs:
           BOT_TOKEN: ${{ secrets.PH_TOKEN_BOT_TEST }}
           URL_DONATION: ${{ secrets.URL_DONATION }}
           SECRET_KEY: ${{ secrets.SECRET_KEY_BOT }}
-
+          TELEGRAM_ADMIN_IDS: ${{ secrets.TELEGRAM_ADMIN_IDS }}
       - name: Build image with .env
         uses: actions-hub/docker/cli@master
         env:
