@@ -7,6 +7,7 @@ import requests
 
 from src.core.prometheus_constants import (METRIC_GROUPS, METRIC_NAMES,
                                            PROMETHEUS_URL)
+from src.core.utils import is_admin
 
 logger = logging.getLogger(__name__)
 
@@ -86,6 +87,7 @@ def export_statistics(start, end, chat_id, context):
     logger.info('Файл успешно сохранен: %s', filename)
 
 
+@is_admin
 def export_for_day(update, context):
     """Экспортируем статистику за день."""
     chat_id = update.message.chat_id
@@ -97,6 +99,7 @@ def export_for_day(update, context):
     logger.info('Экспорт статистики за день')
 
 
+@is_admin
 def export_for_week(update, context):
     """Экспортируем статистику за 2 недели."""
     chat_id = update.message.chat_id
