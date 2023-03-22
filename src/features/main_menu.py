@@ -3,6 +3,8 @@ from telegram.ext import CallbackContext
 
 from src.core.constants import (ADAPTIVE_HOKKEY_PAGES_TEXT_URLS,
                                 CHAMPION_WAY_URL)
+from src.core.prometheus import counter_start_app
+from src.core.prometheus_constants import OWNER
 from src.features.all_for_hockey import start_all_for_hockey
 from src.features.donations import page_donations
 from src.features.federation_info import (about_fed_main_page,
@@ -47,6 +49,12 @@ def main_menu(update: Update, context: CallbackContext) -> None:
         caption='Выбери раздел меню.',
         reply_markup=main_menu_keyboard()
     )
+
+
+def start_bot(update: Update, context: CallbackContext) -> None:
+    """Функция первого сообщения и логирования нажатия команды '/start'."""
+    counter_start_app.labels(group=OWNER).inc()
+    main_menu(update, context)
 
 
 MAIN_MENU_COMMANDS = {

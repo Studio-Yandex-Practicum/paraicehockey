@@ -4,11 +4,9 @@ import sys
 from telegram.ext import (CallbackQueryHandler, CommandHandler, PollHandler,
                           Updater)
 
-from src.core.prometheus import counter_start_app
-from src.core.prometheus_constants import OWNER
 from src.core.settings import settings
 from src.features.export_to_excel import export_for_day, export_for_week
-from src.features.main_menu import main_menu, redirect_main_menu
+from src.features.main_menu import redirect_main_menu, start_bot
 from src.quiz.quiz import poll_handler
 
 logger = logging.getLogger('paraicehockey_bot')
@@ -24,9 +22,7 @@ def show_main_menu():
             pass_chat_data=True,
             pass_user_data=True
         ))
-    updater.dispatcher.add_handler(CommandHandler('start', main_menu))
-    updater.dispatcher.add_handler(
-        CommandHandler('start', counter_start_app.labels(group=OWNER).inc()))
+    updater.dispatcher.add_handler(CommandHandler('start', start_bot))
     updater.dispatcher.add_handler(
         CommandHandler('export_for_day', export_for_day))
     updater.dispatcher.add_handler(
