@@ -8,8 +8,20 @@ services:
       - "8080:8080"
     volumes:
       - static_value:/app/static_for_bot/
+      - bot_data:/app/metrics
+    depends_on:
+      - db
     env_file:
-      - ./.env
+      - .env
+
+  db:
+    image: postgres:10.13
+    ports:
+      - "5432:5432"
+    env_file:
+      - .env
+    volumes:
+      - ./data:/var/lib/postgresql/data
 
   nginx:
     image: nginx:1.22-alpine
@@ -25,12 +37,24 @@ services:
   # the Prometheus server
   prometheus:
     container_name: prometheus
+    restart: always
     image: prom/prometheus
     ports:
       - "9090:9090"
     volumes:
       - ./tg-bot-config/prometheus/config.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+      - bot_data:/app/metrics:ro
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--query.lookback-delta=1h"
+      - "--storage.tsdb.path=/prometheus/data"
+      - "--storage.tsdb.min-block-duration=2h"
+      - "--storage.tsdb.max-block-duration=336h"
+      - "--web.enable-admin-api"
+      - "--web.enable-lifecycle"
     depends_on:
+      - db
       - bot
 
   # Grafana for visualization
@@ -49,3 +73,6 @@ services:
 
 volumes:
   static_value:
+  prometheus_data:
+  bot_data:
+  data:

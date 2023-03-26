@@ -20,7 +20,7 @@ def get_metrics_list():
         try:
             response = requests.get(url)
         except requests.exceptions.RequestException:
-            logging.error('Prometheus: cant get metrics: u=%url', url)
+            logging.error('Prometheus: не удалось получить метрику.')
         data = response.json()['data']
         for metric in data:
             name = metric['__name__']
@@ -33,7 +33,7 @@ def get_metrics_list():
     return metrics
 
 
-def create_excel_file(start, end, filename, metrics):
+def create_excel_file(start, end, filename, metrics, interval):
     """Создаем excel файл."""
     wb = openpyxl.Workbook()
     ws = wb.active
@@ -54,10 +54,16 @@ def create_excel_file(start, end, filename, metrics):
                 name = METRIC_NAMES.get(metric, metric)
             else:
                 name = metric
-            query = (
-                f'{PROMETHEUS_URL}/api/v1/query?query={metric}'
-                f'&time={end}&start={start}'
-            )
+            if interval == 'all':
+                query = (
+                    f'{PROMETHEUS_URL}/api/v1/query?query={metric}'
+                    f'&time={end}&start={start}'
+                )
+            else:
+                query = (
+                    f'{PROMETHEUS_URL}/api/v1/query?query=changes({metric}'
+                    f'[{interval}])&time={end}&start={start}'
+                )
             try:
                 response = requests.get(query)
             except requests.exceptions.RequestException:
@@ -72,14 +78,14 @@ def create_excel_file(start, end, filename, metrics):
     wb.save(filename)
 
 
-def export_statistics(start, end, chat_id, context):
+def export_statistics(start, end, chat_id, context, interval):
     """Экспортируем статистику и сохраняем в телеграмм."""
     filename = (
         f'export_{datetime.datetime.fromtimestamp(start).strftime("%Y-%m-%d")}'
         '.xlsx'
     )
     metrics = get_metrics_list()
-    create_excel_file(start, end, filename, metrics)
+    create_excel_file(start, end, filename, metrics, interval)
     bot = context.bot
     with open(filename, 'rb') as f:
         bot.send_document(chat_id=chat_id, document=f)
@@ -95,7 +101,7 @@ def export_for_day(update, context):
         (datetime.datetime.now() - datetime.timedelta(days=1)).timestamp()
     )
     end = int(datetime.datetime.now().timestamp())
-    export_statistics(start, end, chat_id, context)
+    export_statistics(start, end, chat_id, context, '24h')
     logger.info('Экспорт статистики за день')
 
 
@@ -107,5 +113,17 @@ def export_for_week(update, context):
         (datetime.datetime.now() - datetime.timedelta(weeks=2)).timestamp()
     )
     end = int(datetime.datetime.now().timestamp())
-    export_statistics(start, end, chat_id, context)
+    export_statistics(start, end, chat_id, context, '2w')
     logger.info('Экспорт статистики за неделю')
+
+
+@is_admin
+def export_for_all(update, context):
+    """Экспортируем всю статистику."""
+    chat_id = update.message.chat_id
+    start = int(
+        (datetime.datetime.now() - datetime.timedelta(weeks=360)).timestamp()
+    )
+    end = int(datetime.datetime.now().timestamp())
+    export_statistics(start, end, chat_id, context, 'all')
+    logger.info('Экспорт всей статистики')
