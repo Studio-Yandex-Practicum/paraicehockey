@@ -68,7 +68,6 @@ def update_metric_query_value(names, values):
         else:
             metric = Metric(name=name, value=value)
             session.add(metric)
-
     session.commit()
 
 
