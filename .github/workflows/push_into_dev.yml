@@ -126,3 +126,5 @@ jobs:
             docker rm db_TG
             docker run -d --name db_TG -v ~/tg-bot-config/db:/var/lib/postgresql/data -p 5433:5433 postgres:10.13
             docker container start tg_bot_dev_container
+            docker run -d --name prometheus_TG --volume a-new-volume:/prometheus -v ~/tg-bot-config/prometheus/config.yml:/etc/prometheus/prometheus.yml -p 9090:9090 prom/prometheus
+            docker container start tg_bot_dev_container 
