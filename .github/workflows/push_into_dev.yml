@@ -125,4 +125,4 @@ jobs:
             docker stop db_TG
             docker rm db_TG
             docker run -d --name db_TG -v ~/tg-bot-config/db:/var/lib/postgresql/data -p 5433:5433 postgres:10.13
-            docker container start tg_bot_dev_container
+            docker container start tg_bot_dev_container 
