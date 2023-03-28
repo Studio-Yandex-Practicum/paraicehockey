@@ -17,7 +17,6 @@ def get_metrics_list():
     """Получаем группы и их метрики."""
     metrics = {}
     for group in METRIC_GROUPS:
-        # добавить значение &job="bot_master" или &job="bot_dev"
         url = f'{PROMETHEUS_URL}/api/v1/series?match[]={{group="{group}"}}'
         try:
             response = requests.get(url)
