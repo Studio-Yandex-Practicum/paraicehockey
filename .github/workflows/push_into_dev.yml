@@ -47,6 +47,13 @@ jobs:
       ENV_KEY_URL_DONATION: ${{ secrets.URL_DONATION }}
       ENV_KEY_SECRET_KEY: ${{ secrets.SECRET_KEY_BOT }}
       ENV_KEY_TELEGRAM_ADMIN_IDS: ${{ secrets.TELEGRAM_ADMIN_IDS }}
+      ENV_KEY_BOT_PROMETHEUS: ${{ secrets.BOT_DEV_PROMETHEUS }}
+      ENV_KEY_BOT_PORT: ${{ secrets.BOT_DEV_PORT }}
+      ENV_KEY_POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+      ENV_KEY_POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+      ENV_KEY_POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+      ENV_KEY_POSTGRES_HOST: ${{ secrets.POSTGRES_HOST }}
+      ENV_KEY_POSTGRES_PORT: ${{ secrets.POSTGRES_PORT }}
 
     steps:
       -
@@ -75,6 +82,14 @@ jobs:
           URL_DONATION: ${{ secrets.URL_DONATION }}
           SECRET_KEY: ${{ secrets.SECRET_KEY_BOT }}
           TELEGRAM_ADMIN_IDS: ${{ secrets.TELEGRAM_ADMIN_IDS }}
+          BOT_PROMETHEUS: ${{ secrets.BOT_DEV_PROMETHEUS }}
+          BOT_PORT: ${{ secrets.BOT_DEV_PORT }}
+          POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+          POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+          POSTGRES_HOST: ${{ secrets.POSTGRES_HOST }}
+          POSTGRES_PORT: ${{ secrets.POSTGRES_PORT }}
+
       - name: Build image with .env
         uses: actions-hub/docker/cli@master
         env:
@@ -100,11 +115,14 @@ jobs:
           script: |
             docker login cr.selcloud.ru --username ${{ secrets.SELECTEL_CONTAINER_REGISTRY_USER }} --password ${{ secrets.SELECTEL_CONTAINER_REGISTRY_PASSWORD }}
             docker container rm tg_bot_dev_container --force
-            docker container create -p 8000:8000 -it --name tg_bot_dev_container cr.selcloud.ru/registry/tg_bot_dev:${{ github.workflow }}-${{ github.run_number }}
+            docker container create -p 8000:8000 -it --name tg_bot_dev_container -v static_value:/app/static_for_bot/ -v bot_data:/app/metrics cr.selcloud.ru/registry/tg_bot_dev:${{ github.workflow }}-${{ github.run_number }}
             docker stop grafana_TG
             docker rm grafana_TG
             docker run -d --name grafana_TG -v ~/tg-bot-config/grafana/grafana.ini:/etc/grafana/grafana.ini -v ~/tg-bot-config/grafana/provisioning/datasources/default.yaml:/etc/grafana/provisioning/datasources/default.yaml -v ~/tg-bot-config/grafana/provisioning/dashboards/default.yaml:/etc/grafana/provisioning/dashboards/default.yaml -v ~/tg-bot-config/grafana/dashboards:/var/lib/grafana/dashboards -p 3030:3030 grafana/grafana
             docker stop prometheus_TG
             docker rm prometheus_TG
-            docker run -d --name prometheus_TG -v ~/tg-bot-config/prometheus/config.yml:/etc/prometheus/prometheus.yml -p 9090:9090 prom/prometheus
-            docker container start tg_bot_dev_container 
+            docker run -d --name prometheus_TG -v ~/tg-bot-config/prometheus/config.yml:/etc/prometheus/prometheus.yml -v prometheus_data:/prometheus -v bot_data:/app/metrics:ro --config.file=/etc/prometheus/prometheus.yml --query.lookback-delta=1h --storage.tsdb.path=/prometheus/data --storage.tsdb.min-block-duration=2h --storage.tsdb.max-block-duration=336h  -p 9090:9090 prom/prometheus
+            docker stop db_TG
+            docker rm db_TG
+            docker run -d --name db_TG -v ~/tg-bot-config/db:/var/lib/postgresql/data -p 5433:5433 postgres:10.13
+            docker container start tg_bot_dev_container
