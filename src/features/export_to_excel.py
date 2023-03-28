@@ -7,6 +7,7 @@ import requests
 
 from src.core.prometheus_constants import (METRIC_GROUPS, METRIC_NAMES,
                                            PROMETHEUS_URL)
+from src.core.settings import settings
 from src.core.utils import is_admin
 
 logger = logging.getLogger(__name__)
@@ -16,6 +17,7 @@ def get_metrics_list():
     """Получаем группы и их метрики."""
     metrics = {}
     for group in METRIC_GROUPS:
+        # добавить значение &job="bot_master" или &job="bot_dev"
         url = f'{PROMETHEUS_URL}/api/v1/series?match[]={{group="{group}"}}'
         try:
             response = requests.get(url)
@@ -24,6 +26,8 @@ def get_metrics_list():
         data = response.json()['data']
         for metric in data:
             name = metric['__name__']
+            if metric['job'] != settings.bot_prometheus:
+                continue
             if '_created' in name:
                 continue
             if group not in metrics:
@@ -44,7 +48,7 @@ def create_excel_file(start, end, filename, metrics):
     )
     ws.column_dimensions['A'].width = 50
 
-    row = 2 # noqa
+    row = 2  # noqa
     for group in metrics:
         ws.cell(row=row, column=1, value=METRIC_GROUPS[group])
         ws.cell(row=row, column=1).font = openpyxl.styles.Font(bold=True)
@@ -56,6 +60,7 @@ def create_excel_file(start, end, filename, metrics):
                 name = metric
             query = (
                 f'{PROMETHEUS_URL}/api/v1/query?query={metric}'
+                f'{{job="{settings.bot_prometheus}"}}'
                 f'&time={end}&start={start}'
             )
             try:

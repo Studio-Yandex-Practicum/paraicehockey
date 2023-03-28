@@ -46,6 +46,9 @@ jobs:
       ENV_KEY_BOT_TOKEN: ${{ secrets.PH_TOKEN_BOT_PROD }}
       ENV_KEY_URL_DONATION: ${{ secrets.URL_DONATION }}
       ENV_KEY_SECRET_KEY: ${{ secrets.SECRET_KEY_BOT }}
+      ENV_KEY_TELEGRAM_ADMIN_IDS: ${{ secrets.TELEGRAM_ADMIN_IDS }}
+      ENV_KEY_BOT_PROMETHEUS: ${{ secrets.BOT_MASTER_PROMETHEUS }}
+      ENV_KEY_BOT_PORT: ${{ secrets.BOT_MASTER_PORT }}
 
     steps:
       -
@@ -73,6 +76,9 @@ jobs:
           BOT_TOKEN: ${{ secrets.PH_TOKEN_BOT_PROD }}
           URL_DONATION: ${{ secrets.URL_DONATION }}
           SECRET_KEY: ${{ secrets.SECRET_KEY_BOT }}
+          TELEGRAM_ADMIN_IDS: ${{ secrets.TELEGRAM_ADMIN_IDS }}
+          BOT_PROMETHEUS: ${{ secrets.BOT_MASTER_PROMETHEUS }}
+          BOT_PORT: ${{ secrets.BOT_MASTER_PORT }}
 
       - name: Build image with .env
         uses: actions-hub/docker/cli@master
@@ -99,5 +105,11 @@ jobs:
           script: |
             docker login cr.selcloud.ru --username ${{ secrets.SELECTEL_CONTAINER_REGISTRY_USER }} --password ${{ secrets.SELECTEL_CONTAINER_REGISTRY_PASSWORD }}
             docker container rm tg_bot_prod_container --force
-            docker container create -it --name tg_bot_prod_container cr.selcloud.ru/registry/tg_bot_prod:${{ github.workflow }}-${{ github.run_number }}
+            docker container create -p ${{ secrets.BOT_MASTER_PORT }}:${{ secrets.BOT_MASTER_PORT }} -it --name tg_bot_prod_container cr.selcloud.ru/registry/tg_bot_prod:${{ github.workflow }}-${{ github.run_number }}
+            docker stop grafana_TG
+            docker rm grafana_TG
+            docker run -d --name grafana_TG -v ~/tg-bot-config/grafana/grafana.ini:/etc/grafana/grafana.ini -v ~/tg-bot-config/grafana/provisioning/datasources/default.yaml:/etc/grafana/provisioning/datasources/default.yaml -v ~/tg-bot-config/grafana/provisioning/dashboards/default.yaml:/etc/grafana/provisioning/dashboards/default.yaml -v ~/tg-bot-config/grafana/dashboards:/var/lib/grafana/dashboards -p 3030:3030 grafana/grafana
+            docker stop prometheus_TG
+            docker rm prometheus_TG
+            docker run -d --name prometheus_TG -v ~/tg-bot-config/prometheus/config.yml:/etc/prometheus/prometheus.yml -p 9090:9090 prom/prometheus
             docker container start tg_bot_prod_container

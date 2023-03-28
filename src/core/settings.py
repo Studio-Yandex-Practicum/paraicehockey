@@ -16,6 +16,8 @@ class Settings(BaseSettings):
     app_title: str = 'Телеграм-бот для НКО “Федерация адаптивного хоккея”'
     secret_key: str = os.getenv('SECRET_KEY')
     telegram_admin_ids: str = os.environ.get('TELEGRAM_ADMIN_IDS')
+    bot_prometheus: str = os.environ.get('BOT_PROMETHEUS')
+    bot_port: str = os.environ.get('BOT_PORT')
 
     class Config:
         """Название файла с переменными окружения в конфиге."""

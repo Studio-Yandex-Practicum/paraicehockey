@@ -85,7 +85,8 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "user_start_bot_total{job=\"bot_master\"}",
+          "expr": "user_start_bot_total{job=\"bot_dev\"}",
+
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
@@ -193,7 +194,8 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "user_viewed_donate_total{job=\"bot_master\"}",
+          "expr": "user_viewed_donate_total{job=\"bot_dev\"}",
+
           "hide": false,
           "legendFormat": "Просмотр",
           "range": true,
@@ -263,7 +265,8 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "user_viewed_donate_total{job=\"bot_master\"}",
+          "expr": "user_viewed_donate_total{job=\"bot_dev\"}",
+
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
@@ -370,7 +373,8 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "user_viewed_question_total{job=\"bot_master\"}",
+          "expr": "user_viewed_question_total{job=\"bot_dev\"}",
+
           "legendFormat": "Просмотр",
           "range": true,
           "refId": "A"
@@ -439,7 +443,8 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "user_viewed_question_total{job=\"bot_master\"}",
+          "expr": "user_viewed_question_total{job=\"bot_dev\"}",
+
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
@@ -521,7 +526,8 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "user_viewed_quiz_total{job=\"bot_master\"}",
+          "expr": "user_viewed_quiz_total{job=\"bot_dev\"}",
+
           "legendFormat": "Просмотр квиза",
           "range": true,
           "refId": "A"
@@ -532,7 +538,8 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "user_push_quiz_start_total{job=\"bot_master\"}",
+          "expr": "user_push_quiz_start_total{job=\"bot_dev\"}",
+
           "hide": false,
           "legendFormat": "Запуск игры",
           "range": true,
@@ -544,7 +551,8 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "user_viewed_quiz_result_total{job=\"bot_master\"}",
+          "expr": "user_viewed_quiz_result_total{job=\"bot_dev\"}",
+
           "hide": false,
           "legendFormat": "Просмотр результатов квиза",
           "range": true,
@@ -629,7 +637,8 @@
           },
           "editorMode": "builder",
           "exemplar": false,
-          "expr": "user_viewed_quiz_result_0_total{job=\"bot_master\"}",
+          "expr": "user_viewed_quiz_result_0_total{job=\"bot_dev\"}",
+
           "instant": false,
           "legendFormat": "0",
           "range": true,
@@ -641,7 +650,8 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "user_viewed_quiz_result_1_total{job=\"bot_master\"}",
+          "expr": "user_viewed_quiz_result_1_total{job=\"bot_dev\"}",
+
           "hide": false,
           "legendFormat": "1",
           "range": true,
@@ -653,7 +663,8 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "user_viewed_quiz_result_2_total{job=\"bot_master\"}",
+          "expr": "user_viewed_quiz_result_2_total{job=\"bot_dev\"}",
+
           "hide": false,
           "legendFormat": "2",
           "range": true,
@@ -665,7 +676,8 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "user_viewed_quiz_result_3_total{job=\"bot_master\"}",
+          "expr": "user_viewed_quiz_result_3_total{job=\"bot_dev\"}",
+
           "hide": false,
           "legendFormat": "3",
           "range": true,
@@ -677,7 +689,8 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "user_viewed_quiz_result_4_total{job=\"bot_master\"}",
+          "expr": "user_viewed_quiz_result_4_total{job=\"bot_dev\"}",
+
           "hide": false,
           "legendFormat": "4",
           "range": true,
@@ -689,7 +702,8 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "user_viewed_quiz_result_5_total{job=\"bot_master\"}",
+          "expr": "user_viewed_quiz_result_5_total{job=\"bot_dev\"}",
+
           "hide": false,
           "legendFormat": "5",
           "range": true,
@@ -701,7 +715,8 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "user_viewed_quiz_result_6_total{job=\"bot_master\"}",
+          "expr": "user_viewed_quiz_result_6_total{job=\"bot_dev\"}",
+
           "hide": false,
           "legendFormat": "6",
           "range": true,
@@ -713,7 +728,8 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "user_viewed_quiz_result_7_total{job=\"bot_master\"}",
+          "expr": "user_viewed_quiz_result_7_total{job=\"bot_dev\"}",
+
           "hide": false,
           "legendFormat": "7",
           "range": true,
@@ -725,7 +741,8 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "user_viewed_quiz_result_8_total{job=\"bot_master\"}",
+          "expr": "user_viewed_quiz_result_8_total{job=\"bot_dev\"}",
+
           "hide": false,
           "legendFormat": "8",
           "range": true,
@@ -737,7 +754,8 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "user_viewed_quiz_result_9_total{job=\"bot_master\"}",
+          "expr": "user_viewed_quiz_result_9_total{job=\"bot_dev\"}",
+
           "hide": false,
           "legendFormat": "9",
           "range": true,
@@ -749,7 +767,8 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "user_viewed_quiz_result_10_total{job=\"bot_master\"}",
+          "expr": "user_viewed_quiz_result_10_total{job=\"bot_dev\"}",
+
           "hide": false,
           "legendFormat": "10",
           "range": true,
@@ -1065,7 +1084,8 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "user_viewed_federation_values_total{job=\"bot_master\"}",
+          "expr": "user_viewed_federation_values_total{job=\"bot_dev\"}",
+
           "hide": false,
           "legendFormat": "Ценности федерации",
           "range": true,
@@ -1077,7 +1097,8 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "user_viewed_federation_activities_total{job=\"bot_master\"}",
+          "expr": "user_viewed_federation_activities_total{job=\"bot_dev\"}",
+
           "hide": false,
           "legendFormat": "Направления деятельности",
           "range": true,
@@ -1089,7 +1110,8 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "user_viewed_federation_total{job=\"bot_master\"}",
+          "expr": "user_viewed_federation_total{job=\"bot_dev\"}",
+
           "hide": false,
           "legendFormat": "Узнать о Федерации",
           "range": true,
@@ -1207,7 +1229,8 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "user_viewed_federation_total{job=\"bot_master\"}",
+          "expr": "user_viewed_federation_total{job=\"bot_dev\"}",
+
           "legendFormat": "Просмотр",
           "range": true,
           "refId": "A"
@@ -1276,7 +1299,8 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "user_viewed_federation_activities_total{job=\"bot_master\"}",
+          "expr": "user_viewed_federation_activities_total{job=\"bot_dev\"}",
+
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
@@ -1345,7 +1369,8 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "user_viewed_federation_values_total{job=\"bot_master\"}",
+          "expr": "user_viewed_federation_values_total{job=\"bot_dev\"}",
+
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
@@ -1460,7 +1485,8 @@
           },
           "editorMode": "builder",
           "exemplar": false,
-          "expr": "user_viewed_adaptive_hockey_total{job=\"bot_master\"}",
+          "expr": "user_viewed_adaptive_hockey_total{job=\"bot_dev\"}",
+
           "hide": false,
           "legendFormat": "Адаптивные виды хоккея",
           "range": true,
@@ -1565,7 +1591,8 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "user_viewed_adaptive_hockey_total{job=\"bot_master\"}",
+          "expr": "user_viewed_adaptive_hockey_total{job=\"bot_dev\"}",
+
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
@@ -1634,7 +1661,8 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "user_viewed_sledzh_hockey_total{job=\"bot_master\"}",
+          "expr": "user_viewed_sledzh_hockey_total{job=\"bot_dev\"}",
+
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
@@ -1703,7 +1731,8 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "user_viewed_special_hockey_total{job=\"bot_master\"}",
+          "expr": "user_viewed_special_hockey_total{job=\"bot_dev\"}",
+
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
@@ -1772,7 +1801,8 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "user_viewed_hockey_for_blind_total{job=\"bot_master\"}",
+          "expr": "user_viewed_hockey_for_blind_total{job=\"bot_dev\"}",
+
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
@@ -1878,7 +1908,8 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "user_viewed_who_is_fyrk_total{job=\"bot_master\"}",
+          "expr": "user_viewed_who_is_fyrk_total{job=\"bot_dev\"}",
+
           "legendFormat": "Просмотр",
           "range": true,
           "refId": "A"
@@ -1947,7 +1978,8 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "user_viewed_who_is_fyrk_total{job=\"bot_master\"}",
+          "expr": "user_viewed_who_is_fyrk_total{job=\"bot_dev\"}",
+
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
@@ -2056,7 +2088,8 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "user_viewed_sticker_total{job=\"bot_master\"}",
+          "expr": "user_viewed_sticker_total{job=\"bot_dev\"}",
+
           "legendFormat": "Просмотр",
           "range": true,
           "refId": "A"
@@ -2126,7 +2159,8 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "user_viewed_sticker_total{job=\"bot_master\"}",
+          "expr": "user_viewed_sticker_total{job=\"bot_dev\"}",
+
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
@@ -2231,7 +2265,8 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "user_viewed_all_for_hockey_total{job=\"bot_master\"}",
+          "expr": "user_viewed_all_for_hockey_total{job=\"bot_dev\"}",
+
           "legendFormat": "Просмотр",
           "range": true,
           "refId": "A"
@@ -2301,7 +2336,8 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "builder",
-          "expr": "user_viewed_all_for_hockey_total{job=\"bot_master\"}",
+          "expr": "user_viewed_all_for_hockey_total{job=\"bot_dev\"}",
+
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
@@ -2325,7 +2361,7 @@
   },
   "timepicker": {},
   "timezone": "Europe/Moscow",
-  "title": "Аналитика",
+  "title": "Аналитика Test",
   "uid": "TEqsffBVk",
   "version": 1,
   "weekStart": "monday"
