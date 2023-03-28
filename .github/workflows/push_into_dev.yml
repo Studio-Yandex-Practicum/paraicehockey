@@ -121,7 +121,7 @@ jobs:
             docker run -d --name grafana_TG -v ~/tg-bot-config/grafana/grafana.ini:/etc/grafana/grafana.ini -v ~/tg-bot-config/grafana/provisioning/datasources/default.yaml:/etc/grafana/provisioning/datasources/default.yaml -v ~/tg-bot-config/grafana/provisioning/dashboards/default.yaml:/etc/grafana/provisioning/dashboards/default.yaml -v ~/tg-bot-config/grafana/dashboards:/var/lib/grafana/dashboards -p 3030:3030 grafana/grafana
             docker stop prometheus_TG
             docker rm prometheus_TG
-            docker run -d --name prometheus_TG -v ~/tg-bot-config/prometheus/config.yml:/etc/prometheus/prometheus.yml -v prometheus_data:/prometheus -v bot_data:/app/metrics:ro --config.file=/etc/prometheus/prometheus.yml --query.lookback-delta=1h --storage.tsdb.path=/prometheus/data --storage.tsdb.min-block-duration=2h --storage.tsdb.max-block-duration=336h  -p 9090:9090 prom/prometheus
+            docker run -d --name prometheus_TG -v ~/tg-bot-config/prometheus/config.yml:/etc/prometheus/prometheus.yml -v prometheus_data:/prometheus -v bot_data:/app/metrics:ro  -p 9090:9090 prom/prometheus
             docker stop db_TG
             docker rm db_TG
             docker run -d --name db_TG -v ~/tg-bot-config/db:/var/lib/postgresql/data -p 5433:5433 postgres:10.13
