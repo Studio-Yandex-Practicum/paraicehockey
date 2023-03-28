@@ -43,4 +43,4 @@ METRIC_NAMES = {
     'user_viewed_all_for_hockey_total': 'Просмотр пункта меню: Всё для хоккея',
 }
 
-PROMETHEUS_URL = 'http://172.17.0.5:9090'
+PROMETHEUS_URL = 'http://172.17.0.6:9090'
