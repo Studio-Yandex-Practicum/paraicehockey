@@ -4,9 +4,13 @@ from sqlalchemy.orm import sessionmaker
 
 from src.core.settings import settings
 
+# engine = create_engine(
+#     f'postgresql://{settings.postgres_user}:{settings.postgres_password}@'
+#     f'{settings.postgres_host}:{settings.postgres_port}/{settings.postgres_db}'
+# )
 engine = create_engine(
     f'postgresql://{settings.postgres_user}:{settings.postgres_password}@'
-    f'{settings.postgres_host}:{settings.postgres_port}/{settings.postgres_db}'
+    f'172.17.0.7:{settings.postgres_port}/{settings.postgres_db}'
 )
 Session = sessionmaker(bind=engine)
 Base = declarative_base()
