@@ -5,6 +5,8 @@ from src.core.constants import (ADAPTIVE_HOKKEY_PAGES_TEXT_URLS,
                                 CHAMPION_WAY_URL)
 from src.core.prometheus import counter_start_app
 from src.core.prometheus_constants import OWNER
+from src.core.save_metrics import (create_table, get_metric_value,
+                                   update_metric_value)
 from src.features.all_for_hockey import start_all_for_hockey
 from src.features.donations import page_donations
 from src.features.federation_info import (about_fed_main_page,
@@ -15,6 +17,12 @@ from src.features.question import question_menu_page
 from src.features.send_stickers import sending_stickers
 from src.features.who_is_fyrk import who_is_fyrk
 from src.quiz.quiz import quiz, quiz_menu
+
+create_table()
+
+start_bot_total = get_metric_value('user_start_bot_total')
+if start_bot_total is not None:
+    counter_start_app.labels(group=OWNER).inc(start_bot_total)
 
 
 def main_menu_keyboard():
@@ -54,6 +62,10 @@ def main_menu(update: Update, context: CallbackContext) -> None:
 def start_bot(update: Update, context: CallbackContext) -> None:
     """Функция первого сообщения и логирования нажатия команды '/start'."""
     counter_start_app.labels(group=OWNER).inc()
+    update_metric_value(
+        'user_start_bot_total',
+        int(counter_start_app.labels(group=OWNER)._value.get())
+    )
     main_menu(update, context)
 
 

@@ -13,10 +13,11 @@ METRIC_GROUPS = {
     FEDERATION: 'Федерация',
     ADAPTIVE_HOKKEY: 'Адаптивный хоккей',
     OWNER: 'Запуск Бота',
-    DONATE: 'Сделать пожертвования',
+    DONATE: 'Сделать пожертвование',
     WHO_IS_FYRK: 'Кто такой Фырк',
     STICKER: 'Стикер пак',
-    ALL_FOR_HOCKEY: 'Всё для хоккея'
+    ALL_FOR_HOCKEY: 'Всё для хоккея',
+    QUIZ: 'Квиз',
 }
 
 METRIC_NAMES = {
@@ -41,6 +42,18 @@ METRIC_NAMES = {
     'user_viewed_quiz_result_total': 'Просмотр результатов квиза',
     'user_viewed_sticker_total': 'Просмотр пункта меню: Получить стикерпак',
     'user_viewed_all_for_hockey_total': 'Просмотр пункта меню: Всё для хоккея',
+    'user_viewed_quiz_result_0_total': 'Нет правильных ответов',
+    'user_viewed_quiz_result_1_total': 'Один правильный ответ',
+    'user_viewed_quiz_result_2_total': 'Два правильных ответа',
+    'user_viewed_quiz_result_3_total': 'Три правильных ответа',
+    'user_viewed_quiz_result_4_total': 'Четыре правильных ответа',
+    'user_viewed_quiz_result_5_total': 'Пять правильных ответов',
+    'user_viewed_quiz_result_6_total': 'Шесть правильных ответов',
+    'user_viewed_quiz_result_7_total': 'Семь правильных ответов',
+    'user_viewed_quiz_result_8_total': 'Восемь правильных ответов',
+    'user_viewed_quiz_result_9_total': 'Девять правильных ответов',
+    'user_viewed_quiz_result_10_total': 'Ответил правльно на все вопросы',
+
 }
 
 PROMETHEUS_URL = 'http://172.17.0.6:9090'
