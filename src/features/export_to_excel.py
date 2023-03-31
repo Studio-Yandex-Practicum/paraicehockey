@@ -60,18 +60,15 @@ def create_excel_file(start, end, filename, metrics, interval):
             if interval == 'all':
                 query = (
                     f'{PROMETHEUS_URL}/api/v1/query?query={metric}'
+                    f'{{job="{settings.bot_prometheus}"}}'
                     f'&time={end}&start={start}'
                 )
             else:
                 query = (
                     f'{PROMETHEUS_URL}/api/v1/query?query=changes({metric}'
+                    f'{{job="{settings.bot_prometheus}"}}'
                     f'[{interval}])&time={end}&start={start}'
                 )
-            query = (
-                f'{PROMETHEUS_URL}/api/v1/query?query={metric}'
-                f'{{job="{settings.bot_prometheus}"}}'
-                f'&time={end}&start={start}'
-            )
             try:
                 response = requests.get(query)
             except requests.exceptions.RequestException:
