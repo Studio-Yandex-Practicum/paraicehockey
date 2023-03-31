@@ -6,4 +6,4 @@ datasources:
     editable: true
     is_default: true
     access: proxy
-    url: http://172.17.0.5:9090
+    url: http://172.17.0.6:9090

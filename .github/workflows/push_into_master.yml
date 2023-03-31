@@ -111,5 +111,5 @@ jobs:
             docker run -d --name grafana_TG -v ~/tg-bot-config/grafana/grafana.ini:/etc/grafana/grafana.ini -v ~/tg-bot-config/grafana/provisioning/datasources/default.yaml:/etc/grafana/provisioning/datasources/default.yaml -v ~/tg-bot-config/grafana/provisioning/dashboards/default.yaml:/etc/grafana/provisioning/dashboards/default.yaml -v ~/tg-bot-config/grafana/dashboards:/var/lib/grafana/dashboards -p 3030:3030 grafana/grafana
             docker stop prometheus_TG
             docker rm prometheus_TG
-            docker run -d --name prometheus_TG --volume a-new-volume:/prometheus -v ~/tg-bot-config/prometheus/config.yml:/etc/prometheus/prometheus.yml -p 9090:9090 prom/prometheus
+            docker run -d --name prometheus_TG --volume a-new-volume:/prometheus -v ~/tg-bot-config/prometheus/config.yml:/etc/prometheus/prometheus.yml -p 9090:9090 prom/prometheus --config.file=/etc/prometheus/prometheus.yml --storage.tsdb.retention.time=90d --web.enable-lifecycle
             docker container start tg_bot_prod_container
