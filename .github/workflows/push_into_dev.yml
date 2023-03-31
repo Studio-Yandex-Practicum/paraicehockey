@@ -115,7 +115,7 @@ jobs:
           script: |
             docker login cr.selcloud.ru --username ${{ secrets.SELECTEL_CONTAINER_REGISTRY_USER }} --password ${{ secrets.SELECTEL_CONTAINER_REGISTRY_PASSWORD }}
             docker container rm tg_bot_dev_container --force
-            docker container create -p {{ secrets.BOT_DEV_PORT }}:${{ secrets.BOT_DEV_PORT }} -it --name tg_bot_dev_container -v static_value:/app/static_for_bot/ -v bot_data:/app/metrics cr.selcloud.ru/registry/tg_bot_dev:${{ github.workflow }}-${{ github.run_number }}
+            docker container create -p ${{ secrets.BOT_DEV_PORT }}:${{ secrets.BOT_DEV_PORT }} -it --name tg_bot_dev_container -v static_value:/app/static_for_bot/ -v bot_data:/app/metrics cr.selcloud.ru/registry/tg_bot_dev:${{ github.workflow }}-${{ github.run_number }}
             docker stop grafana_TG
             docker rm grafana_TG
             docker run -d --name grafana_TG -v ~/tg-bot-config/grafana/grafana.ini:/etc/grafana/grafana.ini -v ~/tg-bot-config/grafana/provisioning/datasources/default.yaml:/etc/grafana/provisioning/datasources/default.yaml -v ~/tg-bot-config/grafana/provisioning/dashboards/default.yaml:/etc/grafana/provisioning/dashboards/default.yaml -v ~/tg-bot-config/grafana/dashboards:/var/lib/grafana/dashboards -p 3030:3030 grafana/grafana

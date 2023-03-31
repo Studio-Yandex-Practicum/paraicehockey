@@ -8,4 +8,4 @@ scrape_configs:
       - targets: [ 172.17.0.3:8001 ]
   - job_name: "bot_dev"
     static_configs:
-      - targets: [ 172.17.0.7:8000 ]
+      - targets: [ 172.17.0.8:8000 ]
