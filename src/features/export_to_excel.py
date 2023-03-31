@@ -21,7 +21,7 @@ def get_metrics_list():
         try:
             response = requests.get(url)
         except requests.exceptions.RequestException:
-            logging.error('Prometheus: не удалось получить метрику.')
+            logging.error('Prometheus: не удалось получить метрику. ')
         data = response.json()['data']
         for metric in data:
             name = metric['__name__']
