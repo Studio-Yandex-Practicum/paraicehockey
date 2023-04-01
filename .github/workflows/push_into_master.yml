@@ -115,14 +115,5 @@ jobs:
           script: |
             docker login cr.selcloud.ru --username ${{ secrets.SELECTEL_CONTAINER_REGISTRY_USER }} --password ${{ secrets.SELECTEL_CONTAINER_REGISTRY_PASSWORD }}
             docker container rm tg_bot_prod_container --force
-            docker container create -p ${{ secrets.BOT_MASTER_PORT }}:${{ secrets.BOT_MASTER_PORT }} -it --name tg_bot_prod_container -v static_value:/app/static_for_bot/ -v bot_data:/app/metrics cr.selcloud.ru/registry/tg_bot_prod:${{ github.workflow }}-${{ github.run_number }}
-            docker stop grafana_TG
-            docker rm grafana_TG
-            docker run -d --name grafana_TG -v ~/tg-bot-config/grafana/grafana.ini:/etc/grafana/grafana.ini -v ~/tg-bot-config/grafana/provisioning/datasources/default.yaml:/etc/grafana/provisioning/datasources/default.yaml -v ~/tg-bot-config/grafana/provisioning/dashboards/default.yaml:/etc/grafana/provisioning/dashboards/default.yaml -v ~/tg-bot-config/grafana/dashboards:/var/lib/grafana/dashboards -p 3030:3030 grafana/grafana
-            docker stop prometheus_TG
-            docker rm prometheus_TG
-            docker run -d --name prometheus_TG -v ~/tg-bot-config/prometheus/config.yml:/etc/prometheus/prometheus.yml -v prometheus_data:/prometheus -v bot_data:/app/metrics:ro -p 9090:9090 prom/prometheus --config.file=/etc/prometheus/prometheus.yml --storage.tsdb.retention.time=90d --web.enable-lifecycle
-            docker stop 802c1b905e80
-            docker rm 802c1b905e80
-            docker run -d --name 802c1b905e80 -v data:/var/lib/postgresql/data -e POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} -e POSTGRES_USER=${{ secrets.POSTGRES_USER }} -e POSTGRES_DB=${{ secrets.POSTGRES_DB }} -p 5433:5433 postgres:10.13
+            docker container create -p ${{ secrets.BOT_MASTER_PORT }}:8000 -it --name tg_bot_prod_container -v static_value:/app/static_for_bot/ -v bot_data:/app/metrics cr.selcloud.ru/registry/tg_bot_prod:${{ github.workflow }}-${{ github.run_number }}
             docker container start tg_bot_prod_container
