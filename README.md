@@ -1,4 +1,7 @@
-[![Python](https://img.shields.io/badge/-Python-464646?style=flat&logo=Python&logoColor=56C0C0&color=008080)](https://www.python.org/) [![badge](https://img.shields.io/badge/-Python_telegram_bot-008080)](https://github.com/python-telegram-bot/python-telegram-bot/blob/680cca8262ab3e8dc00916ec523b9e015db5bc22/docs/source/telegram.ext.rst) 
+[![Python](https://img.shields.io/badge/-Python-464646?style=flat&logo=Python&logoColor=56C0C0&color=008080)](https://www.python.org/) 
+[![badge](https://img.shields.io/badge/-Python_telegram_bot-008080)](https://github.com/python-telegram-bot/python-telegram-bot/blob/680cca8262ab3e8dc00916ec523b9e015db5bc22/docs/source/telegram.ext.rst) 
+[![badge](https://img.shields.io/badge/-Grafana-008080?style=flat&logo=Grafana&logoColor=56C0C0&color=008080)](https://grafana.com/) 
+[![badge](https://img.shields.io/badge/-Prometheus-008080?style=flat&logo=Prometheus&logoColor=56C0C0&color=008080)](https://prometheus.io/) 
 
 # Project Paraicehockey  
 
@@ -14,6 +17,7 @@
     3.3. [Настройка переменных окружения](#env)
 
 4. [Запуск бота](#run-bot)
+5. [FAQ Мониторинг](https://github.com/Studio-Yandex-Practicum/paraicehockey/blob/master/ANALYTICS.md)
 
 ### 1. О чём проект? <a id="about"></a>
 
@@ -174,3 +178,5 @@ _Примеры:_
 - [Nikita Sorin](https://github.com/nikita141150) Developer
 - [Sergey Viskov](https://github.com/SergeyViskov) Developer
 - [MaxUMEO](https://github.com/MaxUMEO) Developer
+- [Philipp Pyhonin](https://github.com/caveinfix) Developer
+- [MrGorkiy](https://github.com/MrGorkiy) Developer
