@@ -6,7 +6,7 @@ from src.core.settings import settings
 
 engine = create_engine(
     f'postgresql://{settings.postgres_user}:{settings.postgres_password}@'
-    f'172.17.0.7:5432/{settings.postgres_db}'
+    f'172.17.0.6:5432/{settings.postgres_db}'
 )
 Session = sessionmaker(bind=engine)
 Base = declarative_base()
